@@ -1,5 +1,4 @@
 error_log
-wp-content/plugins/
 wp-includes/
 wp-config.php
 
