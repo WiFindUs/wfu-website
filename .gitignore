@@ -1,5 +1,4 @@
 error_log
-wp-admin/network/
 wp-admin/user/
 wp-content/
 wp-includes/
