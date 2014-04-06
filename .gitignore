@@ -1,5 +1,6 @@
 error_log
-wp-content/
+wp-content/plugins/
+wp-content/themes/
 wp-includes/
 wp-config.php
 
