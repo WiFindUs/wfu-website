@@ -1,5 +1,4 @@
 error_log
-wp-admin/js/
 wp-admin/maint/
 wp-admin/network/
 wp-admin/user/
