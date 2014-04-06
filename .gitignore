@@ -1,6 +1,12 @@
 error_log
+wp-admin/css/
+wp-admin/images/
+wp-admin/includes/
+wp-admin/js/
+wp-admin/maint/
+wp-admin/network/
+wp-admin/user/
 wp-content/
-wp-admin/
 wp-includes/
 wp-config.php
 
