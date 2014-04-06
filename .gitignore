@@ -1,5 +1,14 @@
 error_log
-wp-includes/
+wp-includes/certificates/
+wp-includes/css/
+wp-includes/fonts/
+wp-includes/ID3/
+wp-includes/images/
+wp-includes/js/
+wp-includes/pomo/
+wp-includes/SimplePie/
+wp-includes/Text/
+wp-includes/theme-compat/
 wp-config.php
 
 #################
