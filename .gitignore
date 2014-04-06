@@ -2,7 +2,6 @@ error_log
 wp-includes/certificates/
 wp-includes/css/
 wp-includes/fonts/
-wp-includes/ID3/
 wp-config.php
 
 #################
