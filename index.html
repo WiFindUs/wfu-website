@@ -4,6 +4,7 @@
 	<head>
 		<title>WiFindUs</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="text/javascript" src="js/slideshow.js"></script>
 		<!--<script type="text/javascript" src="js/scrip.js"></script>-->
 		<link rel="stylesheet" href="mobile.css">
 		<link rel="stylesheet" href="600.css">
@@ -34,7 +35,31 @@
 			</nav>
 			
 		</div>
-	
+
+
+		<div id="slideshowContainer">
+
+			<div id="slideshow">
+			</div> 
+
+			<div id ="hud">
+				<div class="shiftSlideBtns">
+					<input id="nextSlideBtn" type="image" src="images/next_slide_arrow.png" ontouchstart="nextSlide()" onclick="nextSlide()">
+						<input id="prevSlideBtn" type="image" src="images/next_slide_arrow.png" ontouchstart="prevSlide()" onclick="prevSlide()">	
+				</div>
+
+				<div class="slideshowBtns">
+					<ul>
+						<li id=""><input id="slideSelector1" type="image" src="images/slideshow-button.png" ontouchstart="goToSlide(0)" onclick="goToSlide(0)"></li>
+						<li id=""><input id="slideSelector2" type="image" src="images/slideshow-button.png" ontouchstart="goToSlide(1)" onclick="goToSlide(1)"></li>
+						<li id=""><input id="slideSelector3" type="image" src="images/slideshow-button.png" ontouchstart="goToSlide(2)" onclick="goToSlide(2)"></li>
+						<li id=""><input id="slideSelector4" type="image" src="images/slideshow-button.png" ontouchstart="goToSlide(3)" onclick="goToSlide(3)"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	<!--
 		<div class="slideshow">
 			<img class="slideshowImg" src="images/ubi_slideshow.jpg" alt="ubi" />
 			<div class="slideshowBtns">
@@ -43,12 +68,13 @@
 					<li id=""><img onmousedown="" src="images/slideshow-button.png" alt="" /></li>
 					<li id=""><img onmousedown="" src="images/slideshow-button.png" alt="" /></li>
 					<li id=""><img onmousedown="" src="images/slideshow-button.png" alt="" /></li>
+					<li id=""><img onmousedown="" src="images/slideshow-button.png" alt="" /></li>
 				</ul>
 			</div>
 		</div>
 	
-	
-		
+	-->
+
 		
 		
 		<div class="horizontalCardList">

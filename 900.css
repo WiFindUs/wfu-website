@@ -300,6 +300,49 @@
 		cursor: pointer;
 	}
 
+	#slideshowContainer
+	{
+		display: inline-block;
+		position: relative;
+		width : 1920px;
+		height : auto;
+		overflow: hidden;
+	}
+
+	#nextSlideBtn
+	{
+		opacity: 0.4;
+	    filter: alpha(opacity=40); 
+		position:absolute; 
+		left:1780px; 
+		top:450px; 
+		height:130px; 
+		width: 130px;
+		font-size:200%;
+	}
+
+	#prevSlideBtn
+	{
+		opacity: 0.4;
+	    filter: alpha(opacity=40);
+		position:absolute; 
+		left:10px; 
+		top:450px; 
+		height:130px; 
+		width: 128px;
+		font-size:200%;
+
+		-ms-transform: rotate(180deg);
+	    -webkit-transform: rotate(180deg);
+	    transform: rotate(180deg);
+	}
+
+
+	.gameBG
+	{
+		position: absolute;
+	}
+
 	/*====END OF SLIDESHOW====*/
 
 	/*====CONTACT====*/
@@ -353,4 +396,6 @@
 		margin-left: 50%;
 		transform: translate(-50%, 0);
 	}
+
+
 }
