@@ -133,10 +133,11 @@ nav ul ul li a:hover
 .pageTitle
 {
 	width: 100%;
-	height: 180px;
+	height: 210px;
 	background-color: #7db1e1;
 	color: #ffffff;
 }
+
 
 .pageTitle h1
 {
@@ -158,6 +159,13 @@ nav ul ul li a:hover
 .pageTitle p
 {
 	width: 300px;
+	margin-left:50%;
+	transform: translate(-50%, 0);
+}
+
+.pageTitle .wide
+{
+	width: 83.33%;
 	margin-left:50%;
 	transform: translate(-50%, 0);
 }
@@ -232,6 +240,68 @@ nav ul ul li a:hover
 {
 	margin-bottom: 20px;
 }
+
+
+
+
+
+
+	/*========TEAM PROFILES========*/
+	.verticalCardList .profile_card
+	{
+		background-color: #ffffff;
+		width: 200px;
+		height: 150px;
+		display: inline-block;
+		vertical-align: top;
+		margin-top: 20px;
+		margin-bottom: 20px;
+
+	}
+
+	.verticalCardList .profile_card h2
+	{
+		margin: 0px;
+  		padding: 0px;
+		height: 15%;
+		background-color: #ffffff;
+		font-size: 100%;
+	}
+
+
+	.verticalCardList .profile_card .position
+	{
+		background-color: #7db1e1;
+		color: #ffffff;
+	}
+	.verticalCardList .profile_picture
+	{
+		width: 100%;
+		height: 70%;
+	}
+
+	.verticalCardList .profile_description
+	{
+		width: 83.33%;
+	max-width: 500px;
+	text-align: center;
+	margin-left: 50%;
+	transform: translate(-50%, 0);
+	}
+
+	.verticalCardList .ProfileListElem_alt
+	{
+	
+		background-color: #ffffff;
+	}
+
+	.verticalCardList .ProfileListElem
+	{
+		padding: 0px;
+		margin: 0px;
+
+	}
+	/*========END OF TEAM PROFILES========*/
 /*====END OF VERTICAL CARD LIST====*/
 
 
@@ -338,6 +408,29 @@ nav ul ul li a:hover
 	font-weight: bold;
 	display: inline-block;
 }
+
+
+
+
+	.teamContactContainer
+	{
+		background-color: #7db1e1;
+		height: 100px;
+		margin-top: 0px;
+	}
+
+	.teamContactContainer a
+	{
+		padding: 10px;
+		margin-top: 50px;
+		transform: translate(0, -50%);
+		border: 1px solid #ffffff;
+		text-decoration: none;
+		color: #ffffff;
+		font-size: 25px;
+		font-weight: bold;
+		display: inline-block;
+	}
 /*====END OF CONTACT====*/
 
 /*====FOOTER====*/
