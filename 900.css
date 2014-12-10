@@ -261,10 +261,47 @@
 		background-color: #7db1e1;
 		color: #ffffff;
 	}
+
+
+	.verticalCardList .friend_card
+	{
+		background-color: #7db1e1;
+		width: 200px;
+		height: 150px;
+		display: inline-block;
+		vertical-align: top;
+		margin-top: 20px;
+		margin-bottom: 20px;
+
+	}
+	
+	.verticalCardList .friend_card h2
+	{
+		margin: 0px;
+  		padding: 0px;
+		height: 15%;
+		background-color: #ffffff;
+		font-size: 100%;
+	}
+
+
+	.verticalCardList .friend_card .position
+	{
+		background-color: #7db1e1;
+		color: #ffffff;
+	}
+
 	.verticalCardList .profile_picture
 	{
 		width: 100%;
 		height: 70%;
+	}
+
+	.verticalCardList .friend_profile_picture
+	{
+		width: 100%;
+		height: 70%;
+		background: #000000;
 	}
 
 	.verticalCardList .profile_description
@@ -272,7 +309,7 @@
 		display: inline-block;
 		width: 500px;
 		text-align: left;
-		transform: translate(0, 20%);
+		transform: translate(0, 30%);
 		margin-left: 40px;
 	}
 
@@ -437,6 +474,7 @@
 		background-color: #7db1e1;
 		height: 100px;
 		margin-top: 0px;
+
 	}
 
 	.teamContactContainer a
