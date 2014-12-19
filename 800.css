@@ -150,25 +150,18 @@
 	/*====HORIZONTAL CARD LIST====*/
 	.horizontalCardList
 	{
-		width: 100%;
-		text-align: center;
-		background-color: #ffffff;
-		padding-bottom: 15px;
+
 	}
 
 	.horizontalCardList .card
 	{
-		background-color: #f8f8f8;
-		/*display: inline-block;*/
-		vertical-align: bottom;
-		margin-left: 50%;
-		transform: translate(-50%, 0);
+		
 	}
 
 
 	.horizontalCardList h2
 	{
-		padding-top: 10px;
+		
 
 	}
 
@@ -180,9 +173,7 @@
 
 	.horizontalCardList .icon
 	{
-		width: 40%;
-		height: auto;
-		margin-top: 20px;
+
 	}
 
 	/*====END OF HORIZONTAL CARD LIST====*/

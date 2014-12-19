@@ -326,17 +326,12 @@
 	/*====HORIZONTAL CARD LIST====*/
 	.horizontalCardList
 	{
-		width: 100%;
-		text-align: center;
-		background-color: #ffffff;
-		padding-bottom: 15px;
+		
 	}
 
 	.horizontalCardList .card
 	{
-		background-color: #f8f8f8;
 		display: inline-block;
-		vertical-align: bottom;
 		margin-left: 2%;
 		margin-right: 2%;
 		transform: none;
@@ -344,13 +339,10 @@
 		max-width: 300px;
 	}
 
-
 	.horizontalCardList card h3
 	{
-		color: #000000;
-
+		
 	}
-	
 
 	.horizontalCardList p
 	{
@@ -360,9 +352,7 @@
 
 	.horizontalCardList .icon
 	{
-		width: 40%;
-		height: auto;
-		margin-top: 20px;
+
 	}
 
 	/*====END OF HORIZONTAL CARD LIST====*/
