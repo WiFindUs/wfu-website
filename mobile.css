@@ -436,43 +436,32 @@ body
 	background-color: #7db1e1;
 	height: 100px;
 	margin-top: 40px;
+	
 }
 
-.contactContainer a
+.contactContainer h2
 {
 	padding: 10px;
 	margin-top: 50px;
 	transform: translate(0, -50%);
 	border: 1px solid #ffffff;
-	text-decoration: none;
 	color: #ffffff;
 	font-size: 25px;
 	font-weight: bold;
 	display: inline-block;
+	cursor: pointer;
 }
 
+.contactContainer a
+{
+	text-decoration: none;
+	color: #ffffff;
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: -30px;
+	display: none;
+}
 
-
-
-	.teamContactContainer
-	{
-		background-color: #7db1e1;
-		height: 100px;
-		margin-top: 0px;
-	}
-
-	.teamContactContainer a
-	{
-		padding: 10px;
-		margin-top: 50px;
-		transform: translate(0, -50%);
-		border: 1px solid #ffffff;
-		text-decoration: none;
-		color: #ffffff;
-		font-size: 25px;
-		font-weight: bold;
-		display: inline-block;
-	}
 /*====END OF CONTACT====*/
 
 /*====FOOTER====*/
@@ -485,12 +474,8 @@ footer
 
 .friends a
 {
-	/*margin-top: 2%;
-	margin-left: 5%;
-	margin-right: 5%;
-	display: inline-block;*/
 	display: block;
-	padding-top: 10px;
+	padding-top: 40px;
 }
 
 .friends img

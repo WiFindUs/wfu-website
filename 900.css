@@ -192,16 +192,13 @@
 
 	.verticalCardList .card
 	{
-		background-color: #ffffff;
 		width: 240px;
 		height: 200px;
-		display: inline-block;
-		vertical-align: top;
 	}
 
 	.verticalCardList h2
 	{
-		padding-top: 10px;
+		
 	}
 
 	.verticalCardList .icon
@@ -213,11 +210,11 @@
 
 	.verticalCardList p
 	{
-		display: inline-block;
+		/*display: inline-block;
 		width: 500px;
 		text-align: left;
 		transform: translate(0, 60%);
-		margin-left: 40px;
+		margin-left: 40px;*/
 	}
 
 	.verticalCardList .ListElem
@@ -458,62 +455,7 @@
 		margin-top: 40px;
 	}
 
-	.teamContactContainer
-	{
-		background-color: #7db1e1;
-		height: 100px;
-		margin-top: 0px;
-
-	}
-
-	.teamContactContainer a
-	{
-		padding: 10px;
-		margin-top: 50px;
-		transform: translate(0, -50%);
-		border: 1px solid #ffffff;
-		text-decoration: none;
-		color: #ffffff;
-		font-size: 25px;
-		font-weight: bold;
-		display: inline-block;
-	}
-
-	.contactContainer a
-	{
-		padding: 10px;
-		margin-top: 50px;
-		transform: translate(0, -50%);
-		border: 1px solid #ffffff;
-		text-decoration: none;
-		color: #ffffff;
-		font-size: 25px;
-		font-weight: bold;
-		display: inline-block;
-	}
 	/*====END OF CONTACT====*/
-
-	/*====FOOTER====*/
-	footer
-	{
-		background-color: #000000;
-		padding-bottom: 20px;
-	}
-
-	.friends a
-	{
-		margin-top: 2%;
-		margin-left: 5%;
-		margin-right: 5%;
-		display: inline-block;
-	}
-
-	.friends img
-	{
-		width: 150px;
-		height: auto;
-	}
-	/*====END OF FOOTER====*/
 
 
 	#desc
