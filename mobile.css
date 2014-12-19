@@ -23,109 +23,113 @@ body
 
 /*====HEADER====*/
 #header
-{
+	{
 
-}
+	}
 
-#logo 
-{
-	display: inline-block;
-	margin-right: 50px;
-}
+	#logo 
+	{
+		display: inline-block;
+		margin-right: 50px;
+	}
 
-#logo img
-{
-	width: 150px;
-	height: auto;
-}
+	#logo img
+	{
+		width: 150px;
+		height: auto;
+	}
 
-nav
-{
-	display: inline-block;
-	vertical-align: top;
-}
+	nav
+	{
+		display: inline-block;
+		vertical-align: top;
+	}
 
-nav ul 
-{
-	list-style-type: none;
-	text-transform:uppercase;
-	font-size: 18px;
-	position: relative;
-	display: inline-table;
-}
+	nav ul 
+	{
+		list-style-type: none;
+		text-transform:uppercase;
+		font-size: 18px;
+		position: relative;
+		display: inline-table;
+	}
 
-nav ul:after 
-{
-	content: ""; 
-	clear: both; 
-	display: block;
-}
+	nav ul:after 
+	{
+		content: ""; 
+		clear: both; 
+		display: block;
+	}
+		
+	nav ul li
+	{
+		display: inline-block;
+		padding-right: 40px;
+	}
+
+	nav ul li a
+	{
+		color: #818181;
+		text-decoration: none;
+	}
 	
-nav ul li
-{
-	display: inline-block;
-	padding-right: 40px;
-}
+	nav ul li a:hover
+	{
+		border-bottom: 2px solid #7db1e1;
+	}
 
-nav ul li a
-{
-	color: #818181;
-	text-decoration: none;
-}
+	nav ul ul 
+	{
+		display: none;
+		position: absolute;
+		padding: 0;
+		top: 100%;
+		text-transform:lowercase;
+		list-style-type: none;
+		background-color: red;
+		min-width: 150px;
+		z-index: 999;
+	}
 
-nav ul ul 
-{
-	display: none;
-	position: absolute;
-	padding: 0;
-	top: 100%;
-	text-transform:lowercase;
-	list-style-type: none;
-	background-color: red;
-	min-width: 150px;
-	z-index: 999;
-}
-
-nav ul li:hover > ul 
-{
-	display: block;
-}
+	nav ul li:hover > ul 
+	{
+		display: block;
+	}
 
 
-nav ul ul li
-{
-	background-color: yellow;
-	display: block;
-	position: relative;
-}
+	nav ul ul li
+	{
+		background-color: yellow;
+		display: block;
+		position: relative;
+	}
 
 
-nav ul ul li a
-{
-	background-color: #f8f8f8;
-	display: block;
-	padding-left: 20px;
-	padding-right: 20px;
-	width: 100%;
-	border: 1px solid white;
-}
+	nav ul ul li a
+	{
+		background-color: #f8f8f8;
+		display: block;
+		padding-left: 20px;
+		padding-right: 20px;
+		width: 100%;
+		border: 1px solid white;
+	}
 
-nav ul ul li:hover
-{
+	nav ul ul li:hover
+	{
 
-}
+	}
 
-nav ul ul li a:hover
-{
-	background-color: #7db1e1;
-	color: #ffffff;
-}
+	nav ul ul li a:hover
+	{
+		background-color: #7db1e1;
+		color: #ffffff;
+	}
 
-#navSelected
-{
-	color: #7db1e1;
-}
-
+	#navSelected
+	{
+		color: #7db1e1;
+	}
 
 /*====END OF HEADER====*/
 
@@ -133,17 +137,17 @@ nav ul ul li a:hover
 .pageTitle
 {
 	width: 100%;
-	height: 210px;
+	min-height: 160px;
+	padding-bottom: 10px;
 	background-color: #7db1e1;
 	color: #ffffff;
 }
 
-
 .pageTitle h1
 {
-	padding-top: 40px;
-
+	padding-top: 20px;
 }
+	
 .pageTitle h1::after
 {
 	 content:"";
@@ -153,12 +157,13 @@ nav ul ul li a:hover
     left:50%;
 	transform: translate(-50%, 0);
     height: 1px;
-    width: 500px;
+    width: 60%;
+	max-width: 500px;
 }
 
 .pageTitle p
 {
-	width: 300px;
+	width: 83.33%;
 	margin-left:50%;
 	transform: translate(-50%, 0);
 }
@@ -175,9 +180,10 @@ nav ul ul li a:hover
 .card
 {
 	background-color: #f8f8f8;
-	width: 300px;
+	width: 23.4375%;
+	/*min-width: 250px;*/
 	height: 350px;
-	border-bottom: 2px solid #7db1e1;
+	border-bottom: 3px solid #7db1e1;
 }
 
 .icon
@@ -199,23 +205,23 @@ nav ul ul li a:hover
 	width: 100%;
 	background-color: #f8f8f8;
 	text-align: center;
-	padding-bottom: 15px;
 	padding-top: 15px;
+	padding-bottom: 15px;
 }
+
 
 .verticalCardList .card
 {
 	background-color: #ffffff;
+	display: inline-block;
 	width: 240px;
 	height: 200px;
-	display: inline-block;
 	vertical-align: top;
 }
 
 .verticalCardList h2
 {
 	padding-top: 10px;
-
 }
 
 .verticalCardList .icon
@@ -227,22 +233,19 @@ nav ul ul li a:hover
 
 .verticalCardList p
 {
-	/*display: inline-block;*/
 	width: 83.33%;
 	max-width: 500px;
 	text-align: center;
 	margin-left: 50%;
 	transform: translate(-50%, 0);
-	
 }
 
 .verticalCardList .ListElem
 {
-	margin-bottom: 20px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	
 }
-
-
-
 
 
 
@@ -358,12 +361,16 @@ nav ul ul li a:hover
 	margin-left: 50%;
 	transform: translate(-50%, 0);
 	margin-top: 25px;
-	/*width: 55%;*/
-	
+	width: 50%;
+	min-width: 250px;
 }
 
-
 .horizontalCardList h2
+{
+	color: #7db1e1;
+}
+
+.horizontalCardList card h3
 {
 	padding-top: 10px;
 

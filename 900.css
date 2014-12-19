@@ -5,7 +5,7 @@
  body{
  background-color: white;
  }
- /*====HEADER====*/
+	/*====HEADER====*/
 	#header
 	{
 
@@ -122,33 +122,36 @@
 	.pageTitle
 	{
 		width: 100%;
-		height: 180px;
+		height: 160px;
 		background-color: #7db1e1;
 		color: #ffffff;
 	}
 
 	.pageTitle h1
 	{
-		padding-top: 40px;
-
+		padding-top: 35px;
 	}
+	
 	.pageTitle h1::after
 	{
-		 content:"";
+		content:"";
 		background-color: #ffffff;
 		position: absolute;
 		margin-top: 50px;
 		left:50%;
 		transform: translate(-50%, 0);
 		height: 1px;
-		width: 500px;
+		width: 60%;
+		max-width: 500px;
 	}
 
 	.pageTitle p
 	{
-		width: 300px;
+		width: 83.33%;
+		max-width: 660px;
 		margin-left:50%;
 		transform: translate(-50%, 0);
+		font-size: 110%;
 	}
 
 	.pageTitle .wide
@@ -184,11 +187,6 @@
 	/*====VERTICAL CARD LIST====*/
 	.verticalCardList
 	{
-		width: 100%;
-		background-color: #f8f8f8;
-		text-align: center;
-		padding-bottom: 15px;
-		padding-top: 15px;
 
 	}
 
@@ -199,13 +197,11 @@
 		height: 200px;
 		display: inline-block;
 		vertical-align: top;
-
 	}
 
 	.verticalCardList h2
 	{
 		padding-top: 10px;
-
 	}
 
 	.verticalCardList .icon
@@ -226,10 +222,10 @@
 
 	.verticalCardList .ListElem
 	{
-		padding-top: 20px;
-		margin-bottom: 20px;
 
 	}
+
+
 
 	/*========TEAM PROFILES========*/
 	.verticalCardList .profile_card
@@ -327,14 +323,6 @@
 
 
 
-
-
-
-
-
-
-
-
 	/*====END OF VERTICAL CARD LIST====*/
 
 
@@ -355,14 +343,17 @@
 		margin-left: 2%;
 		margin-right: 2%;
 		transform: none;
+		width: 23.4375%;
+		max-width: 300px;
 	}
 
 
-	.horizontalCardList h2
+	.horizontalCardList card h3
 	{
-		padding-top: 10px;
+		color: #000000;
 
 	}
+	
 
 	.horizontalCardList p
 	{
@@ -531,9 +522,6 @@
 		margin-left: 50%;
 		transform: translate(-50%, 0);
 	}
-
-
-
 
 
 }
