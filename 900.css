@@ -36,7 +36,9 @@
 		font-size: 18px;
 		position: relative;
 		display: inline-table;
+		float: none;
 		background-color: white;
+		margin-left: 50px;
 	}
 
 	nav ul:after 
@@ -51,6 +53,12 @@
 		display: inline-block;
 		padding-right: 40px;
 		border: none;
+		padding: 0 40px 0 0;
+	}
+	
+	nav ul li:last-child
+	{
+		padding: 0 0 0 0;
 	}
 
 	nav ul li a
@@ -70,9 +78,11 @@
 		position: absolute;
 		padding: 0;
 		top: 100%;
+		left: 12%;
 		text-transform:lowercase;
 		list-style-type: none;
 		background-color: red;
+		width: auto;
 		min-width: 150px;
 		z-index: 999;
 	}
@@ -88,6 +98,7 @@
 		background-color: yellow;
 		display: block;
 		position: relative;
+		width: 100%;
 	}
 
 
