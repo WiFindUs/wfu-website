@@ -36,6 +36,7 @@
 		font-size: 18px;
 		position: relative;
 		display: inline-table;
+		background-color: white;
 	}
 
 	nav ul:after 
@@ -49,6 +50,7 @@
 	{
 		display: inline-block;
 		padding-right: 40px;
+		border: none;
 	}
 
 	nav ul li a
