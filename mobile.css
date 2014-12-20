@@ -22,7 +22,7 @@ body
 
 
 /*====HEADER====*/
-#header
+	#header
 	{
 
 	}
@@ -363,7 +363,6 @@ body
 .horizontalCardList .card
 {
 	background-color: #f8f8f8;
-	/*display: inline-block;*/
 	vertical-align: bottom;
 	margin-left: 50%;
 	transform: translate(-50%, 0);

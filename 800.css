@@ -6,6 +6,126 @@
  background-color: orange;
  }
  
+ 
+ /*====HEADER====*/
+	#menu
+	{
+		display: none;
+	}
+ 
+	#header
+	{
+
+	}
+
+	#logo 
+	{
+		display: inline-block;
+		margin-right: 50px;
+	}
+
+	#logo img
+	{
+		width: 150px;
+		height: auto;
+	}
+
+	nav
+	{
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	nav ul 
+	{
+		list-style-type: none;
+		text-transform:uppercase;
+		font-size: 18px;
+		position: relative;
+		display: inline-table;
+	}
+
+	nav ul:after 
+	{
+		content: ""; 
+		clear: both; 
+		display: block;
+	}
+		
+	nav ul li
+	{
+		display: inline-block;
+		padding-right: 40px;
+	}
+
+	nav ul li a
+	{
+		color: #818181;
+		text-decoration: none;
+	}
+	
+	nav ul li a:hover
+	{
+		border-bottom: 2px solid #7db1e1;
+	}
+
+	nav ul ul 
+	{
+		display: none;
+		position: absolute;
+		padding: 0;
+		top: 100%;
+		text-transform:lowercase;
+		list-style-type: none;
+		background-color: red;
+		min-width: 150px;
+		z-index: 999;
+	}
+
+	nav ul li:hover > ul 
+	{
+		display: block;
+	}
+
+
+	nav ul ul li
+	{
+		background-color: yellow;
+		display: block;
+		position: relative;
+	}
+
+
+	nav ul ul li a
+	{
+		background-color: #f8f8f8;
+		display: block;
+		padding-left: 20px;
+		padding-right: 20px;
+		width: 100%;
+		border: 1px solid white;
+	}
+
+	nav ul ul li:hover
+	{
+
+	}
+
+	nav ul ul li a:hover
+	{
+		background-color: #7db1e1;
+		color: #ffffff;
+	}
+
+	#navSelected
+	{
+		color: #7db1e1;
+	}
+
+
+	
+ /*====END OF HEADER====*/
+ 
  /*====VERTICAL CARD LIST====*/
 	.verticalCardList
 	{
