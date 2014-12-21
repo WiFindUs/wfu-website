@@ -40,5 +40,6 @@ function clearStyle()
 		}*/
 		
 		nav.style.display = "none";
+		pulled = false;
 	}
 }
