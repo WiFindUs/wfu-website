@@ -88,7 +88,6 @@
 		left: 12%;
 		text-transform:lowercase;
 		list-style-type: none;
-		background-color: red;
 		width: auto;
 		min-width: 150px;
 		z-index: 999;
@@ -102,7 +101,6 @@
 
 	nav ul ul li
 	{
-		background-color: yellow;
 		display: block;
 		position: relative;
 		width: 100%;
