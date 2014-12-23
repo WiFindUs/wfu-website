@@ -1,0 +1,40 @@
+@media screen and (min-width: 878px) 
+{
+/*====HORIZONTAL CARD LIST====*/
+	.horizontalCardList
+	{
+
+	}
+
+	.horizontalCardList .card
+	{
+		display: inline-block;
+		margin-left: 2%;
+		margin-right: 2%;
+		transform: none;
+		width: 23.4375%;
+		max-width: 300px;
+	}
+
+
+	.horizontalCardList h2
+	{
+		
+
+	}
+
+	.horizontalCardList p
+	{
+		
+		
+	}
+
+	.horizontalCardList .icon
+	{
+
+	}
+
+	/*====END OF HORIZONTAL CARD LIST====*/
+
+
+}
