@@ -114,13 +114,12 @@ body
 		padding: 5px 0 5px 10px;
 		text-align: left;
 		width: 100%;
-		/*border-top: 1px solid #7db1e1;*/
+		/*rgba(125, 177, 225, 0.5) = #7db1e1;*/
 		border-top: 1px solid rgba(125, 177, 225, 0.5);
 	}
 	
 	nav ul ul li:first-child
 	{
-		/*border:0;*/
 		border-top: 1px solid rgba(125, 177, 225, 0.5);
 	}
 	

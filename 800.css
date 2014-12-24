@@ -106,8 +106,12 @@
 		position: relative;
 		width: 100%;
 		padding: 0;
-		/*background-color: red;*/
 		border: 0;
+	}
+	
+	nav ul ul li:first-child
+	{
+		border:0;
 	}
 
 
@@ -137,7 +141,7 @@
 	{
 		color: #7db1e1;
 	}
-
+	
 	
  /*====END OF HEADER====*/
  
