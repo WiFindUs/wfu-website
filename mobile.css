@@ -14,6 +14,7 @@ body
 {
 	font-family: Myriad Pro, sans-serif; /*must be changed*/
 	text-align: center;
+	transform-style: preserve-3d; /*when using percentages with transforms, it's possible for the element to be blurry as it can be positioned by half a px. This ensures they preserve their sharpness*/
 }
 
 

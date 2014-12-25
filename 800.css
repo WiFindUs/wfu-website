@@ -155,6 +155,7 @@
 	{
 		width: 25%;
 		/*height: 200px;*/
+		vertical-align: middle;
 	}
 
 	.card h2
@@ -178,13 +179,19 @@
 		display: inline-block;
 		width: 500px;
 		text-align: left;
-		transform: translate(0, 30%); /*needs to be centred properly*/
-		margin-left: 40px;
+		margin-left: 0;
+		transform: translateX(40px);
+		vertical-align: middle;
 	}
 
 	.verticalCardList .ListElem
 	{
 		
+	}
+	
+	.ListElem > img
+	{
+		vertical-align: middle;
 	}
 
 	/*====END OF VERTICAL CARD LIST====*/
