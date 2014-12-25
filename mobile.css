@@ -228,8 +228,9 @@ body
 	width: 100%;
 	background-color: #f8f8f8;
 	text-align: center;
-	padding-top: 15px;
-	padding-bottom: 15px;
+	/*padding-top: 15px;
+	padding-bottom: 15px;*/
+	margin-bottom: 0;
 }
 
 
@@ -265,104 +266,53 @@ body
 
 .verticalCardList .ListElem
 {
-	margin-top: 50px;
-	margin-bottom: 50px;
-	
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
+.verticalCardList .alt
+{
+	background-color: #ffffff;
+}
 
+.two_headers h2
+{
+	margin: 0;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #ffffff;
+	border-left: 1px solid #f0f0f0;
+	border-right: 1px solid #f0f0f0;
+	font-size: 120%;
+}
 
-	/*========TEAM PROFILES========*/
-	.verticalCardList .profile_card
-	{
-		background-color: #ffffff;
-		width: 200px;
-		height: 150px;
-		display: inline-block;
-		vertical-align: top;
-		margin-top: 20px;
-		margin-bottom: 20px;
+ .two_headers h3
+{
+	background-color: #7db1e1;
+	color: #ffffff;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-size: 105%;
+	font-weight: normal;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
 
-	}
+.ListElem > img
+{
+	display: inline-block;
+	width: 240px;
+	height: auto;
+	vertical-align: top;
+}
 
-	.verticalCardList .profile_card h2
-	{
-		margin: 0px;
-  		padding: 0px;
-		height: 15%;
-		background-color: #ffffff;
-		font-size: 100%;
-	}
+.verticalCardList .profile_picture
+{
+	width: 100%;
+	height: 70%;
+	/*height: auto;*/
+}
 
-
-	.verticalCardList .profile_card .position
-	{
-		background-color: #7db1e1;
-		color: #ffffff;
-	}
-
-	
-	.verticalCardList .friend_card
-	{
-		background-color: #7db1e1;
-		width: 200px;
-		height: 150px;
-		display: inline-block;
-		vertical-align: top;
-		margin-top: 20px;
-		margin-bottom: 20px;
-
-	}
-	
-	.verticalCardList .friend_card h2
-	{
-		margin: 0px;
-  		padding: 0px;
-		height: 15%;
-		background-color: #ffffff;
-		font-size: 100%;
-	}
-
-
-	.verticalCardList .friend_card .position
-	{
-		background-color: #7db1e1;
-		color: #ffffff;
-	}
-	.verticalCardList .profile_picture
-	{
-		width: 100%;
-		height: 70%;
-	}
-
-	.verticalCardList .friend_profile_picture
-	{
-		background: #000000;
-		width: 100%;
-		height: 70%;
-	}
-	.verticalCardList .profile_description
-	{
-		width: 83.33%;
-	max-width: 500px;
-	text-align: center;
-	margin-left: 50%;
-	transform: translate(-50%, 0);
-	}
-
-	.verticalCardList .ProfileListElem_alt
-	{
-	
-		background-color: #ffffff;
-	}
-
-	.verticalCardList .ProfileListElem
-	{
-		padding: 0px;
-		margin: 0px;
-
-	}
-	/*========END OF TEAM PROFILES========*/
 /*====END OF VERTICAL CARD LIST====*/
 
 
@@ -411,7 +361,7 @@ body
 	margin-top: 20px;
 }
 
-/*====END OF VERTICAL CARD LIST====*/
+/*====END OF HORIZONTAL CARD LIST====*/
 
 /*====SLIDESHOW====*/
 
@@ -457,7 +407,7 @@ body
 {
 	background-color: #7db1e1;
 	height: 100px;
-	margin-top: 40px;
+	/*margin-top: 40px;*/
 	
 }
 
