@@ -207,12 +207,13 @@
 
 	.horizontalCardList .card
 	{
-		/*display: inline-block;
+		display: inline-block;
 		margin-left: 2%;
 		margin-right: 2%;
 		transform: none;
-		width: 23.4375%;
-		max-width: 300px;*/
+		min-width: 28%;
+		width: 28%;
+		max-width: 300px;
 	}
 
 
