@@ -136,41 +136,26 @@
 		height: 160px;
 		background-color: #7db1e1;
 		color: #ffffff;
+		padding: 0;
 	}
 
 	.pageTitle h1
 	{
-		padding-top: 35px;
+		padding-top: 0;
 	}
 	
 	.pageTitle h1::after
 	{
-		content:"";
-		background-color: #ffffff;
-		position: absolute;
-		margin-top: 50px;
-		left:50%;
-		transform: translate(-50%, 0);
-		height: 1px;
 		width: 60%;
 		max-width: 500px;
 	}
 
 	.pageTitle p
 	{
-		width: 83.33%;
 		max-width: 660px;
-		margin-left:50%;
-		transform: translate(-50%, 0);
 		font-size: 110%;
 	}
-
-	.pageTitle .wide
-	{
-		width: 600px;
-		margin-left:50%;
-		transform: translate(-50%, 0);
-	}
+	
 	/*====END OF PAGE TITLE====*/
 
 	/*====CARD====*/

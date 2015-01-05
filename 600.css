@@ -12,21 +12,9 @@
 	/*====END OF HEADER====*/
 
 	/*====PAGE TITLE====*/
-
-
-	.pageTitle h1
-	{
-		padding-top: 25px;
-	}
-	
-	
-
 	.pageTitle p
 	{
-		width: 83.33%;
 		max-width: 660px;
-		margin-left:50%;
-		transform: translate(-50%, 0);
 		font-size: 110%;
 	}
 	/*====END OF PAGE TITLE====*/

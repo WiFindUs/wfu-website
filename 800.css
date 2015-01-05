@@ -145,6 +145,13 @@
 	
  /*====END OF HEADER====*/
  
+ /*====PAGE TITLE====*/
+	.pageTitle
+	{
+		padding: 0;
+	}
+ /*====END OF PAGE TITLE====*/
+ 
  /*====VERTICAL CARD LIST====*/
 	.verticalCardList
 	{
