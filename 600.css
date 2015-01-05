@@ -3,11 +3,14 @@
  /* ...desktop styles here... */ 
  
  body{
- background-color: green;
+ /*background-color: green;*/
  }
 	/*====HEADER====*/
 	
-
+	#logo 
+	{
+		margin-right: 60%;
+	}
 	
 	/*====END OF HEADER====*/
 

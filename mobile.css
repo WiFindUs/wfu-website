@@ -28,6 +28,7 @@ body
 	#header
 	{
 		margin-bottom: 0;
+		height: 60px;
 	}
 
 	#logo 
@@ -47,10 +48,8 @@ body
 		width: 30px;
 		height: auto;
 		display: inline-block;
-		vertical-align: top;
 		cursor: pointer;
-		/*position: relative;
-		z-index: 9999;*/
+		padding-bottom: 5px;
 	}
 
 	nav
@@ -173,17 +172,18 @@ body
 {
 	width: 100%;
 	height: 160px;
-	min-height: 160px;
+	
 	background-color: #7db1e1;
 	color: #ffffff;
 	margin-top: 0;
-	padding-top:10px;
-	padding-bottom:10px;
+	padding-top:5px;
+	padding-bottom:5px;
 }
 
 .pageTitle h1
 {
 	margin-top: 0;
+	padding: 0;
 }
 	
 .pageTitle h1::after
