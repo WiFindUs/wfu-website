@@ -34,6 +34,8 @@
 	{
 		display: inline-block;
 		vertical-align: top;
+		width: auto;
+		position: static;
 	}
 
 	nav ul 

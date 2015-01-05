@@ -12,7 +12,8 @@ body
 
 *
 {
-	font-family: Myriad Pro, sans-serif; /*must be changed*/
+	font-family: Myriad Pro, sans-serif; /*font must be changed*/
+	/*font-family: Vegur, sans-serif; */
 	text-align: center;
 }
 
@@ -48,12 +49,17 @@ body
 		display: inline-block;
 		vertical-align: top;
 		cursor: pointer;
+		/*position: relative;
+		z-index: 9999;*/
 	}
 
 	nav
 	{
 		display: none;
 		vertical-align: top;
+		position: absolute;
+		z-index: 9999;
+		width: 100%;
 	}
 
 	nav ul 
