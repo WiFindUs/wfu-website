@@ -69,6 +69,12 @@
 	{
 		padding: 0 0 0 0;
 	}
+	
+		nav ul li:hover
+	{
+		background-color: initial;
+		color: #818181;
+	}
 
 	nav ul li a
 	{
@@ -79,8 +85,15 @@
 	nav ul li a:hover
 	{
 		border-bottom: 2px solid #7db1e1;
+		background-color: inherit;
 	}
-
+	
+	nav ul li:hover > a
+	{
+		background-color: inherit;
+		color: inherit;
+	}
+	
 	nav ul ul 
 	{
 		display: none;
@@ -88,7 +101,6 @@
 		padding: 0;
 		margin-top: 0;
 		top: 100%;
-		/*left: 12%;*/
 		text-transform:lowercase;
 		list-style-type: none;
 		width: auto;
@@ -100,7 +112,6 @@
 	{
 		display: block;
 	}
-
 
 	nav ul ul li
 	{
@@ -130,13 +141,14 @@
 
 	nav ul ul li:hover
 	{
-
+		background-color: #7db1e1;
 	}
 
 	nav ul ul li a:hover
 	{
-		background-color: #7db1e1;
+		background-color: inherit;
 		color: #ffffff;
+		border: 1px solid white;
 	}
 
 	#navSelected
@@ -144,6 +156,11 @@
 		color: #7db1e1;
 	}
 	
+		nav ul li:hover > #navSelected
+	{
+		background-color: inherit;
+		color: #7db1e1;
+	}
 	
  /*====END OF HEADER====*/
  
