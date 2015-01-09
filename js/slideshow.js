@@ -2,8 +2,13 @@
 
 //========CONTAINER========
 var container;
-var containerWidth = 1920; 
-var containerHeight = 1080; 
+
+//var containerWidth = 1920; 
+//var containerHeight = 1080;
+
+var containerWidth = 100; 
+var containerHeight = "auto";
+ 
 //=========================
 
 //==========SPEED==========
@@ -66,8 +71,8 @@ function initialise()
 {
 	container = document.getElementById("slideshow");
 	container.innerHTML = ""; 
-	container.style.width = containerWidth + 'px';
-	container.style.height = containerHeight + 'px';
+	/*container.style.width = containerWidth + 'px';
+	container.style.height = containerHeight + 'px';*/
 
 	listenForEvent(window, "mousedown", handleClick); 
 	listenForEvent(window, "touchstart", handleClick);
@@ -188,22 +193,24 @@ function moveRight(slide)
 //==================ADD SINGLE SLIDE ON RIGHT==================
 function addSlideRight(newSlidePos)
 {
-	slideShowImageCoordinates[newSlidePos] = containerWidth;
+	//slideShowImageCoordinates[newSlidePos] = containerWidth;
+	slideShowImageCoordinates[newSlidePos] = 100;
 }
 //=============================================================
 
 
 
 //================ADD MULTIPLE SLIDES ON RIGHT=================
-function addMultipleSlidesRight(nextSLidePos, numSlides)
+function addMultipleSlidesRight(nextSlidePos, numSlides)
 {
 	var positionMultiplier = 1;
-	for(var i = nextSLidePos; i < nextSLidePos+numSlides; i++)
+	for(var i = nextSlidePos; i < nextSlidePos+numSlides; i++)
 	{
-		slideShowImageCoordinates[i] = containerWidth*positionMultiplier;
+		//slideShowImageCoordinates[i] = containerWidth*positionMultiplier;
+		slideShowImageCoordinates[i] = 100*positionMultiplier;
 		positionMultiplier++;
 	}
-	stopOnSlide = (nextSLidePos+numSlides)-1;
+	stopOnSlide = (nextSlidePos+numSlides)-1;
 }
 //=============================================================
 
@@ -212,24 +219,26 @@ function addMultipleSlidesRight(nextSLidePos, numSlides)
 //==================ADD SINGLE SLIDE ON LEFT===================
 function addSlideLeft(newSlidePos)
 {
-	slideShowImageCoordinates[newSlidePos] = -containerWidth;
+	//slideShowImageCoordinates[newSlidePos] = -containerWidth;
+	slideShowImageCoordinates[newSlidePos] = -100;
 }
 //=============================================================
 
 
 
 //================ADD MULTIPLE SLIDES ON LEFT==================
-function addMultipleSlidesLeft(nextSLidePos, numSlides)
+function addMultipleSlidesLeft(nextSlidePos, numSlides)
 {
 
 	var positionMultiplier = 1;
-	for(var i = currentSlide+1; i > nextSLidePos; i--)
+	for(var i = currentSlide+1; i > nextSlidePos; i--)
 	{
 		var multiplier = i-1;
-		slideShowImageCoordinates[multiplier] = -containerWidth*positionMultiplier;
+		//slideShowImageCoordinates[multiplier] = -containerWidth*positionMultiplier;
+		slideShowImageCoordinates[multiplier] = -100*positionMultiplier;
 		positionMultiplier++;
 	}
-	stopOnSlide = nextSLidePos;
+	stopOnSlide = nextSlidePos;
 }
 //=============================================================
 
@@ -242,9 +251,9 @@ function createSlideImage(newSlidePos)
 	var filePos = newSlidePos+1;
 	slide = document.createElement('img');
 	slide.src = "slides/slide"+ filePos +".jpg";
-	slide.className = "gameBG";
-	slide.style.width = containerWidth +"px";
-	slide.style.height = containerHeight +"px";
+	slide.className = "slideImage";
+	/*slide.style.width = containerWidth +"px";
+	slide.style.height = containerHeight +"px";*/
 	container.appendChild(slide);
 	slideShowImages[newSlidePos] = slide;
 }
@@ -388,67 +397,13 @@ function draw()
 	for(var i = 1; i < numberOfSlides+1; i++)
 	{
 		var pos = i-1;
-		slideShowImages[pos].style.left = slideShowImageCoordinates[pos] + 'px';
-		slideShowImages[pos].style.top = "0px";
+		//slideShowImages[pos].style.left = slideShowImageCoordinates[pos] + 'px';
+		slideShowImages[pos].style.left = slideShowImageCoordinates[pos] + '%';
+		//slideShowImages[pos].style.top = "0px";
 	}	
 	setTimeout(draw, 1000/frameRate);
 }
 //=============================================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
