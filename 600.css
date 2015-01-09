@@ -25,10 +25,8 @@
 	/*====CARD====*/
 	.card
 	{
-		background-color: #f8f8f8;
 		width: 300px;
 		height: 350px;
-		border-bottom: 2px solid #7db1e1;
 	}
 
 	.icon
