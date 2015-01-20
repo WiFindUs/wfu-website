@@ -6,10 +6,21 @@
  /*background-color: green;*/
  }
 	/*====HEADER====*/
+	#header
+	{
+		margin-bottom: 0;
+		height: 60px;
+	}
 	
 	#logo 
 	{
 		margin-right: 60%;
+	}
+	
+	#logo img
+	{
+		width: 200px;
+		height: auto;
 	}
 	
 	/*====END OF HEADER====*/

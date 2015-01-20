@@ -15,10 +15,10 @@
 	{
 		
 	}
-
-	#logo img
+	
+		#logo img
 	{
-		width: 150px;
+		width: 220px;
 		height: auto;
 	}
 	/*====END OF HEADER====*/
@@ -28,7 +28,7 @@
 	{
 		width: 100%;
 		height: 160px;
-		background-color: #7db1e1;
+		background-color: #6e95f3;
 		color: #ffffff;
 		padding: 0;
 	}
@@ -514,7 +514,7 @@
 
 	#blog_article_title
 	{
-		background-color: #7db1e1; 
+		background-color: #6e95f3; 
 		width: 55%;
 		margin-left: 29%;
 		padding-left: 5%;
@@ -556,7 +556,7 @@
 
 	#blog_article_date
 	{
-		background-color: #7db1e1; 
+		background-color: #6e95f3; 
 		width: 55%;
 		margin-left: 29%;
 			

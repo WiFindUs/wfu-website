@@ -24,11 +24,7 @@
 		margin-right: 12%;
 	}
 
-	#logo img
-	{
-		width: 150px;
-		height: auto;
-	}
+
 
 	nav
 	{
@@ -68,23 +64,24 @@
 	nav ul li:last-child
 	{
 		padding: 0 0 0 0;
+		border-bottom: 0;
 	}
 	
 		nav ul li:hover
 	{
 		background-color: initial;
-		color: #818181;
+		color: #606060;
 	}
 
 	nav ul li a
 	{
-		color: #818181;
+		color: #606060;
 		text-decoration: none;
 	}
 	
 	nav ul li a:hover
 	{
-		border-bottom: 2px solid #7db1e1;
+		border-bottom: 2px solid #6e95f3;
 		background-color: inherit;
 	}
 	
@@ -141,7 +138,7 @@
 
 	nav ul ul li:hover
 	{
-		background-color: #7db1e1;
+		background-color: #6e95f3;
 	}
 
 	nav ul ul li a:hover
@@ -153,13 +150,13 @@
 
 	#navSelected
 	{
-		color: #7db1e1;
+		color: #6e95f3;
 	}
 	
 		nav ul li:hover > #navSelected
 	{
 		background-color: inherit;
-		color: #7db1e1;
+		color: #6e95f3;
 	}
 	
  /*====END OF HEADER====*/

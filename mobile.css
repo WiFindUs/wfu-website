@@ -28,18 +28,18 @@ body
 	#header
 	{
 		margin-bottom: 0;
-		height: 60px;
+		height: 45px;
 	}
 
 	#logo 
 	{
 		display: inline-block;
-		margin-right: 40%;
+		margin-right: 30%;
 	}
 
 	#logo img
 	{
-		width: 150px;
+		width: 160px;
 		height: auto;
 	}
 	
@@ -75,7 +75,8 @@ body
 		
 	nav ul li
 	{
-		border-top: 1px solid #7db1e1;
+		/*border-top: 1px solid #6e95f3;*/
+		border-top: 1px solid rgba(110, 149, 243, 0.7);
 		text-align: left;
 		padding: 5px 0 5px 10px;
 	}
@@ -85,9 +86,14 @@ body
 		border: 0;
 	}
 	
+	nav ul li:last-child
+	{
+		border-bottom: 1px solid rgba(110, 149, 243, 0.7);
+	}
+	
 	nav ul li:hover
 	{
-		background-color: #7db1e1;
+		background-color: #6e95f3;
 		color: #ffffff;
 	}
 	
@@ -99,7 +105,8 @@ body
 
 	nav ul li a
 	{
-		color: #818181;
+		/*color: #818181;*/
+		color: #4c4c4c;
 		text-decoration: none;
 	}
 
@@ -119,19 +126,20 @@ body
 		padding: 5px 0 5px 10px;
 		text-align: left;
 		width: 100%;
-		/*rgba(125, 177, 225, 0.5) = #7db1e1;*/
-		border-top: 1px solid rgba(125, 177, 225, 0.5);
+		/*rgba(125, 177, 225, 0.5) = #6e95f3;*/
+		/*border-top: 1px solid rgba(125, 177, 225, 0.5);*/
+		border-top: 1px solid rgba(110, 149, 243, 0.5);
 	}
 	
 	nav ul ul li:first-child
 	{
-		border-top: 1px solid rgba(125, 177, 225, 0.5);
+		border-top: 1px solid rgba(110, 149, 243, 0.5);
 	}
 	
 	
 	nav ul ul li:last-child
 	{
-		border-bottom: 1px solid #7db1e1;
+		border-bottom: 1px solid rgba(110, 149, 243, 0.7);
 	}
 
 	nav ul ul li a
@@ -145,7 +153,7 @@ body
 
 	nav ul ul li:hover
 	{
-		background-color: #9ebfde;
+		background-color: #8ba5e3;
 	}
 
 	nav ul ul li a:hover
@@ -156,12 +164,12 @@ body
 
 	#navSelected
 	{
-		color: #7db1e1;
+		color: #6e95f3;
 	}
 	
 	nav ul li:hover > #navSelected
 	{
-		background-color: #7db1e1;
+		background-color: #6e95f3;
 		color: #ffffff;
 	}
 
@@ -173,7 +181,7 @@ body
 	width: 100%;
 	height: 160px;
 	
-	background-color: #7db1e1;
+	background-color: #6e95f3;
 	color: #ffffff;
 	margin-top: 0;
 	padding-top:5px;
@@ -213,7 +221,7 @@ body
 	background-color: #f8f8f8;
 	width: 23.4375%;
 	height: 350px;
-	border-bottom: 3px solid #7db1e1;
+	border-bottom: 3px solid #6e95f3;
 }
 
 .icon
@@ -296,7 +304,7 @@ body
 
  .two_headers h3
 {
-	background-color: #7db1e1;
+	background-color: #6e95f3;
 	color: #ffffff;
 	margin-top: 0;
 	margin-bottom: 0;
@@ -347,7 +355,7 @@ body
 
 .horizontalCardList h2
 {
-	color: #7db1e1;
+	color: #6e95f3;
 	margin-top: 0;
 	font-weight: normal;
 	font-size: 180%;
@@ -472,7 +480,7 @@ body
 /*====CONTACT====*/
 .contactContainer
 {
-	background-color: #7db1e1;
+	background-color: #6e95f3;
 	height: 100px;
 	/*margin-top: 40px;*/
 	
@@ -530,6 +538,8 @@ footer
 	background-color: #000000;
 	padding-bottom: 20px;
 	margin-top: 0;
+	margin-bottom: 0;
+	min-height: 200px;
 }
 
 .friends a
