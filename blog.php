@@ -672,10 +672,21 @@ function displayImages($images, $numImages)
 </div>
 
 		<footer>
-			<div class="friends" id="friends">
+			<div class="footer_column" id="about">
+				<h2>About Us</h2>
+				<p>WiFindUs is made up of a young and passionate team of engineers, software developers and business professionals that seek to bring innovation to the festival industry.</p>
+			</div>
+			
+			<div class="footer_column" id="friends">
+				<h2>Friends</h2>
 				<a href="http://www.servalproject.org" ><img src="images/serval_logo.png" alt="Serval"/></a>
 				<a href="http://www.flinders.edu.au" ><img src="images/flinders_logo.png" alt="Flinders University"/></a>
 				<a href="http://www.air-stream.org.au/" ><img src="images/air-stream_logo.png" alt="Air-Stream Wireless"/></a>
+			</div>
+			
+			<div class="footer_column" id="contact">
+				<h2>Contact Us</h2>
+				<p>Email: <a href="mailto: business@wifindus.com">business@wifindus.com</a></p>
 			</div>
 		</footer>
 
