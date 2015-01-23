@@ -4,6 +4,7 @@
 	<head>
 		<title>WiFindUs</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 		<script type="text/javascript" src="js/blog.js"></script>
 		<link rel="stylesheet" href="mobile.css">
 		<link rel="stylesheet" href="600.css">
