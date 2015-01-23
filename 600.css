@@ -123,13 +123,32 @@
 
 	/*====END OF CONTACT====*/
 
-
-
-
 	#desc
 	{
 		width: 550px;
 		margin-left: 50%;
 		transform: translate(-50%, 0);
+	}
+}
+
+
+@media screen and (min-width: 500px) 
+{
+
+	.footer_column
+	{
+		width: 400px;
+	}
+	
+	footer #friends
+	{
+		width: 400px;
+	}
+	
+		footer #friends a
+	{
+		padding-top:10px;
+		margin-right: 7%;
+		display: inline-block;
 	}
 }

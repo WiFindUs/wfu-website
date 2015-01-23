@@ -3,59 +3,7 @@
 
 /*====FOOTER====*/
 
-	footer
-	{
-		padding-bottom: 20px;
-	}
 
-	.test
-	{
-		display: inline-block;
-		vertical-align: top;
-		margin-right: 50px;
-	}
-	
-	.footer_column
-	{
-		width: 250px;
-	/*	vertical-align: top;
-		display: inline-block;
-		margin-right: 50px;*/
-	}
-
-	
-	#contact
-	{
-		/*margin-top: 20px;*/
-	}
-	
-	#friends
-	{
-		display: inline-block;
-		vertical-align: top;
-		width: 400px;
-		margin-right: 0;
-	}
-	#friends a
-	{
-		padding-top:10px;
-		/*margin-top: 2%;
-		margin-left: 5%;
-		margin-right: 5%;*/
-		margin-right: 7%;
-		display: inline-block;
-	}
-	
-	#friends a:last-child
-	{
-		margin-right: 0;
-	}
-
-	#friends img
-	{
-		width: 100px;
-		height: auto;
-	}
 
 /*====END OF FOOTER====*/
 

@@ -168,6 +168,78 @@
 		transform: translate(-50%, 0);
 	}
 
+	/*====FOOTER====*/
+
+	footer
+	{
+		padding-bottom: 20px;
+	}
+	
+	.footer_column
+	{
+		width: 250px;
+		vertical-align: top;
+		display: inline-block;
+		margin-right: 50px;
+		margin-top: 0;
+	}
+	
+	.footer_column h2
+	{
+		border-bottom: 1px solid #ffffff;
+		text-align: left;
+		font-size: 98%;
+		font-weight: normal;
+	}
+
+	.footer_column p
+	{
+		font-size: 95%;
+		text-align: left;
+		font-weight: normal;
+	}
+
+	.footer_column a
+	{
+		color: #ffffff;
+		text-decoration: none;
+	}
+
+	
+	footer #contact
+	{
+		margin-right: 0;
+	}
+	
+	footer #friends
+	{
+		display: inline-block;
+		vertical-align: top;
+		width: 400px;
+	}
+	
+	footer #friends a
+	{
+		padding-top:10px;
+		/*margin-top: 2%;
+		margin-left: 5%;
+		margin-right: 5%;*/
+		margin-right: 7%;
+		display: inline-block;
+	}
+	
+	footer #friends a:last-child
+	{
+		margin-right: 0;
+	}
+
+	footer #friends img
+	{
+		width: 100px;
+		height: auto;
+	}
+
+/*====END OF FOOTER====*/
 
 
 	/*======= BLOG =======*/

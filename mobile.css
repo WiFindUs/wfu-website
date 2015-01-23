@@ -79,7 +79,7 @@ body
 	{
 		list-style-type: none;
 		text-transform:uppercase;
-		font-size: 18px;
+		font-size: 16px;
 		background-color: #f8f8f8;
 		float: left;
 		width: 100%;
@@ -560,7 +560,15 @@ footer
 
 .footer_column
 {
-	width: 200px;
+	width: 250px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+}
+
+footer .footer_column:first-child
+{
+	margin-top: 0;
 }
 
 .footer_column h2
@@ -574,7 +582,7 @@ footer
 .footer_column p
 {
 	font-size: 95%;
-	text-align: left;
+	text-align: center;
 	font-weight: normal;
 }
 
@@ -584,19 +592,25 @@ footer
 	text-decoration: none;
 }
 
-#friends a
+
+footer #friends a
 {
 	display: block;
 	padding-top: 40px;
 }
 
-#friends img
+footer #friends a:first-of-type
 {
-	width: 150px;
+	padding-top: 0px;
+}
+
+footer #friends img
+{
+	width: 100px;
 	height: auto;
 }
 
-#friends img:hover
+footer #friends img:hover
 {
 	opacity:0.7;
 }
