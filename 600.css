@@ -1,6 +1,5 @@
 @media screen and (min-width: 600px) 
 {
- /* ...desktop styles here... */ 
  
  body{
  /*background-color: green;*/
@@ -145,10 +144,21 @@
 		width: 400px;
 	}
 	
-		footer #friends a
+	footer #friends a
 	{
 		padding-top:10px;
 		margin-right: 7%;
 		display: inline-block;
+	}
+	
+	footer #friends a:last-child
+	{
+		margin-right: 0;
+	}
+	
+		footer #friends img
+	{
+		width: 100px;
+		height: auto;
 	}
 }

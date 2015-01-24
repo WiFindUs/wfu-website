@@ -592,11 +592,10 @@ footer .footer_column:first-child
 	text-decoration: none;
 }
 
-
 footer #friends a
 {
 	display: block;
-	padding-top: 40px;
+	padding-top: 10px;
 }
 
 footer #friends a:first-of-type
@@ -606,7 +605,7 @@ footer #friends a:first-of-type
 
 footer #friends img
 {
-	width: 100px;
+	width: 120px;
 	height: auto;
 }
 
