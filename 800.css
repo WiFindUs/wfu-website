@@ -28,9 +28,11 @@
 	nav
 	{
 		display: inline-block;
-		vertical-align: top;
+		margin-top: auto;
+		top: 50%;
+		transform: translateY(-50%);
+		position: relative;
 		width: auto;
-		position: static;
 	}
 
 	nav ul 
