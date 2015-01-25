@@ -76,6 +76,11 @@ function hideMenu()
 }
 
 
+function goTo(link)
+{
+	document.location.href = link;
+}
+
 window.addEventListener('resize', clearStyle);
 
 function clearStyle()

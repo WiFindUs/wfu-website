@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 		<script type="text/javascript" src="js/blog.js"></script>
+		<script type="text/javascript" src="js/menu.js"></script>
 		<link rel="stylesheet" href="mobile.css">
 		<link rel="stylesheet" href="600.css">
 		<link rel="stylesheet" href="900.css">
@@ -19,18 +20,15 @@
 		
 			<a href="index.html" id="logo"><img src="images/logo.png" alt="WiFindUs"/></a>
 			
-			<nav>
+			<img id="menu" src="images/menu.png" alt="menu" onclick="toggleMenu()"/>
+			
+			<nav id="nav">
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="">Services</a>
-						<ul>
-							<li><a href="services/ubi.html">Ubi</a></li>
-							<li><a href="services/ubi.html">Another Service</a></li>
-						</ul>
-					</li>
-					<li><a href="team.html">Team</a></li>
-					<li><a href="friends.html">Friends</a></li>
-					<li><a href="" id="navSelected">Blog</a></li>
+					<li onclick="goTo('index.html')"><a href="index.html">Home</a></li>
+					<li onclick="goTo('services.html')"><a href="services.html">Services</a></li>
+					<li onclick="goTo('team.html')"><a href="team.html">Team</a></li>
+					<li onclick="toggleMenu()"><a href="blog.php" id="navSelected">Blog</a></li>
+					<li onclick="goTo('')"><a href="">Contact</a></li>
 				</ul>
 			</nav>
 			

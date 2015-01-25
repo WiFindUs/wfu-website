@@ -90,10 +90,11 @@ body
 		
 	nav ul li
 	{
-		/*border-top: 1px solid #6e95f3;*/
+		
 		border-top: 1px solid rgba(110, 149, 243, 0.7);
 		text-align: left;
 		padding: 5px 0 5px 25px;
+		cursor: pointer;
 	}
 	
 	/*nav ul li:first-child
