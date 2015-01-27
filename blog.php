@@ -20,14 +20,14 @@
 		
 			<a href="index.html" id="logo"><img src="images/logo.png" alt="WiFindUs"/></a>
 			
-			<img id="menu" src="images/menu.png" alt="menu" onclick="toggleMenu()"/>
+			<img id="menu" src="images/menu.png" alt="menu" onclick="toggleMenu('icon')"/>
 			
 			<nav id="nav">
 				<ul>
 					<li onclick="goTo('index.html')"><a href="index.html">Home</a></li>
 					<li onclick="goTo('services.html')"><a href="services.html">Services</a></li>
 					<li onclick="goTo('team.html')"><a href="team.html">Team</a></li>
-					<li onclick="toggleMenu()"><a href="blog.php" id="navSelected">Blog</a></li>
+					<li onclick="toggleMenu('navSelected')"><a href="blog.php" id="navSelected">Blog</a></li>
 					<li onclick="goTo('')"><a href="">Contact</a></li>
 				</ul>
 			</nav>

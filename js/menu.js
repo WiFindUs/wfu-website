@@ -1,22 +1,24 @@
 var pulled = false;
 
-function toggleMenu()
+function toggleMenu(source)
 {
-	var nav = document.getElementById("nav");
-	
-	if(!pulled)
+	if((source == "navSelected" && window.innerWidth<800) || source =="icon")
 	{
-		nav.style.display = "block";
-		showMenu();
-		pulled = true;
+		var nav = document.getElementById("nav");
+		
+		if(!pulled)
+		{
+			nav.style.display = "block";
+			showMenu();
+			pulled = true;
+		}
+		
+		else
+		{
+			hideMenu();
+			pulled = false;
+		}
 	}
-	
-	else
-	{
-		hideMenu();
-		pulled = false;
-	}
-
 }
 
 
@@ -78,7 +80,10 @@ function hideMenu()
 
 function goTo(link)
 {
-	document.location.href = link;
+	if(window.innerWidth<800)
+	{
+		document.location.href = link;
+	}
 }
 
 window.addEventListener('resize', clearStyle);
@@ -90,6 +95,7 @@ function clearStyle()
 	if(window.innerWidth>800)
 	{
 		nav.style.display = "inline-block";
+		nav.style.left = "auto";
 	}
 	if(window.innerWidth<800)
 	{

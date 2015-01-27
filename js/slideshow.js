@@ -46,6 +46,8 @@ var slideSelectionButtons = [];
 
 //=========================
 
+var sizeCheckedOnLoad = false;
+
 //=============================================================
 
 
@@ -393,6 +395,11 @@ function clock()
 //==========================DRAW=============================== 
 function draw()
 {
+	if(!sizeCheckedOnLoad && slideShowImages[numberOfSlides-1].clientWidth != 0)
+	{
+		resizeSlide();
+		sizeCheckedOnLoad = true;
+	}
 	toggle(hud, "show");
 	for(var i = 1; i < numberOfSlides+1; i++)
 	{
@@ -405,6 +412,48 @@ function draw()
 }
 //=============================================================
 
+
+window.addEventListener('resize', resizeCheck);
+
+function resizeCheck()
+{
+	clearStyle();
+	resizeSlide();
+}
+
+function resizeSlide()
+{
+	
+	for(var i=0; i<numberOfSlides; i++)
+	{
+		if(slideShowImages[i].clientWidth < window.innerWidth)
+		{
+			console.log("image width("+i+"): " + slideShowImages[i].clientWidth);
+			console.log("image height("+i+"): " + slideShowImages[i].clientHeight);
+			console.log("container height: " + document.getElementById('slideshowContainer').clientHeight);
+			console.log("window width: " + window.innerWidth);
+			
+			if (!slideShowImages[i].className.match(/(?:^|\s)ensureWidth(?!\S)/) )
+			{
+				slideShowImages[i].className += " ensureWidth";
+			}
+		}
+		
+		if(slideShowImages[i].clientHeight < document.getElementById('slideshowContainer').clientHeight)
+		{
+			slideShowImages[i].className = "slideImage";
+		}
+	}
+	
+	/*if (window.innerWidth < 900)
+	{
+		for(var i=0; i<numberOfSlides; i++)
+		{
+			//slideShowImages[i].className = slideShowImages[i].className.replace( /(?:^|\s) ensureWidth(?!\S)/g , '' );
+			slideShowImages[i].className = "slideImage";
+		}
+	}*/
+}
 
 
 

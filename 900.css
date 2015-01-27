@@ -1,9 +1,6 @@
 @media screen and (min-width: 900px) 
 {
- 
- body{
- background-color: white;
- }
+
 	/*====HEADER====*/
 	#header
 	{
@@ -144,11 +141,11 @@
 
 	/*====SLIDESHOW====*/
 
-	#slideshowContainer
+/*	#slideshowContainer
 	{
 		height: 720px;
 	}
-
+*/
 	/*====END OF SLIDESHOW====*/
 
 

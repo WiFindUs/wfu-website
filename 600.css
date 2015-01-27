@@ -1,9 +1,6 @@
 @media screen and (min-width: 600px) 
 {
  
- body{
- /*background-color: green;*/
- }
 	/*====HEADER====*/
 	#header
 	{
@@ -84,43 +81,6 @@
 
 	/*====END OF HORIZONTAL CARD LIST====*/
 
-	/*====SLIDESHOW====*/
-
-	.slideshow
-	{
-		
-	}
-
-	.slideshowImg
-	{
-		
-	}
-
-	.slideshowBtns
-	{
-		
-	}
-
-	.slideshowBtns ul
-	{
-		
-	}
-
-	.slideshowBtns ul li
-	{
-		
-	}
-
-	/*====END OF SLIDESHOW====*/
-
-	
-	/*====CONTACT====*/
-	.contactContainer
-	{
-
-	}
-
-	/*====END OF CONTACT====*/
 
 	#desc
 	{
