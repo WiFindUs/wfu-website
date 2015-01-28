@@ -2,13 +2,6 @@
 
 //========CONTAINER========
 var container;
-
-//var containerWidth = 1920; 
-//var containerHeight = 1080;
-
-var containerWidth = 100; 
-var containerHeight = "auto";
- 
 //=========================
 
 //==========SPEED==========
@@ -73,8 +66,6 @@ function initialise()
 {
 	container = document.getElementById("slideshow");
 	container.innerHTML = ""; 
-	/*container.style.width = containerWidth + 'px';
-	container.style.height = containerHeight + 'px';*/
 
 	listenForEvent(window, "mousedown", handleClick); 
 	listenForEvent(window, "touchstart", handleClick);
@@ -84,10 +75,15 @@ function initialise()
 	listenForEvent(window, "mousemove", handleMouse);
 	listenForEvent(container, 'contextmenu', function(e){e.preventDefault();});
 	
-	createSlideImage(3);
+	for(var i=numberOfSlides-1; i>-1; i--)
+	{
+		createSlideImage(i);
+		//slideSelectionButtons[i] = 'slideSelector'+i+1;
+	}
+	/*createSlideImage(3);
 	createSlideImage(2);
 	createSlideImage(1);
-	createSlideImage(0);
+	createSlideImage(0);*/
 
 	slideSelectionButtons[0] = slideSelector1;
 	slideSelectionButtons[1] = slideSelector2;
@@ -113,17 +109,25 @@ function update()
 {
 	if(paused == false && previousSlide == false)
 	{
-		moveLeft(0);
+		for(var i=0; i<numberOfSlides; i++)
+		{
+			moveLeft(i);
+		}
+		/*moveLeft(0);
 		moveLeft(1);
 		moveLeft(2);
-		moveLeft(3);
+		moveLeft(3);*/
 	}
 	if(paused == false && previousSlide == true)
 	{
-		moveRight(3);
+		for(var i=numberOfSlides-1; i>-1; i--)
+		{
+			moveRight(i);
+		}
+		/*moveRight(3);
 		moveRight(2);
 		moveRight(1);
-		moveRight(0);		
+		moveRight(0);*/
 	}
 	setTimeout(update, 1000/frameRate);
 }
@@ -136,6 +140,7 @@ function moveLeft(slide)
 {
 	slideMoving = true;
 	stopTest = false
+	
 	for(var i = 0; i <= speed; i++)
 	{
 		if(stopTest == false)
@@ -146,13 +151,19 @@ function moveLeft(slide)
 				if(stopOnSlide == slide || stopOnSlide == -1)
 				{
 					if(stopOnSlide == slide)
+					{
 						stopOnSlide = -1;
+					}
+					
 					stopTest = true;
 					paused = true;
 					slideMoving = false;
+					hideSlides();
 				}
 				else
+				{
 					nextSlide();	
+				}
 			}
 		}	
 	}
@@ -166,6 +177,7 @@ function moveRight(slide)
 {
 	slideMoving = true;
 	stopTest = false
+	
 	for(var i = 0; i <= speed; i++)
 	{
 		if(stopTest == false)
@@ -177,13 +189,19 @@ function moveRight(slide)
 				if(stopOnSlide == slide || stopOnSlide == -1)
 				{
 					if(stopOnSlide == slide)
+					{
 						stopOnSlide = -1;
+					}
+					
 					stopTest = true;
 					paused = true;
 					slideMoving = false;
+					hideSlides();
 				}
 				else
-					prevSlide();	
+				{
+					prevSlide();
+				}
 			}
 		}	
 	}
@@ -192,43 +210,32 @@ function moveRight(slide)
 
 
 
-//==================ADD SINGLE SLIDE ON RIGHT==================
+//==================ADD SINGLE SLIDE==================
 function addSlideRight(newSlidePos)
 {
-	//slideShowImageCoordinates[newSlidePos] = containerWidth;
 	slideShowImageCoordinates[newSlidePos] = 100;
 }
-//=============================================================
 
-
-
-//================ADD MULTIPLE SLIDES ON RIGHT=================
-function addMultipleSlidesRight(nextSlidePos, numSlides)
-{
-	var positionMultiplier = 1;
-	for(var i = nextSlidePos; i < nextSlidePos+numSlides; i++)
-	{
-		//slideShowImageCoordinates[i] = containerWidth*positionMultiplier;
-		slideShowImageCoordinates[i] = 100*positionMultiplier;
-		positionMultiplier++;
-	}
-	stopOnSlide = (nextSlidePos+numSlides)-1;
-}
-//=============================================================
-
-
-
-//==================ADD SINGLE SLIDE ON LEFT===================
 function addSlideLeft(newSlidePos)
 {
-	//slideShowImageCoordinates[newSlidePos] = -containerWidth;
 	slideShowImageCoordinates[newSlidePos] = -100;
 }
 //=============================================================
 
 
 
-//================ADD MULTIPLE SLIDES ON LEFT==================
+//================ADD MULTIPLE SLIDES=================
+function addMultipleSlidesRight(nextSlidePos, numSlides)
+{
+	var positionMultiplier = 1;
+	for(var i = nextSlidePos; i < nextSlidePos+numSlides; i++)
+	{
+		slideShowImageCoordinates[i] = 100*positionMultiplier;
+		positionMultiplier++;
+	}
+	stopOnSlide = (nextSlidePos+numSlides)-1;
+}
+
 function addMultipleSlidesLeft(nextSlidePos, numSlides)
 {
 
@@ -236,17 +243,15 @@ function addMultipleSlidesLeft(nextSlidePos, numSlides)
 	for(var i = currentSlide+1; i > nextSlidePos; i--)
 	{
 		var multiplier = i-1;
-		//slideShowImageCoordinates[multiplier] = -containerWidth*positionMultiplier;
 		slideShowImageCoordinates[multiplier] = -100*positionMultiplier;
 		positionMultiplier++;
 	}
 	stopOnSlide = nextSlidePos;
 }
+
 //=============================================================
 
-
-
-//=============CREATE AND ADD EACH SLIDE IMAGE================
+//=============CREATE AND ADD A SLIDE IMAGE================
 function createSlideImage(newSlidePos)
 {
 	var slide;
@@ -254,8 +259,6 @@ function createSlideImage(newSlidePos)
 	slide = document.createElement('img');
 	slide.src = "slides/slide"+ filePos +".jpg";
 	slide.className = "slideImage";
-	/*slide.style.width = containerWidth +"px";
-	slide.style.height = containerHeight +"px";*/
 	container.appendChild(slide);
 	slideShowImages[newSlidePos] = slide;
 }
@@ -278,13 +281,13 @@ function goToSlide(slide)
 	{
 		prevSlide();
 		numSlidesToAdd = (currentSlide + 1)  -  slide;
-		addMultipleSlidesLeft(slide, numSlidesToAdd)
+		addMultipleSlidesLeft(slide, numSlidesToAdd);
 	}
 	else if(slide > currentSlide)
 	{
 		nextSlide();
 		numSlidesToAdd = slide - currentSlide + 1;
-		addMultipleSlidesRight(currentSlide, numSlidesToAdd)
+		addMultipleSlidesRight(currentSlide, numSlidesToAdd);
 	}
 }
 //=============================================================
@@ -295,13 +298,15 @@ function goToSlide(slide)
 function nextSlide()
 {
 	previousSlide = false;
-	if(currentSlide == 3)
+	if(currentSlide == (numberOfSlides-1))
 	{
 		currentSlide = -1;
-		slideVisibility(numberOfSlides-1, currentSlide + 1);
+		//slideVisibility(numberOfSlides-1, currentSlide + 1);
 	}
-	else	
-		slideVisibility(currentSlide, currentSlide + 1);
+	else
+	{
+		//slideVisibility(currentSlide, currentSlide + 1);
+	}
 	
 	for(var i = 0; i<numberOfSlides; i++)
 	{
@@ -311,10 +316,11 @@ function nextSlide()
 			slideSelectionButtons[i].src = "images/slideshow-button.png";
 	}
 
-	addSlideRight(currentSlide += 1);
+	currentSlide += 1;
+	showSlides();
+	addSlideRight(currentSlide);
 	paused = false;
 	pauseCount = 0;
-
 }
 //=============================================================
 
@@ -325,15 +331,16 @@ function prevSlide()
 {
 	previousSlide = true;
 	currentSlide -= 1;
+	
 	if(currentSlide == -1)
 	{
-		currentSlide = 3;
-		slideVisibility(currentSlide, 0)
+		currentSlide = numberOfSlides-1;
+		//slideVisibility(currentSlide, 0);
 	}	
 	else
 	{
-		var test  = currentSlide+1;	
-		slideVisibility(currentSlide, test)
+		var test  = currentSlide+1;
+		//slideVisibility(currentSlide, test);
 	}
 
 	for(var i = 0; i<numberOfSlides; i++)
@@ -344,6 +351,7 @@ function prevSlide()
 			slideSelectionButtons[i].src = "images/slideshow-button.png";
 	}
 
+	showSlides();
 	addSlideLeft(currentSlide);
 	paused = false;
 	pauseCount = 0;
@@ -355,16 +363,38 @@ function prevSlide()
 //==========DISPLAY ONLY THE CURRENTLY VISIBLE SLIDES========== 
 function slideVisibility(slide1, slide2)
 {
+	if(currentSlide == numberOfSlides-1)
+	{
+		slide2 = 0;
+	}
+	toggle(slideShowImages[slide1], "show");
+	toggle(slideShowImages[slide2], "show");
+	
 	for(var i = numberOfSlides-1; i >= 0; i--)
 	{
-		if(currentSlide == numberOfSlides-1)
-			slide2 = 0;	
-		if(i == slide1)
-			toggle(slideShowImages[slide1], "show");
-		else if(i == slide2)
-			toggle(slideShowImages[slide2], "show");
-		else
+		if(i != slide1 && i != slide2)
+		{
 			toggle(slideShowImages[i], "hide");
+		}
+	}
+}
+
+function showSlides()
+{
+	for(var i = numberOfSlides-1; i >= 0; i--)
+	{
+		toggle(slideShowImages[i], "show");
+	}
+}
+
+function hideSlides()
+{
+	for(var i = numberOfSlides-1; i >= 0; i--)
+	{
+		if(i != currentSlide)
+		{
+			toggle(slideShowImages[i], "hide");
+		}
 	}
 }
 //=============================================================
@@ -400,13 +430,12 @@ function draw()
 		resizeSlide();
 		sizeCheckedOnLoad = true;
 	}
+	
 	toggle(hud, "show");
 	for(var i = 1; i < numberOfSlides+1; i++)
 	{
 		var pos = i-1;
-		//slideShowImages[pos].style.left = slideShowImageCoordinates[pos] + 'px';
 		slideShowImages[pos].style.left = slideShowImageCoordinates[pos] + '%';
-		//slideShowImages[pos].style.top = "0px";
 	}	
 	setTimeout(draw, 1000/frameRate);
 }
@@ -421,20 +450,42 @@ function resizeCheck()
 	resizeSlide();
 }
 
+
+/*
+* resizeSlide() is called when the browser window once when the all the slides have been loaded (see draw())
+* when the browser window is resized to ensure that each image is covering the whole container in the most
+* desirable way.
+*
+* The function:
+* 1-checks whether the current width of each slide is less than the width of the window (& hence the container*)
+* If so, it adds the CSS class "ensureWidth" (defined in CSS) to the image by appending it to its className
+* result: <img src="slide/slide(i).jpg" class="slideImage ensureWidth"/>
+*
+* 2-checks whether the current height of each slide is less than the height of the container
+* If so, it removes the CSS class "ensureWidth" by overwriting the className to slideImage
+* result: <img src="slide/slide(i).jpg" class="slideImage"/>
+*
+* Note: this only works if only 2 classes ("slideImage" and ensureWidth) are applied. 
+* To make this future proof (what if we apply more classes?), you should remove the "ensureWidth" only from
+* the className; replace it with "" using regEx and replace()
+*/
+
 function resizeSlide()
 {
-	
 	for(var i=0; i<numberOfSlides; i++)
 	{
 		if(slideShowImages[i].clientWidth < window.innerWidth)
 		{
+			/* //debug
 			console.log("image width("+i+"): " + slideShowImages[i].clientWidth);
 			console.log("image height("+i+"): " + slideShowImages[i].clientHeight);
 			console.log("container height: " + document.getElementById('slideshowContainer').clientHeight);
-			console.log("window width: " + window.innerWidth);
+			console.log("window width: " + window.innerWidth);*/
 			
+			//check whether ensureWidth is already applied
 			if (!slideShowImages[i].className.match(/(?:^|\s)ensureWidth(?!\S)/) )
 			{
+				//space before ensureWidth is important
 				slideShowImages[i].className += " ensureWidth";
 			}
 		}
@@ -444,22 +495,12 @@ function resizeSlide()
 			slideShowImages[i].className = "slideImage";
 		}
 	}
-	
-	/*if (window.innerWidth < 900)
-	{
-		for(var i=0; i<numberOfSlides; i++)
-		{
-			//slideShowImages[i].className = slideShowImages[i].className.replace( /(?:^|\s) ensureWidth(?!\S)/g , '' );
-			slideShowImages[i].className = "slideImage";
-		}
-	}*/
 }
 
 
 
 /* ============ CONTROLS FUNCTIONS  ============*/
 
-//var handleClick = function(event)
 function handleClick(event)
 {
 	event.preventDefault();
@@ -468,8 +509,6 @@ function handleClick(event)
 }
 
 
-
-//var handleRelease = function(e)
 function handleRelease(e)
 {
 	isClicked = false;
@@ -478,7 +517,6 @@ function handleRelease(e)
 }
 
 
-//var handleSwipe = function(event)
 function handleSwipe(event)
 {
 
@@ -502,7 +540,6 @@ function handleSwipe(event)
 }
 
 
-//var handleMouse = function(event)
 function handleMouse(event)
 {
 	event.preventDefault();	
@@ -523,7 +560,7 @@ function handleMouse(event)
 			
 		lastY = currentY;
 
-var currentX = event.clientX;
+		var currentX = event.clientX;
 		var difference;
 		if (lastX < 0)
 		{
@@ -575,21 +612,6 @@ function isVisible(element)
 }
 
 
-function blink(element)
-{
-	
-	if(isVisible(element))
-	{
-		toggle(element, "hide");
-	}
-	else
-	{
-		toggle(element, "show");
-	}
-
-}
-
-
 var listenForEvent = function (element, event, callback) {
     //Regular style
 		if (element.addEventListener) {
@@ -604,5 +626,3 @@ var listenForEvent = function (element, event, callback) {
         element['on' + event] = callback;
     }
 };
-
-
