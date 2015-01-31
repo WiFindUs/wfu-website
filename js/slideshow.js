@@ -1,7 +1,8 @@
 //=====================GLOBAL VARIABLES========================
 
-//========CONTAINER========
+//=========================
 var container;
+var sizeCheckedOnLoad = false;
 //=========================
 
 //==========SPEED==========
@@ -26,7 +27,7 @@ var slideSelector4;
 //==========SLIDES=========
 var slideShowImages = [];
 var slideShowImageCoordinates = [];
-var numberOfSlides = 4;
+var numSlides = 4;
 var slideMoving = false;
 var currentSlide;
 var paused = true;
@@ -39,7 +40,6 @@ var slideSelectionButtons = [];
 
 //=========================
 
-var sizeCheckedOnLoad = false;
 
 //=============================================================
 
@@ -50,10 +50,8 @@ window.onload = function()
 {
 	hud = document.getElementById("hud");
 	
-	slideSelector1 = document.getElementById("slideSelector1");
- 	slideSelector2 = document.getElementById("slideSelector2");
- 	slideSelector3 = document.getElementById("slideSelector3");
-	slideSelector4 = document.getElementById("slideSelector4");
+	
+
 
 	initialise();
 }
@@ -64,7 +62,7 @@ window.onload = function()
 //==========================UPDATE============================
 function initialise()
 {
-	container = document.getElementById("slideshow");
+	container = document.getElementById("slides");
 	container.innerHTML = ""; 
 
 	listenForEvent(window, "mousedown", handleClick); 
@@ -75,21 +73,16 @@ function initialise()
 	listenForEvent(window, "mousemove", handleMouse);
 	listenForEvent(container, 'contextmenu', function(e){e.preventDefault();});
 	
-	for(var i=numberOfSlides-1; i>-1; i--)
+	for(var i=numSlides-1; i>-1; i--)
 	{
 		createSlideImage(i);
-		//slideSelectionButtons[i] = 'slideSelector'+i+1;
 	}
 	/*createSlideImage(3);
 	createSlideImage(2);
 	createSlideImage(1);
 	createSlideImage(0);*/
 
-	slideSelectionButtons[0] = slideSelector1;
-	slideSelectionButtons[1] = slideSelector2;
-	slideSelectionButtons[2] = slideSelector3;
-	slideSelectionButtons[3] = slideSelector4;
-
+	createSelectorBtns(numSlides);
 	slideSelectionButtons[0].src = "images/slideshow-button_selected.png";
 
 	toggle(slideShowImages[0], "show");
@@ -109,7 +102,7 @@ function update()
 {
 	if(paused == false && previousSlide == false)
 	{
-		for(var i=0; i<numberOfSlides; i++)
+		for(var i=0; i<numSlides; i++)
 		{
 			moveLeft(i);
 		}
@@ -120,7 +113,7 @@ function update()
 	}
 	if(paused == false && previousSlide == true)
 	{
-		for(var i=numberOfSlides-1; i>-1; i--)
+		for(var i=numSlides-1; i>-1; i--)
 		{
 			moveRight(i);
 		}
@@ -251,16 +244,41 @@ function addMultipleSlidesLeft(nextSlidePos, numSlides)
 
 //=============================================================
 
-//=============CREATE AND ADD A SLIDE IMAGE================
+//=============CREATE SLIDES & CONTENT================
 function createSlideImage(newSlidePos)
 {
 	var slide;
 	var filePos = newSlidePos+1;
 	slide = document.createElement('img');
 	slide.src = "slides/slide"+ filePos +".jpg";
+	
 	slide.className = "slideImage";
 	container.appendChild(slide);
 	slideShowImages[newSlidePos] = slide;
+}
+
+function createSelectorBtns(numSlides)
+{
+	
+	var content="<ul>";
+	for(var i=0; i<numSlides; i++)
+	{
+		var j = i+1;
+		var inputID = "slideSelector"+j;
+		content += "<li> <input id=\"" +inputID+ "\" type=\"image\" src=\"images/slideshow-button.png\" ontouchstart=\"goToSlide(" +i+ ")\" onclick=\"goToSlide(" +i+ ")\"></li> "
+	}
+	content += "</ul>";
+	
+	
+	document.getElementById('slideshowBtns').innerHTML = content;
+	
+	
+	for(var i=0; i<numSlides; i++)
+	{
+		var j = i+1;
+		var inputID = "slideSelector"+j;
+		slideSelectionButtons[i] = document.getElementById(inputID);
+	}
 }
 //=============================================================
 
@@ -298,17 +316,17 @@ function goToSlide(slide)
 function nextSlide()
 {
 	previousSlide = false;
-	if(currentSlide == (numberOfSlides-1))
+	if(currentSlide == (numSlides-1))
 	{
 		currentSlide = -1;
-		//slideVisibility(numberOfSlides-1, currentSlide + 1);
+		//slideVisibility(numSlides-1, currentSlide + 1);
 	}
 	else
 	{
 		//slideVisibility(currentSlide, currentSlide + 1);
 	}
 	
-	for(var i = 0; i<numberOfSlides; i++)
+	for(var i = 0; i<numSlides; i++)
 	{
 		if(i == currentSlide+1)
 			slideSelectionButtons[i].src = "images/slideshow-button_selected.png";
@@ -334,7 +352,7 @@ function prevSlide()
 	
 	if(currentSlide == -1)
 	{
-		currentSlide = numberOfSlides-1;
+		currentSlide = numSlides-1;
 		//slideVisibility(currentSlide, 0);
 	}	
 	else
@@ -343,7 +361,7 @@ function prevSlide()
 		//slideVisibility(currentSlide, test);
 	}
 
-	for(var i = 0; i<numberOfSlides; i++)
+	for(var i = 0; i<numSlides; i++)
 	{
 		if(i == currentSlide)
 			slideSelectionButtons[i].src = "images/slideshow-button_selected.png";
@@ -363,14 +381,14 @@ function prevSlide()
 //==========DISPLAY ONLY THE CURRENTLY VISIBLE SLIDES========== 
 function slideVisibility(slide1, slide2)
 {
-	if(currentSlide == numberOfSlides-1)
+	if(currentSlide == numSlides-1)
 	{
 		slide2 = 0;
 	}
 	toggle(slideShowImages[slide1], "show");
 	toggle(slideShowImages[slide2], "show");
 	
-	for(var i = numberOfSlides-1; i >= 0; i--)
+	for(var i = numSlides-1; i >= 0; i--)
 	{
 		if(i != slide1 && i != slide2)
 		{
@@ -381,7 +399,7 @@ function slideVisibility(slide1, slide2)
 
 function showSlides()
 {
-	for(var i = numberOfSlides-1; i >= 0; i--)
+	for(var i = numSlides-1; i >= 0; i--)
 	{
 		toggle(slideShowImages[i], "show");
 	}
@@ -389,7 +407,7 @@ function showSlides()
 
 function hideSlides()
 {
-	for(var i = numberOfSlides-1; i >= 0; i--)
+	for(var i = numSlides-1; i >= 0; i--)
 	{
 		if(i != currentSlide)
 		{
@@ -425,14 +443,14 @@ function clock()
 //==========================DRAW=============================== 
 function draw()
 {
-	if(!sizeCheckedOnLoad && slideShowImages[numberOfSlides-1].clientWidth != 0)
+	if(!sizeCheckedOnLoad && slideShowImages[numSlides-1].clientWidth != 0)
 	{
 		resizeSlide();
 		sizeCheckedOnLoad = true;
 	}
 	
 	toggle(hud, "show");
-	for(var i = 1; i < numberOfSlides+1; i++)
+	for(var i = 1; i < numSlides+1; i++)
 	{
 		var pos = i-1;
 		slideShowImages[pos].style.left = slideShowImageCoordinates[pos] + '%';
@@ -472,7 +490,7 @@ function resizeCheck()
 
 function resizeSlide()
 {
-	for(var i=0; i<numberOfSlides; i++)
+	for(var i=0; i<numSlides; i++)
 	{
 		if(slideShowImages[i].clientWidth < window.innerWidth)
 		{
@@ -490,7 +508,7 @@ function resizeSlide()
 			}
 		}
 		
-		if(slideShowImages[i].clientHeight < document.getElementById('slideshowContainer').clientHeight)
+		if(slideShowImages[i].clientHeight < document.getElementById('slideshow').clientHeight)
 		{
 			slideShowImages[i].className = "slideImage";
 		}
