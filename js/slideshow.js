@@ -104,7 +104,7 @@ function createSlide(slidePos)
 	container.appendChild(slide);
 	
 	slideImage = document.createElement('img');
-	slideImage.src = "slides/slide"+ filePos +".jpg";
+	slideImage.src = "images/slides/slide"+ filePos +".jpg";
 	slideImage.className = "slideImage";
 	slide.appendChild(slideImage);
 	
@@ -159,6 +159,10 @@ function update()
 
 function draw()
 {
+	if(!sizeCheckedOnLoad && slideImages[0].clientWidth != 0)
+	{
+		resizeSlide();
+	}
 	if(!sizeCheckedOnLoad && slideImages[numSlides-1].clientWidth != 0)
 	{
 		resizeSlide();
@@ -256,12 +260,10 @@ function goToSlide(slide)
 	
 	if(targetSlide == currentSlide-1)
 	{
-		console.log("PREVIOUS");
 		prevSlide();
 	}
 	else if(targetSlide == currentSlide+1)
 	{
-		console.log("NEXT");
 		nextSlide();
 	}
 	else if(targetSlide < currentSlide)
@@ -335,7 +337,7 @@ window.addEventListener('resize', resizeCheck);
 
 function resizeCheck()
 {
-	clearStyle();
+	clearStyle(); //keep for menu.js
 	resizeSlide();
 }
 

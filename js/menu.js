@@ -2,7 +2,7 @@ var pulled = false;
 
 function toggleMenu(source)
 {
-	if((source == "navSelected" && window.innerWidth<800) || source =="icon")
+	if((source == "navSelected" && window.innerWidth<800) || source =="icon" || (source == "contact" && window.innerWidth<800))
 	{
 		var nav = document.getElementById("nav");
 		
