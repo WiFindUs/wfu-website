@@ -128,8 +128,7 @@
 
 	.horizontalCardList p
 	{
-		
-		
+		margin-top: 30px;
 	}
 
 	.horizontalCardList .icon
@@ -631,4 +630,94 @@
 
 /*====END OF FOOTER====*/
 
+.detailedFeatures
+{
+	width: 100%;
+	/*background-color: #f8f8f8;*/
+	background-color: #6e95f3;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	color: white;
 }
+
+.detailedFeatures h2
+{
+	/*color: #6e95f3;*/
+	color: #f8f8f8;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-weight: normal;
+	font-size: 180%;
+}
+
+.detailedFeatures .subHeader
+{
+	
+	margin-top: 10px;
+	
+	font-size: 115%;
+}
+
+.feature
+{
+	list-style-type: none;
+} 
+
+.feature li
+{
+	display: inline-block;
+	margin-right: 50px;
+	margin-top: 50px;
+}
+
+.feature li:first-child
+{
+	margin-top: 20;
+}
+
+.feature li:last-child
+{
+	margin-right: 0;
+}
+
+.feature img
+{
+	display: inline-block;
+	width: 300px;
+	height: auto;
+	vertical-align: top;
+	border: 2px solid white;
+}
+
+.feature img:hover
+{
+	cursor: zoom-in;
+}
+
+.feature .desc
+{
+	display: inline-block;
+	width: 450px;
+	vertical-align: top;
+}
+
+.desc h3
+{
+	text-align: left;
+	
+	color: white;
+	font-weight: normal;
+	font-size: 130%;
+}
+
+.desc p
+{
+	text-align: left;
+	font-size: 110%;
+	color: white;
+}
+
+
+}
+
+

@@ -259,8 +259,6 @@ body
 	width: 100%;
 	background-color: #f8f8f8;
 	text-align: center;
-	/*padding-top: 15px;
-	padding-bottom: 15px;*/
 	margin-bottom: 0;
 }
 
@@ -386,14 +384,16 @@ body
 
 .horizontalCardList p
 {
+	margin-top: 10px;
 	padding-left: 15px;
 	padding-right: 15px;
 }
 
 .horizontalCardList .icon
 {
-	width: 40%;
-	height: auto;
+	/*width: 40%;*/
+	height: 30%;
+	width: auto;
 	margin-top: 20px;
 }
 
@@ -499,3 +499,97 @@ footer #friends img:hover
 	margin-left: 50%;
 	transform: translate(-50%, 0);
 }
+
+
+/*====Detailed Features====*/
+.detailedFeatures
+{
+	width: 100%;
+	/*background-color: #f8f8f8;*/
+	background-color: #6e95f3;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	color: white;
+}
+
+.detailedFeatures h2
+{
+	/*color: #6e95f3;*/
+	color: #f8f8f8;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-weight: normal;
+	font-size: 180%;
+}
+
+.detailedFeatures .subHeader
+{
+	
+	margin-top: 10px;
+	
+	font-size: 115%;
+}
+
+.feature
+{
+	list-style-type: none;
+} 
+
+.feature li
+{
+	margin-top: 50px;
+}
+
+.feature li:first-child
+{
+	margin-top: 20;
+}
+
+.feature li:last-child
+{
+	margin-top: 0;
+}
+
+.feature li:last-child
+{
+	margin-right: 0;
+}
+
+.feature img
+{
+	display: inline-block;
+	width: 300px;
+	height: auto;
+	vertical-align: top;
+	border: 2px solid white;
+}
+
+.feature img:hover
+{
+	cursor: zoom-in;
+}
+
+.feature .desc
+{
+	display: inline-block;
+	width: 75%;
+	vertical-align: top;
+}
+
+.desc h3
+{
+	text-align: center;
+	
+	color: white;
+	font-weight: normal;
+	font-size: 130%;
+}
+
+.desc p
+{
+	text-align: center;
+	font-size: 110%;
+	color: white;
+}
+
+/*====END OF Detailed Features====*/

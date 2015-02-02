@@ -120,5 +120,13 @@
 	{
 		width: 100px;
 		height: auto;
+
 	}
+	
+	.feature .desc
+	{
+		width: 75%;
+	}
+
 }
+
