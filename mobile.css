@@ -499,6 +499,14 @@ footer #friends img:hover
 .feat
 {
 	margin-top: 50px;
+	
+	 display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    box-orient: vertical;
 }
 
 .feat:first-child
@@ -526,7 +534,12 @@ footer #friends img:hover
 {
 	width: 300px;
 	height: auto;
+	
+	-webkit-box-ordinal-group: 1;
+    -moz-box-ordinal-group: 1;
+    box-ordinal-group: 1;
 }
+
 
 
 .featDesc
@@ -536,6 +549,10 @@ footer #friends img:hover
 	left: 50%;
 	transform: translateX(-50%);
 	position: relative;
+	
+	-webkit-box-ordinal-group: 2;
+    -moz-box-ordinal-group: 2;
+    box-ordinal-group: 2;
 }
 
 .thumbContainer+.featDesc
