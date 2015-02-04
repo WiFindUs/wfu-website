@@ -1,4 +1,4 @@
-
+/*
 window.addEventListener('resize', swapColumns);
 
 function swapColumns()
@@ -15,3 +15,4 @@ function swapColumns()
 	console.log("desc:" +rectDesc.top);
 	console.log("thumb:" +rectThumb.top);
 }
+*/

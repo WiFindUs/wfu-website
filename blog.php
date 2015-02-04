@@ -8,6 +8,7 @@
 		<script type="text/javascript" src="js/blog.js"></script>
 		<script type="text/javascript" src="js/menu.js"></script>
 		<link rel="stylesheet" href="mobile.css">
+		<link rel="stylesheet" href="blog.css">
 		<link rel="stylesheet" href="600.css">
 		<link rel="stylesheet" href="900.css">
 		<link rel="icon"	type="image/png"		href="images/favicon.png">
