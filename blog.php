@@ -2,16 +2,87 @@
 <html>
 
 	<head>
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+		<meta content="utf-8" http-equiv="encoding">
 		<title>WiFindUs</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 		<script type="text/javascript" src="js/blog.js"></script>
 		<script type="text/javascript" src="js/menu.js"></script>
+		
+
 		<link rel="stylesheet" href="mobile.css">
-		<link rel="stylesheet" href="blog.css">
 		<link rel="stylesheet" href="600.css">
+		<link rel="stylesheet" href="685.css">
+		<link rel="stylesheet" href="800.css">
 		<link rel="stylesheet" href="900.css">
+		<link rel="stylesheet" href="blog.css">
+		
+		
 		<link rel="icon"	type="image/png"		href="images/favicon.png">
+
+
+
+		<?php
+		/////////////////////// META TAGS ///////////////////////
+
+					$dir = dirname(__FILE__) . '/blog_posts/*';
+					$files = array();
+					$dates = array();
+					foreach(glob($dir) as $file) 
+					{
+						$path = explode("/", $file);
+						foreach ($path as $level) 
+						{
+
+							if(strpos($level,'.txt') !== false)
+							{
+								$title = explode("_", $level);
+								
+									foreach ($path as $level) 
+									{
+										if(strpos($level,'.txt') !== false)
+										{
+											$txt_file    = file_get_contents($file);
+											$rows        = explode("\n", $txt_file);
+											array_shift($rows);
+											
+											$numImages = 0;
+											$dropCapDone = false;
+											$images = array();
+											$showNext = "";
+
+											foreach($rows as $row => $data)
+											{
+											    $row_data = explode('^^'.'*'.'^^', $data);
+											    
+											    foreach ($row_data as $item) 
+											    {	
+											    	if($showNextElement === true)
+											    	{
+													    if($showNext == "tags")
+												    	{
+												    		echo "<meta name=\"keywords\" content=\"".$item."\">";
+												    		$showNextElement = false;
+									    				}
+													}
+													if (strpos($item,'TAGS') !== false) 
+								    				{
+											    		$showNextElement = true;
+										    			$showNext = "tags";
+										    			$numImages = 0;
+						   							}
+												}
+											}
+										}		
+									}
+							}
+						}
+					}
+		?>
+
+
+
 	</head>
 	
 	
@@ -28,8 +99,8 @@
 					<li onclick="goTo('index.html')"><a href="index.html">Home</a></li>
 					<li onclick="goTo('services.html')"><a href="services.html">Services</a></li>
 					<li onclick="goTo('team.html')"><a href="team.html">Team</a></li>
-					<li onclick="toggleMenu('navSelected')"><a href="blog.php" id="navSelected">Blog</a></li>
-					<li onclick="goTo('')"><a href="">Contact</a></li>
+					<li onclick="toggleMenu('navSelected')"><a href="" id="navSelected">Blog</a></li>
+					<li onclick="goTo('#contact'); toggleMenu('contact')"><a href="#contact">Contact</a></li>
 				</ul>
 			</nav>
 			
@@ -40,6 +111,7 @@
 			<h1>Blog</h1>
 			<p>It's a blog</p>
 		</div>
+
 
 
 <div id="blog_archive">
@@ -107,17 +179,31 @@
 
 </div>
 
+
+
+
+
+
+
+<div id="show_hide_archive">
+	<input id = "archive_display_button" type="image" src="images/hide_archive.png" onclick="toggleArchiveDisplay()">
+</div>
+
+
+
+
+
+
+
+
 <div id = "blog_content">
 	
+	<br>
 
-	<div id = "blog_break">
-		<br>
-	</div>
+	<div id = "scroll">
 
-
-<div id = "scroll">
-
-<?php
+	<?php
+	
 	$dir = dirname(__FILE__) . '/blog_posts/*';
 	$count = 0;
 	$currentImage = 0;
@@ -130,148 +216,151 @@
 		{
 			$path = explode("/", $file);
 			
+			//EACH PART OF FILE PATH
 			foreach ($path as $level) 
 			{
-			if(strpos($level,'.txt') !== false)
+				// BLOG POST FILE (any .txt file)
+				if(strpos($level,'.txt') !== false)
 				{
 					$title = explode("_", $level);
 					$display_date = explode(".", $title[1]);
 					
+					// DISPLAY IN CHRONOLOGICAL ORDER BASED ON DATE
 					if($display_date[0] === $date)
 					{
-						foreach ($path as $level) 
+						$txt_file    = file_get_contents($file);
+						$rows        = explode("\n", $txt_file);
+						array_shift($rows);
+								
+						$numImages = 0;
+						$dropCapDone = false;
+						$images = array();
+						$showNext = "";
+
+						foreach($rows as $row => $data)
 						{
-							if(strpos($level,'.txt') !== false)
-							{
-								$txt_file    = file_get_contents($file);
-								$rows        = explode("\n", $txt_file);
-								array_shift($rows);
-								
-								$numImages = 0;
-								
-								$images = array();
-
-								foreach($rows as $row => $data)
-								{
-								    $row_data = explode('^^'.'*'.'^^', $data);
+							$row_data = explode('^^'.'*'.'^^', $data);
 								    
-								    foreach ($row_data as $item) 
-								    {	
-								    	if($showNextElement === true)
-								    	{
-										    if($showNext == "title")
-									    	{
-									    		echo "<div id = \"blog_entry_".$count."\">";
-									    		echo "<div id = \"blog_title_container\">";
-									    			echo "<h1 id= 'blog_article_title'>".$item."</h1>";
-									    		echo "</div>";
-
-									    		$showNextElement = false;
-									    	}
-
-									    	if($showNext == "date")
-									    	{
-									    		echo "<div id = \"blog_date_container\">";
-									    			echo "<h2 id= 'blog_article_date'>".$item."</h2>";
-									    		echo "</div>";
-
-									    		echo "<div id = \"blog_entry\">";
-												$count++;
-									    		$showNextElement = false;
-									    	}
-
-									    	if($showNext == "image")
-									    	{
-									    		$images[$currentImage] = $item;
-												$currentImage++;
-									    		$showNextElement = false;
-									    	}
-
-									    	if($showNext == "text")
-									    	{
-									    		if (strpos($item,'^^') === false) 
-									    		{
-									    			if($dropCapDone === false)
-									    			{
-														echo "<p class=\"introduction\">".$item[0]."</p>";
-										    			$dropCapDone = true;
-										    		}
-										    		echo "<p class=\"blog_text\">";
-										    			$text = substr($item, 1);
-										    			echo $text;
-										    		echo "</p>";
-									    		}
-											}
-										}
-
-								    	if (strpos($item,'TITLE') !== false) 
-								    	{
-								    		if($showNext == "image")
-									    	{
-									    		displayImages($images, $numImages); 
-									    	}
-								    		$showNextElement = true;
-							    			$showNext = "title";
-							    			$dropCapDone = false;
-							    			$numImages = 0;
-						   				}
-
-						   				if (strpos($item,'DATE') !== false) 
-								    	{
-								    		if($showNext == "image")
-									    	{
-									    		displayImages($images, $numImages); 
-									    	}
-								    		$showNextElement = true;
-							    			$showNext = "date";
-							    			$dropCapDone = false;
-							    			$numImages = 0;
-
-						   				}
-										
-										else if (strpos($item,'TEXT') !== false) 
-								    	{
-											if($showNext == "image")
-									    	{
-									    		displayImages($images, $numImages); 
-									    	}
-							    		 	$showNextElement = true;
-								    		$showNext = "text";
-								    		$dropCapDone = false;
-								    		$numImages = 0;
-
-								    	}
-
-								    	else if (strpos($item,'IMAGE') !== false) 
-								    	{
-								    		$showNextElement = true;
-								    		$showNext = "image";
-								    		$dropCapDone = false;
-								    		$numImages++;
-								    	}
-
-								    	else if (strpos($item,'VIDEO') !== false) 
-								    	{
-								    		$showNextElement = true;
-								    		$showNext = "video";
-								    		$dropCapDone = false;
-								    		$numImages = 0;
-
-								    	}
+							foreach ($row_data as $item) 
+							{	
+								if($showNextElement === true)
+								{
+									if($showNext == "title")
+									{
+									   	echo "<div id = \"blog_entry_".$count."\">";
+									    		
+										    echo "<div id = \"blog_title_container\">";
+										    	echo "<h1 id= 'blog_article_title'>".$item."</h1>";
+										    echo "</div>";
+									    	$showNextElement = false;
 									}
 
-								}
-								if($showNext == "image")
-							    {
-							    	displayImages($images, $numImages, true); 
-							    }
-							echo "</div>";	
-							echo "&nbsp";
-							echo "</div>";
-							}
+									if($showNext == "date")
+									{
+									    echo "<div id = \"blog_date_container\">";
+											echo "<h2 id= 'blog_article_date'>".$item."</h2>";
+										echo "</div>";
 
+										echo "<div id = \"blog_entry\">";
+										$count++;
+										$showNextElement = false;
+									}
+
+									if($showNext == "image")
+									{
+									    $images[$currentImage] = $item;
+										$currentImage++;
+									    $showNextElement = false;
+									}
+
+									if($showNext == "text")
+									{
+									    if (strpos($item,'^^') === false) 
+									    {
+											if($dropCapDone === false)
+									    	{
+												echo "<p class=\"introduction\">".$item[0]."</p>";
+											    	$dropCapDone = true;
+
+											    echo "<p class=\"blog_text\">";
+											    	$text = substr($item, 1);
+											    	echo $text;
+											    echo "</p>";
+										    }
+										    else
+										    {
+												echo "<p class=\"blog_text\">";
+										    		$text = substr($item, 0);
+										    		echo $text;
+										    	echo "</p>";
+										    }
+									    }
+									}
+
+									if($showNext == "video")
+									{
+									    echo $item;
+									    $showNextElement = false;
+									}
+								}
+
+								// DETERMINE ITEMS TO DISPLAY BASED ON TAGS
+								if (strpos($item,'TITLE') !== false) 
+								{
+								    if($showNext == "image")
+									{
+									    displayImages($images, $numImages); 
+									}
+								    $showNextElement = true;
+							    	$showNext = "title";
+							    	$numImages = 0;
+						   		}
+						   		else if (strpos($item,'DATE') !== false) 
+								{
+								    if($showNext == "image")
+									{
+									    displayImages($images, $numImages); 
+									}
+								    $showNextElement = true;
+							    	$showNext = "date";
+							    	$numImages = 0;
+								}
+								else if (strpos($item,'TEXT') !== false) 
+								{
+									if($showNext == "image")
+									{
+									    displayImages($images, $numImages); 
+									}
+							    	$showNextElement = true;
+								    $showNext = "text";
+								    $numImages = 0;
+								}
+								else if (strpos($item,'IMAGE') !== false) 
+								{
+								    $showNextElement = true;
+								    $showNext = "image";
+								    $numImages++;
+								}
+								else if (strpos($item,'VIDEO') !== false) 
+								{
+								    if($showNext == "image")
+									{
+									   	displayImages($images, $numImages); 
+									}
+								    $showNextElement = true;
+								    $showNext = "video";
+								    $numImages = 0;
+								}
+							}
 						}
+						if($showNext == "image")
+						{
+							displayImages($images, $numImages, true); 
+						}
+						echo "</div>";	
+						echo "</div>";
 					}
+
 				}
 			}
 		}
@@ -286,6 +375,9 @@ function displayImages($images, $numImages)
 	global $imageCount;
 	for($i = 0; $i<$numImages; $i++)
 	{
+		////////////////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////// LESS THAN 3 IMAGES //////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////////////////
 		if($numImages < 3)
 		{
 			echo "<a href=\"#slideshow_image_".$imageCount."\">";
@@ -293,7 +385,7 @@ function displayImages($images, $numImages)
 			echo "</a>";
 
 			echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
-				echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";
+				
 
 				$nextImage = $imageCount+1;
 				$prevImage = $imageCount-1;
@@ -309,7 +401,9 @@ function displayImages($images, $numImages)
 					echo " <div id='nextBtnContainer'>";
 						echo "<a href=\"#slideshow_image_".$nextImage."\">";
 							echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
-						echo "</a>";    
+						echo "</a>";
+
+						echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";     
 					echo "</div>";
 
 				    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
@@ -319,21 +413,37 @@ function displayImages($images, $numImages)
 
 				$imageCount++;		
 		}
+
+
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////// 3 IMAGES ///////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////////////////
 		else if($numImages === 3)
 		{
+			///////// FIRST IMAGE /////////
 			if($i === 0)
 			{
-				echo "<a href=\"#slideshow_image_".$imageCount."\">";
-					echo "<img id = \"full_size_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
-				echo "</a>";
+				list($width, $height, $type, $attr) = getimagesize("blog_posts/".$images[$imageCount]);
 
-				echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
-					echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";
+				// PORTRAIT //
+				if($width < $height)
+				{
+					echo "<div id = \"vertical_image_container\">";
+						
+					echo "<div id = \"fullsize_vertical_image_container\">";
+						echo "<a href=\"#slideshow_image_".$imageCount."\">";
+							echo "<img id = \"vertical_image_fullsize\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+						echo "</a>";
+					echo "</div>";
+
+					echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
 					
 					$nextImage = $imageCount+1;
 					$prevImage = $imageCount-1;
 
 					echo "<div id='imageContainer'>"; 
+					   	
 					   	echo " <div id='prevBtnContainer'>";
 							echo "<a href=\"#slideshow_image_".$prevImage."\">";
 								echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
@@ -343,27 +453,66 @@ function displayImages($images, $numImages)
 						echo " <div id='nextBtnContainer'>";
 							echo "<a href=\"#slideshow_image_".$nextImage."\">";
 								echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
-							echo "</a>";    
+							echo "</a>"; 
+							echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";    
 						echo "</div>";
 
 					    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
 					echo "</div>";
 				echo "</div>";	
+				$imageCount++;		
+				}
 
+				// LANDSCAPE //
+				else
+				{
+				echo "<a href=\"#slideshow_image_".$imageCount."\">";
+					echo "<img id = \"full_size_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+				echo "</a>";
+
+				echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
+					
+					$nextImage = $imageCount+1;
+					$prevImage = $imageCount-1;
+
+					echo "<div id='imageContainer'>"; 
+					   	
+					   	echo " <div id='prevBtnContainer'>";
+							echo "<a href=\"#slideshow_image_".$prevImage."\">";
+								echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
+							echo "</a>";   
+						echo "</div>";
+					   
+						echo " <div id='nextBtnContainer'>";
+							echo "<a href=\"#slideshow_image_".$nextImage."\">";
+								echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
+							echo "</a>";
+							echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";     
+						echo "</div>";
+
+					    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+					echo "</div>";
+				echo "</div>";	
 				$imageCount++;
+				}
+
 			}
 			else
 			{
-				if($i === 1)
+				// PORTRAIT //
+				if($width < $height)
 				{
-					echo "<a href=\"#slideshow_image_".$imageCount."\">";
-						echo "<div id = \"half_thumbnail_container_first\">";
-						echo "<img id = \"thumbnail_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
-						echo "</div>";				
-					echo "</a>";
-					
-					echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
-						echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";
+					if($i === 1)
+					{
+						echo "<div id = \"vertical_image_thumbnails\">";
+							
+							echo "<div id = \"vertical_image_thumbnail_container\">";
+								echo "<a href=\"#slideshow_image_".$imageCount."\">";
+									echo "<img id = \"vertical_thumbnail_half\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";		
+								echo "</a>";
+							echo "</div>";
+
+							echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
 						
 						$nextImage = $imageCount+1;
 						$prevImage = $imageCount-1;
@@ -378,7 +527,87 @@ function displayImages($images, $numImages)
 							echo " <div id='nextBtnContainer'>";
 								echo "<a href=\"#slideshow_image_".$nextImage."\">";
 									echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
-								echo "</a>";    
+								echo "</a>";
+								echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";     
+							echo "</div>";
+
+						    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+						echo "</div>";
+
+					echo "</div>";
+
+					$imageCount++;
+					}
+					if($i === 2)
+					{
+						echo "<div id = \"vertical_image_thumbnail_container\">";
+
+							echo "<a href=\"#slideshow_image_".$imageCount."\">";
+								echo "<img id = \"vertical_thumbnail_half\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";		
+							echo "</a>";
+						echo "</div>";
+
+						echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
+						
+						$nextImage = $imageCount+1;
+						$prevImage = $imageCount-1;
+
+						echo "<div id='imageContainer'>"; 
+						   	echo " <div id='prevBtnContainer'>";
+								echo "<a href=\"#slideshow_image_".$prevImage."\">";
+									echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
+								echo "</a>";   
+							echo "</div>";
+						   
+							echo " <div id='nextBtnContainer'>";
+								echo "<a href=\"#slideshow_image_".$nextImage."\">";
+									echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
+								echo "</a>"; 
+								echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";    
+							echo "</div>";
+
+						    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+						echo "</div>";
+
+					echo "</div>";
+
+					$imageCount++;
+						
+						echo "</div>";
+						echo "</div>";
+					}
+
+				}
+
+				// LANDSCAPE //
+				else
+				{
+
+				if($i === 1)
+				{
+					echo "<a href=\"#slideshow_image_".$imageCount."\">";
+						echo "<div id = \"half_thumbnail_container_first\">";
+						echo "<img id = \"thumbnail_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+						echo "</div>";				
+					echo "</a>";
+					
+					echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
+						
+						$nextImage = $imageCount+1;
+						$prevImage = $imageCount-1;
+
+						echo "<div id='imageContainer'>"; 
+						   	echo " <div id='prevBtnContainer'>";
+								echo "<a href=\"#slideshow_image_".$prevImage."\">";
+									echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
+								echo "</a>";   
+							echo "</div>";
+						   
+							echo " <div id='nextBtnContainer'>";
+								echo "<a href=\"#slideshow_image_".$nextImage."\">";
+									echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
+								echo "</a>";
+								echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";     
 							echo "</div>";
 
 						    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
@@ -397,7 +626,6 @@ function displayImages($images, $numImages)
 					echo "</a>";
 					
 					echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
-						echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";
 						
 						$nextImage = $imageCount+1;
 						$prevImage = $imageCount-1;
@@ -412,7 +640,8 @@ function displayImages($images, $numImages)
 							echo " <div id='nextBtnContainer'>";
 								echo "<a href=\"#slideshow_image_".$nextImage."\">";
 									echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
-								echo "</a>";    
+								echo "</a>";
+								echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";     
 							echo "</div>";
 
 						    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
@@ -422,55 +651,43 @@ function displayImages($images, $numImages)
 					$imageCount++;
 				}
 			}
+			}
 		}
+
+
+
+
+
+
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////// 4 IMAGES ///////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////////////////
 		else if($numImages === 4)
 		{
+			///////// FIRST IMAGE /////////
 			if($i === 0)
 			{
-			echo "<a href=\"#slideshow_image_".$imageCount."\">";
-				echo "<img id = \"full_size_image_thirds\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
-			echo "</a>";
+				list($width, $height, $type, $attr) = getimagesize("blog_posts/".$images[$imageCount]);
 
-			echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
-				echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";		
-				
-				$nextImage = $imageCount+1;
-				$prevImage = $imageCount-1;
-
-				echo "<div id='imageContainer'>"; 
-				   	echo " <div id='prevBtnContainer'>";
-						echo "<a href=\"#slideshow_image_".$prevImage."\">";
-							echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
-						echo "</a>";   
-					echo "</div>";
-				   
-					echo " <div id='nextBtnContainer'>";
-						echo "<a href=\"#slideshow_image_".$nextImage."\">";
-							echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
-						echo "</a>";    
+				// PORTRAIT //
+				if($width < $height) 
+				{
+					echo "<div id = \"vertical_image_container\">";
+						
+					echo "<div id = \"fullsize_vertical_image_container\">";
+						echo "<a href=\"#slideshow_image_".$imageCount."\">";
+							echo "<img id = \"vertical_image_fullsize\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+						echo "</a>";
 					echo "</div>";
 
-				    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
-				echo "</div>";
-			echo "</div>";
-
-			$imageCount++;	
-			}			
-			else if($i < 3)
-			{
-				echo "<a href=\"#slideshow_image_".$imageCount."\">";
-					echo "<div id = \"third_thumbnail_container\">";
-					echo "<img id = \"thumbnail_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
-					echo "</div>";				
-				echo "</a>";
-					
-				echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
-					echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";
+					echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
 					
 					$nextImage = $imageCount+1;
 					$prevImage = $imageCount-1;
-			
+
 					echo "<div id='imageContainer'>"; 
+					   	
 					   	echo " <div id='prevBtnContainer'>";
 							echo "<a href=\"#slideshow_image_".$prevImage."\">";
 								echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
@@ -480,29 +697,70 @@ function displayImages($images, $numImages)
 						echo " <div id='nextBtnContainer'>";
 							echo "<a href=\"#slideshow_image_".$nextImage."\">";
 								echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
-							echo "</a>";    
+							echo "</a>"; 
+							echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";    
 						echo "</div>";
 
 					    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
 					echo "</div>";
-				echo "</div>";
+				echo "</div>";	
+				$imageCount++;		
+				}
 
-				$imageCount++;
-			}
-			else if($i === 3)
-			{
-				echo "<a href=\"#slideshow_image_".$imageCount."\">";
-					echo "<div id = \"third_thumbnail_container_last\">";
-					echo "<img id = \"thumbnail_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
-					echo "</div>";				
-				echo "</a>";
-					
-				echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
-					echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";
+				// LANDSCAPE //
+				else
+				{
+					echo "<a href=\"#slideshow_image_".$imageCount."\">";
+						echo "<img id = \"full_size_image_thirds\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+					echo "</a>";
+
+					echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
 						
 						$nextImage = $imageCount+1;
 						$prevImage = $imageCount-1;
+
+						echo "<div id='imageContainer'>"; 
+						   	echo " <div id='prevBtnContainer'>";
+								echo "<a href=\"#slideshow_image_".$prevImage."\">";
+									echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
+								echo "</a>";   
+							echo "</div>";
+						   
+							echo " <div id='nextBtnContainer'>";
+								echo "<a href=\"#slideshow_image_".$nextImage."\">";
+									echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
+								echo "</a>";  
+								echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";   
+							echo "</div>";
+
+						    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+						echo "</div>";
+					echo "</div>";
+
+					$imageCount++;	
+				}	
+			}
+			else
+			{
+				// PORTRAIT //
+				if($width < $height)
+				{
+					///////// SECOND IMAGE /////////		
+					if($i === 1)
+					{
+						echo "<div id = \"vertical_image_thumbnails\">";
+							
+							echo "<div id = \"vertical_image_thumbnail_container_thirds\">";
+								echo "<a href=\"#slideshow_image_".$imageCount."\">";
+									echo "<img id = \"vertical_thumbnail_third\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";		
+								echo "</a>";
+							echo "</div>";
+
+										echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
 						
+						$nextImage = $imageCount+1;
+						$prevImage = $imageCount-1;
+
 						echo "<div id='imageContainer'>"; 
 						   	echo " <div id='prevBtnContainer'>";
 								echo "<a href=\"#slideshow_image_".$prevImage."\">";
@@ -514,154 +772,525 @@ function displayImages($images, $numImages)
 								echo "<a href=\"#slideshow_image_".$nextImage."\">";
 									echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
 								echo "</a>";    
+								echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>"; 
 							echo "</div>";
 
 						    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
 						echo "</div>";
-				echo "</div>";
 
-				$imageCount++;
-			}
+					echo "</div>";
+
+					$imageCount++;
+					}
+
+					///////// THIRD IMAGE /////////		
+					if($i === 2)
+					{
+						echo "<div id = \"vertical_image_thumbnail_container_thirds\">";
+								echo "<a href=\"#slideshow_image_".$imageCount."\">";
+									echo "<img id = \"vertical_thumbnail_third\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";		
+								echo "</a>";
+							echo "</div>";
+
+										echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
+						
+						$nextImage = $imageCount+1;
+						$prevImage = $imageCount-1;
+
+						echo "<div id='imageContainer'>"; 
+						   	echo " <div id='prevBtnContainer'>";
+								echo "<a href=\"#slideshow_image_".$prevImage."\">";
+									echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
+								echo "</a>";   
+							echo "</div>";
+						   
+							echo " <div id='nextBtnContainer'>";
+								echo "<a href=\"#slideshow_image_".$nextImage."\">";
+									echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
+								echo "</a>";    
+								echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>"; 
+							echo "</div>";
+
+						    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+						echo "</div>";
+
+					echo "</div>";
+
+					$imageCount++;
+					}
+
+					///////// FOURTH IMAGE /////////
+					else if($i === 3)
+					{
+						echo "<div id = \"vertical_image_thumbnail_container_thirds\">";
+								echo "<a href=\"#slideshow_image_".$imageCount."\">";
+									echo "<img id = \"vertical_thumbnail_third\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";		
+								echo "</a>";
+							echo "</div>";
+
+										echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
+						
+						$nextImage = $imageCount+1;
+						$prevImage = $imageCount-1;
+
+						echo "<div id='imageContainer'>"; 
+						   	echo " <div id='prevBtnContainer'>";
+								echo "<a href=\"#slideshow_image_".$prevImage."\">";
+									echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
+								echo "</a>";   
+							echo "</div>";
+						   
+							echo " <div id='nextBtnContainer'>";
+								echo "<a href=\"#slideshow_image_".$nextImage."\">";
+									echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
+								echo "</a>"; 
+								echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";    
+							echo "</div>";
+
+						    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+						echo "</div>";
+
+					echo "</div>";
+
+					$imageCount++;
+
+						echo "</div>";
+					}
+				
+				}
+				else
+				{
+				///////// SECOND AND THIRD IMAGE /////////		
+				if($i < 3)
+				{
+					echo "<a href=\"#slideshow_image_".$imageCount."\">";
+						echo "<div id = \"third_thumbnail_container\">";
+						echo "<img id = \"thumbnail_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+						echo "</div>";				
+					echo "</a>";
+						
+					echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
+						
+						$nextImage = $imageCount+1;
+						$prevImage = $imageCount-1;
+				
+						echo "<div id='imageContainer'>"; 
+						   	echo " <div id='prevBtnContainer'>";
+								echo "<a href=\"#slideshow_image_".$prevImage."\">";
+									echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
+								echo "</a>";   
+							echo "</div>";
+						   
+							echo " <div id='nextBtnContainer'>";
+								echo "<a href=\"#slideshow_image_".$nextImage."\">";
+									echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
+								echo "</a>"; 
+								echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";    
+							echo "</div>";
+
+						    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+						echo "</div>";
+					echo "</div>";
+
+					$imageCount++;
+				}
+
+				///////// FOURTH IMAGE /////////
+				else if($i === 3)
+				{
+					echo "<a href=\"#slideshow_image_".$imageCount."\">";
+						echo "<div id = \"third_thumbnail_container_last\">";
+						echo "<img id = \"thumbnail_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+						echo "</div>";				
+					echo "</a>";
+						
+					echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
+							
+							$nextImage = $imageCount+1;
+							$prevImage = $imageCount-1;
+							
+							echo "<div id='imageContainer'>"; 
+							   	echo " <div id='prevBtnContainer'>";
+									echo "<a href=\"#slideshow_image_".$prevImage."\">";
+										echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
+									echo "</a>";   
+								echo "</div>";
+							   
+								echo " <div id='nextBtnContainer'>";
+									echo "<a href=\"#slideshow_image_".$nextImage."\">";
+										echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
+									echo "</a>"; 
+									echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";    
+								echo "</div>";
+
+							    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+							echo "</div>";
+					echo "</div>";
+
+					$imageCount++;
+				}																						
 		}
+	}
+}
+
+
+		/////////////////////////////////////////////// MORE THAN 4 IMAGES ///////////////////////////////////////////////
 		else if($numImages > 4)
 		{
 			$num_unshown_images = $numImages - 4;
+			
+			///////// FIRST IMAGE /////////
 			if($i === 0)
 			{
-				echo "<a href=\"#slideshow_image_".$imageCount."\">";
-					echo "<img id = \"full_size_image_thirds\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
-				echo "</a>";
+				list($width, $height, $type, $attr) = getimagesize("blog_posts/".$images[$imageCount]);
 
-				echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
-						echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";
-						
-				$nextImage = $imageCount+1;
-				$prevImage = $imageCount-1;
-
-										
-					echo "<div id='imageContainer'>"; 
-					   	echo " <div id='prevBtnContainer'>";
-							echo "<a href=\"#slideshow_image_".$prevImage."\">";
-								echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
-							echo "</a>";   
+				// PORTRAIT //
+				if($width < $height) 
+				{
+					echo "<div id = \"vertical_image_container\">";	
+						echo "<div id = \"fullsize_vertical_image_container\">";
+							echo "<a href=\"#slideshow_image_".$imageCount."\">";
+								echo "<img id = \"vertical_image_fullsize\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+							echo "</a>";
 						echo "</div>";
+
+						echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
+					
+							$nextImage = $imageCount+1;
+							$prevImage = $imageCount-1;
+
+							echo "<div id='imageContainer'>"; 
+					   	
+					   			echo " <div id='prevBtnContainer'>";
+									echo "<a href=\"#slideshow_image_".$prevImage."\">";
+										echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
+									echo "</a>";   
+								echo "</div>";
 					   
-						echo " <div id='nextBtnContainer'>";
-							echo "<a href=\"#slideshow_image_".$nextImage."\">";
-								echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
-							echo "</a>";    
-						echo "</div>";
+								echo " <div id='nextBtnContainer'>";
+									echo "<a href=\"#slideshow_image_".$nextImage."\">";
+										echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
+									echo "</a>";
+									echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";     
+								echo "</div>";
 
-					    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
-					echo "</div>";
-				echo "</div>";
+					    		echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+							
+							echo "</div>";
+						echo "</div>";	
+				$imageCount++;		
+				}
 
-				$imageCount++;			
-			}
-			else if($i < 3)
-			{
+				// LANDSCAPE //
+				else
+				{
 					echo "<a href=\"#slideshow_image_".$imageCount."\">";
-					echo "<div id = \"third_thumbnail_container\">";
-					echo "<img id = \"thumbnail_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
-					echo "</div>";				
-				echo "</a>";
-					
-				echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
-					echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";
-					
-				$nextImage = $imageCount+1;
-				$prevImage = $imageCount-1;
+						echo "<img id = \"full_size_image_thirds\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+					echo "</a>";
 
-										
-					echo "<div id='imageContainer'>"; 
-					   	echo " <div id='prevBtnContainer'>";
-							echo "<a href=\"#slideshow_image_".$prevImage."\">";
-								echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
-							echo "</a>";   
-						echo "</div>";
-					   
-						echo " <div id='nextBtnContainer'>";
-							echo "<a href=\"#slideshow_image_".$nextImage."\">";
-								echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
-							echo "</a>";    
-						echo "</div>";
-
-					    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
-					echo "</div>";
-				echo "</div>";
-
-				$imageCount++;
-			}
-			else if($i === 3)
-			{
-				echo "<a href=\"#slideshow_image_".$imageCount."\">";
-					echo "<div id = \"third_thumbnail_container_last\">";
-					echo "<h3 id = \"more_images\"> +". $num_unshown_images ." more </h3>";
-
-					echo "<img id = \"thumbnail_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
-					echo "</div>";				
-				echo "</a>";
-					
-				echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
-					echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";
-					
-				$nextImage = $imageCount+1;
-				$prevImage = $imageCount-1;
-
-					
-					echo "<div id='imageContainer'>"; 
-					   	echo " <div id='prevBtnContainer'>";
-							echo "<a href=\"#slideshow_image_".$prevImage."\">";
-								echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
-							echo "</a>";   
-						echo "</div>";
-					   
-						echo " <div id='nextBtnContainer'>";
-							echo "<a href=\"#slideshow_image_".$nextImage."\">";
-								echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
-							echo "</a>";    
-						echo "</div>";
-
-					    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
-					echo "</div>";
-				echo "</div>";
-
-				$imageCount++;
-			}
-			else if($i > 3)
-			{
 					echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
-					echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";
-					
-					$nextImage = $imageCount+1;
-					$prevImage = $imageCount-1;
-
 						
-					echo "<div id='imageContainer'>"; 
-					   	echo " <div id='prevBtnContainer'>";
-							echo "<a href=\"#slideshow_image_".$prevImage."\">";
-								echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
-							echo "</a>";   
+						$nextImage = $imageCount+1;
+						$prevImage = $imageCount-1;
+
+						echo "<div id='imageContainer'>"; 
+						   	
+						   	echo " <div id='prevBtnContainer'>";
+								echo "<a href=\"#slideshow_image_".$prevImage."\">";
+									echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
+								echo "</a>";   
+							echo "</div>";
+						   
+							echo " <div id='nextBtnContainer'>";
+								echo "<a href=\"#slideshow_image_".$nextImage."\">";
+									echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
+								echo "</a>"; 
+								echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";    
+							echo "</div>";
+
+						    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
 						echo "</div>";
-					   
-						echo " <div id='nextBtnContainer'>";
-							echo "<a href=\"#slideshow_image_".$nextImage."\">";
-								echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
-							echo "</a>";    
+					echo "</div>";
+
+					$imageCount++;	
+				}
+			}
+			else
+			{
+			
+				// PORTRAIT //
+				if($width < $height)
+				{
+					///////// SECOND IMAGE /////////		
+					if($i === 1)
+					{
+						echo "<div id = \"vertical_image_thumbnails\">";
+							
+							echo "<div id = \"vertical_image_thumbnail_container_thirds\">";
+								echo "<a href=\"#slideshow_image_".$imageCount."\">";
+									echo "<img id = \"vertical_thumbnail_third\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";		
+								echo "</a>";
+							echo "</div>";
+
+										echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
+						
+						$nextImage = $imageCount+1;
+						$prevImage = $imageCount-1;
+
+						echo "<div id='imageContainer'>"; 
+						   	echo " <div id='prevBtnContainer'>";
+								echo "<a href=\"#slideshow_image_".$prevImage."\">";
+									echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
+								echo "</a>";   
+							echo "</div>";
+						   
+							echo " <div id='nextBtnContainer'>";
+								echo "<a href=\"#slideshow_image_".$nextImage."\">";
+									echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
+								echo "</a>"; 
+								echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";    
+							echo "</div>";
+
+						    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
 						echo "</div>";
 
-					    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
 					echo "</div>";
-				echo "</div>";
-				
-				$imageCount++;
+
+					$imageCount++;
+					}
+
+					///////// THIRD IMAGE /////////		
+					else if($i === 2)
+					{
+						echo "<div id = \"vertical_image_thumbnail_container_thirds\">";
+								echo "<a href=\"#slideshow_image_".$imageCount."\">";
+									echo "<img id = \"vertical_thumbnail_third\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";		
+								echo "</a>";
+							echo "</div>";
+
+										echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
+						
+						$nextImage = $imageCount+1;
+						$prevImage = $imageCount-1;
+
+						echo "<div id='imageContainer'>"; 
+						   	echo " <div id='prevBtnContainer'>";
+								echo "<a href=\"#slideshow_image_".$prevImage."\">";
+									echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
+								echo "</a>";   
+							echo "</div>";
+						   
+							echo " <div id='nextBtnContainer'>";
+								echo "<a href=\"#slideshow_image_".$nextImage."\">";
+									echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
+								echo "</a>";  
+								echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";   
+							echo "</div>";
+
+						    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+						echo "</div>";
+
+					echo "</div>";
+
+					$imageCount++;
+					}
+
+					///////// FOURTH IMAGE /////////
+					else if($i === 3)
+					{
+						echo "<a href=\"#slideshow_image_".$imageCount."\">";
+							echo "<div id = \"vertical_image_thumbnail_container_thirds\">";
+							echo "<h3 id = \"more_images\"> +". $num_unshown_images ." more </h3>";
+
+							echo "<img id = \"vertical_thumbnail_third\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+							echo "</div>";				
+						echo "</a>";
+
+							
+						echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
+								
+								$nextImage = $imageCount+1;
+								$prevImage = $imageCount-1;
+								
+								echo "<div id='imageContainer'>"; 
+								   	echo " <div id='prevBtnContainer'>";
+										echo "<a href=\"#slideshow_image_".$prevImage."\">";
+											echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
+										echo "</a>";   
+									echo "</div>";
+								   
+									echo " <div id='nextBtnContainer'>";
+										echo "<a href=\"#slideshow_image_".$nextImage."\">";
+											echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
+										echo "</a>";
+										echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";     
+									echo "</div>";
+
+								    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+								echo "</div>";
+						
+
+						echo "</div>";
+						
+
+						$imageCount++;
+					}
+					///////// ALL HIDDEN IMAGES /////////
+					else if($i > 3)
+					{
+							echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
+							
+							$nextImage = $imageCount+1;
+							$prevImage = $imageCount-1;
+
+								
+							echo "<div id='imageContainer'>"; 
+							   	echo " <div id='prevBtnContainer'>";
+									echo "<a href=\"#slideshow_image_".$prevImage."\">";
+										echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
+									echo "</a>";   
+								echo "</div>";
+							   
+								echo " <div id='nextBtnContainer'>";
+									echo "<a href=\"#slideshow_image_".$nextImage."\">";
+										echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
+									echo "</a>"; 
+									echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";    
+								echo "</div>";
+
+							    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+							echo "</div>";
+						echo "</div>";
+						
+						$imageCount++;
+						
+						if($i - 4 === $num_unshown_images-1)
+						{
+							echo "</div>";
+							echo "</div>";
+							//echo "</div>";
+						}
+					}
+				}
+
+
+				// LANDSCAPE //
+				else
+				{
+					///////// SECOND AND THIRD IMAGE /////////		
+					if($i < 3)
+					{
+						echo "<a href=\"#slideshow_image_".$imageCount."\">";
+							echo "<div id = \"third_thumbnail_container\">";
+							echo "<img id = \"thumbnail_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+							echo "</div>";				
+						echo "</a>";
+							
+						echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
+							
+							$nextImage = $imageCount+1;
+							$prevImage = $imageCount-1;
+					
+							echo "<div id='imageContainer'>"; 
+							   	echo " <div id='prevBtnContainer'>";
+									echo "<a href=\"#slideshow_image_".$prevImage."\">";
+										echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
+									echo "</a>";   
+								echo "</div>";
+							   
+								echo " <div id='nextBtnContainer'>";
+									echo "<a href=\"#slideshow_image_".$nextImage."\">";
+										echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
+									echo "</a>";    
+									echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>"; 
+								echo "</div>";
+
+							    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+							echo "</div>";
+						echo "</div>";
+
+						$imageCount++;
+					}
+
+					///////// FOURTH IMAGE /////////
+					else if($i === 3)
+					{
+						echo "<a href=\"#slideshow_image_".$imageCount."\">";
+							echo "<div id = \"third_thumbnail_container_last\">";
+							echo "<h3 id = \"more_images\"> +". $num_unshown_images ." more </h3>";
+
+							echo "<img id = \"thumbnail_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+							echo "</div>";				
+						echo "</a>";
+							
+						echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
+							
+						$nextImage = $imageCount+1;
+						$prevImage = $imageCount-1;
+
+							
+							echo "<div id='imageContainer'>"; 
+							   	echo " <div id='prevBtnContainer'>";
+									echo "<a href=\"#slideshow_image_".$prevImage."\">";
+										echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
+									echo "</a>";   
+								echo "</div>";
+							   
+								echo " <div id='nextBtnContainer'>";
+									echo "<a href=\"#slideshow_image_".$nextImage."\">";
+										echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
+									echo "</a>"; 
+									echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";    
+								echo "</div>";
+
+							    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+							echo "</div>";
+						echo "</div>";
+
+						$imageCount++;
+					}	
+
+					///////// ALL HIDDEN IMAGES /////////
+					else if($i > 3)
+					{
+							echo "<div id=\"slideshow_image_".$imageCount."\" class=\"modalDialog\">";
+							
+							$nextImage = $imageCount+1;
+							$prevImage = $imageCount-1;
+
+								
+							echo "<div id='imageContainer'>"; 
+							   	echo " <div id='prevBtnContainer'>";
+									echo "<a href=\"#slideshow_image_".$prevImage."\">";
+										echo "<input id=\"prevImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"prevSlide()\" onclick=\"#slideshow_image_".$nextImage."\">	";
+									echo "</a>";   
+								echo "</div>";
+							   
+								echo " <div id='nextBtnContainer'>";
+									echo "<a href=\"#slideshow_image_".$nextImage."\">";
+										echo "<input id=\"nextImageBtn\" type=\"image\" src=\"images/next_image_arrow.png\" ontouchstart=\"nextSlide()\" onclick=\"nextSlide()\">";
+									echo "</a>";
+									echo "<a href=\"#close\" title=\"Close\" class=\"close\">X</a>";     
+								echo "</div>";
+
+							    echo " <img id = \"blog_slideshow_image\" src=\"blog_posts/".$images[$imageCount]."\" alt=\"Image\">";
+							echo "</div>";
+						echo "</div>";
+						
+						$imageCount++;
+					}										
+				}
 			}
 		}
 	}
 }
 
 
+
+
+
 ?>
+
 </div>
 
 	<div id = "blog_break">
@@ -670,7 +1299,7 @@ function displayImages($images, $numImages)
 
 </div>
 
-		<footer>
+		<footer id = "footer">
 			<div class="footer_column" id="about">
 				<h2>About Us</h2>
 				<p>WiFindUs is made up of a young and passionate team of engineers, software developers and business professionals that seek to bring innovation to the festival industry.</p>
