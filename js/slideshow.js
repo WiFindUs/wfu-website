@@ -143,12 +143,12 @@ function update()
 {
 	if(paused == false && previousSlide == false)
 	{
-		moveLeft();
+		move('left');
 	}
 	
 	if(paused == false && previousSlide == true)
 	{
-		moveRight();
+		move('right');
 	}
 	
 	setTimeout(update, 1000/frameRate);
@@ -202,22 +202,32 @@ function clock()
 
 //===================MOVE SLIDES===================
 /*
-*	moveLeft() & moveRight(): 
-*	1-update slideCoord[i] based on speed & direction
-*	2-stop updating slideCoord[i] when the target slide is reached, setting paused=true
-*	3-start updating slideCoord[i] again when clock() sets paused=false
+*	move(direction): 
+*	1-updates slideCoord[i] based on direction
+*	2-stops updating slideCoord[i] when the target slide is reached, setting paused=true
+*	3-starts updating slideCoord[i] again when clock() sets paused=false
 */
 
-function moveLeft()
+function move(direction)
 {
 	slideMoving = true;
 	stopTest = false
 	
 	if(stopTest == false)
 	{
-		for(var i=0; i < numSlides; i++)
+		if(direction=='left')
 		{
-			slideCoord[i] -= speed;	
+			for(var i=0; i < numSlides; i++)
+			{
+				slideCoord[i] -= speed;
+			}
+		}
+		else if(direction=='right')
+		{
+			for(var i=0; i < numSlides; i++)
+			{
+				slideCoord[i] += speed;
+			}
 		}
 			
 		if(slideCoord[targetSlide] == 0 && paused == false)
@@ -226,36 +236,24 @@ function moveLeft()
 			paused = true;
 			slideMoving = false;
 			currentSlide= targetSlide;
+			previousSlide = false;	//only move backward when selector button clicked; move forward by default
+			updateSelectorBtns();
 		}
 			
 	}	
 	
-}	
+}
 
-
-function moveRight()
+function updateSelectorBtns()
 {
-	slideMoving = true;
-	stopTest = false
-	
-	if(stopTest == false)
+	for(var i = 0; i<numSlides; i++)
 	{
-		for(var i=numSlides-1; i > -1; i--)
-		{
-			slideCoord[i] += speed;	
-		}
-			
-		if(slideCoord[targetSlide] == 0 && paused == false)
-		{
-			stopTest = true;
-			paused = true;
-			slideMoving = false;
-			currentSlide= targetSlide;
-			previousSlide = false;
-		}
-			
-	}		
-}	
+		if(i == targetSlide)
+			selectorBtn[i].src = "images/slideshow-button_selected.png";
+		else
+			selectorBtn[i].src = "images/slideshow-button.png";
+	}
+}
 //=============================================================
 
 
@@ -269,7 +267,6 @@ function goToSlide(slide)
 	
 	if(targetSlide < currentSlide)
 	{
-		//prevSlide();
 		nextSlide('right');
 	}
 	else if(targetSlide > currentSlide)
@@ -287,18 +284,16 @@ function nextSlide(direction)
 	{
 		previousSlide = false;
 		
-		//if true, last slide reached. Call prevSlide() to go back to first.
+		//if true, last slide reached; go back to first
 		if(currentSlide == (numSlides-1))
 		{
 			previousSlide = true;
 			targetSlide = 0;
-			//prevSlide();
 		}
 		
 		else if(targetSlide == currentSlide)
 		{
-			//if true, targetSlide was not updated by another function
-			//and hence needs to be incremented to target the next slide
+			//if true, targetSlide was not updated by another function; needs to be incremented to target the next slide
 			targetSlide++;
 		}
 	}
@@ -307,15 +302,6 @@ function nextSlide(direction)
 	{
 		previousSlide = true;
 		//targetSlide either updated by goToSlide() or above when last slide reached
-	}
-	
-	
-	for(var i = 0; i<numSlides; i++)
-	{
-		if(i == targetSlide)
-			selectorBtn[i].src = "images/slideshow-button_selected.png";
-		else
-			selectorBtn[i].src = "images/slideshow-button.png";
 	}
 	
 	paused = false;
