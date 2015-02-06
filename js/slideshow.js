@@ -25,7 +25,7 @@ var slideSelector4;
 //==================
 
 //==========SLIDES=========
-var slideContainer = [];
+var slideContainer = [];		//contains slide's contents (image, text, etc)
 var slideImages = [];
 var slideCoord = [];
 var selectorBtn = [];
@@ -77,10 +77,8 @@ function initialise()
 	createSelectorBtns(numSlides);
 	selectorBtn[0].src = "images/slideshow-button_selected.png";
 
-	toggle(slideContainer[0], "show");
 	slideCoord[0] = 0;
 	currentSlide = 0;
-	
 	
 	update();
 	draw();
@@ -99,7 +97,7 @@ function createSlide(slidePos)
 	slide = document.createElement('div');
 	slide.className = "slideContainer";
 	var coord = slidePos * 100;
-	slide.style.left = coord+"%";
+	slide.style.left = coord+"%";	//position the container to the right of the previous container (off screen)
 	slideCoord[slidePos] = coord;
 	container.appendChild(slide);
 	
@@ -115,6 +113,7 @@ function createSlide(slidePos)
 
 function createSelectorBtns(numSlides)
 {
+	//Add the correct number of selector buttons to <div id="slideshowBtns">
 	
 	var content="<ul>";
 	for(var i=0; i<numSlides; i++)
@@ -156,17 +155,18 @@ function update()
 }
 
 
-
+//draw() updates slides positions using the calculated slideCoord[i]
 function draw()
 {
-	if(!sizeCheckedOnLoad && slideImages[0].clientWidth != 0)
-	{
-		resizeSlide();
-	}
-	if(!sizeCheckedOnLoad && slideImages[numSlides-1].clientWidth != 0)
+	//resize the slides when they're loaded
+	if(!sizeCheckedOnLoad && slideImages[numSlides-1].clientWidth != 0) //all slides finished loading
 	{
 		resizeSlide();
 		sizeCheckedOnLoad = true;
+	}
+	else if(!sizeCheckedOnLoad && slideImages[0].clientWidth != 0)	//at least first slide finished loading
+	{
+		resizeSlide();
 	}
 	
 	for(var i = 0; i < numSlides; i++)
@@ -190,7 +190,7 @@ function clock()
 		if(pauseCount == 5 && paused==true)
 		{
 			if(previousSlide == false)
-				nextSlide();
+				nextSlide('left');
 			
 			paused = false;
 		}
@@ -201,6 +201,13 @@ function clock()
 
 
 //===================MOVE SLIDES===================
+/*
+*	moveLeft() & moveRight(): 
+*	1-update slideCoord[i] based on speed & direction
+*	2-stop updating slideCoord[i] when the target slide is reached, setting paused=true
+*	3-start updating slideCoord[i] again when clock() sets paused=false
+*/
+
 function moveLeft()
 {
 	slideMoving = true;
@@ -208,9 +215,9 @@ function moveLeft()
 	
 	if(stopTest == false)
 	{
-		for(var j=0; j < numSlides; j++)
+		for(var i=0; i < numSlides; i++)
 		{
-			slideCoord[j] -= speed;	
+			slideCoord[i] -= speed;	
 		}
 			
 		if(slideCoord[targetSlide] == 0 && paused == false)
@@ -233,9 +240,9 @@ function moveRight()
 	
 	if(stopTest == false)
 	{
-		for(var j=numSlides-1; j > -1; j--)
+		for(var i=numSlides-1; i > -1; i--)
 		{
-			slideCoord[j] += speed;	
+			slideCoord[i] += speed;	
 		}
 			
 		if(slideCoord[targetSlide] == 0 && paused == false)
@@ -254,68 +261,54 @@ function moveRight()
 
 
 //=================DETERMINE SLIDE TO GO TO=======================
+
+//goToSlide() called when a selector button is clicked/touched 
 function goToSlide(slide)
 {
 	targetSlide = slide;
 	
-	if(targetSlide == currentSlide-1)
+	if(targetSlide < currentSlide)
 	{
-		prevSlide();
-	}
-	else if(targetSlide == currentSlide+1)
-	{
-		nextSlide();
-	}
-	else if(targetSlide < currentSlide)
-	{
-		prevSlide();
+		//prevSlide();
+		nextSlide('right');
 	}
 	else if(targetSlide > currentSlide)
 	{
-		nextSlide();
+		nextSlide('left');
 	}
 }
 
 
-
-function nextSlide()
+//direction = direction slides move (e.g. next: slides moves to the left)
+function nextSlide(direction)
 {
-	previousSlide = false;
-
-	if(currentSlide == (numSlides-1))
+	
+	if(direction=='left')
 	{
-		previousSlide = true;
-		targetSlide = 0;
-		paused = false;
-		pauseCount = 0;
-		prevSlide();
+		previousSlide = false;
+		
+		//if true, last slide reached. Call prevSlide() to go back to first.
+		if(currentSlide == (numSlides-1))
+		{
+			previousSlide = true;
+			targetSlide = 0;
+			//prevSlide();
+		}
+		
+		else if(targetSlide == currentSlide)
+		{
+			//if true, targetSlide was not updated by another function
+			//and hence needs to be incremented to target the next slide
+			targetSlide++;
+		}
 	}
 	
-	else
+	if(direction == 'right')
 	{
-		if(targetSlide == currentSlide)
-		{
-			targetSlide += 1;
-		}
-		
-		for(var i = 0; i<numSlides; i++)
-		{
-			if(i == targetSlide)
-				selectorBtn[i].src = "images/slideshow-button_selected.png";
-			else
-				selectorBtn[i].src = "images/slideshow-button.png";
-		}
-		
-		paused = false;
-		pauseCount = 0;
+		previousSlide = true;
+		//targetSlide either updated by goToSlide() or above when last slide reached
 	}
-}
-
-
-
-function prevSlide()
-{
-	previousSlide = true;
+	
 	
 	for(var i = 0; i<numSlides; i++)
 	{
@@ -324,7 +317,7 @@ function prevSlide()
 		else
 			selectorBtn[i].src = "images/slideshow-button.png";
 	}
-
+	
 	paused = false;
 	pauseCount = 0;
 }
