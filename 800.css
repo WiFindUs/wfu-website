@@ -27,6 +27,8 @@
 		margin-top: auto;
 		top: 50%;
 		transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		-webkit-transform: translateY(-50%);
 		position: relative;
 		width: auto;
 	}
@@ -201,6 +203,8 @@
 		text-align: left;
 		margin-left: 0;
 		transform: translateX(40px);
+		-ms-transform: translateX(40px);
+		-webkit-transform: translateX(40px);
 		vertical-align: middle;
 	}
 
@@ -231,6 +235,8 @@
 		margin-left: 2%;
 		margin-right: 2%;
 		transform: none;
+		-ms-transform: none;
+		-webkit-transform: none;
 		min-width: 28%;
 		width: 28%;
 		max-width: 300px;

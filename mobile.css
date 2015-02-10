@@ -20,6 +20,8 @@ body
 {
 	top: 50%;
 	transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
 	position: relative;
 }
 
@@ -217,7 +219,9 @@ body
     position: absolute;
     margin-top: 50px;
     left:50%;
-	transform: translate(-50%, 0);
+	transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
     height: 1px;
     width: 60%;
 	max-width: 500px;
@@ -227,7 +231,9 @@ body
 {
 	width: 83.33%;
 	margin-left:50%;
-	transform: translate(-50%, 0);
+	transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
 }
 /*====END OF PAGE TITLE====*/
 
@@ -280,7 +286,7 @@ body
 
 .verticalCardList .icon
 {
-	width: 40%;
+	width: 60%;
 	height: auto;
 	margin-top: 20px;
 }
@@ -291,7 +297,9 @@ body
 	max-width: 500px;
 	text-align: center;
 	margin-left: 50%;
-	transform: translate(-50%, 0);
+	transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
 }
 
 .verticalCardList .ListElem
@@ -340,6 +348,8 @@ body
 {
 	margin-left: 50%;
 	transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
 }
 
 /*====END OF VERTICAL CARD LIST====*/
@@ -361,7 +371,9 @@ body
 	background-color: #f8f8f8;
 	vertical-align: bottom;
 	margin-left: 50%;
-	transform: translate(-50%, 0);
+	transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
 	margin-top: 25px;
 	width: 50%;
 	min-width: 250px;
@@ -476,6 +488,8 @@ footer #friends img:hover
 {
 	width: 100%;
 	background-color: #6e95f3;
+	/*background-image: url("images/pattern.png");
+    background-repeat: repeat;*/
 	padding-top: 30px;
 	padding-bottom: 30px;
 	color: white;
@@ -548,6 +562,8 @@ footer #friends img:hover
 	max-width: 580px;
 	left: 50%;
 	transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
 	position: relative;
 	
 	-webkit-box-ordinal-group: 2;
