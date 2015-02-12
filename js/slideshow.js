@@ -50,13 +50,13 @@ function initialise()
 {
 	container = document.getElementById("slides");
 
-	listenForEvent(window, "mousedown", handleClick); 
+	/*listenForEvent(window, "mousedown", handleClick); 
 	listenForEvent(window, "touchstart", handleClick);
 	listenForEvent(window, "touchend", handleRelease);
 	listenForEvent(window, "mouseup", handleRelease);
 	listenForEvent(window, "touchmove", handleSwipe);
 	listenForEvent(window, "mousemove", handleMouse);
-	//listenForEvent(container, 'contextmenu', function(e){e.preventDefault();});
+	listenForEvent(container, 'contextmenu', function(e){e.preventDefault();});*/
 	
 	getSlides();
 	positionSlides();
