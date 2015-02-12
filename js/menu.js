@@ -92,7 +92,7 @@ function clearStyle()
 {
 	var nav = document.getElementById("nav");
 	nav.style.opacity = 1;
-	if(window.innerWidth>800)
+	if(window.innerWidth>=800)
 	{
 		nav.style.display = "inline-block";
 		nav.style.left = "auto";

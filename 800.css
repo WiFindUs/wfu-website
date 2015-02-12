@@ -7,19 +7,12 @@
 	{
 		display: none;
 	}
- 
-	#header
-	{
-
-	}
 
 	#logo 
 	{
 		display: inline-block;
-		margin-right: 12%;
+		margin-right: 5%;
 	}
-
-
 
 	nav
 	{
@@ -264,3 +257,11 @@
 	
 	
  }
+ 
+ @media screen and (min-width: 850px) 
+{
+	#logo 
+	{
+		margin-right: 10%;
+	}
+}
