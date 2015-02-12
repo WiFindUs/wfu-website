@@ -16,16 +16,8 @@ var lastY = -1;
 var lastX = -1;
 //=========================
 
-//======HTML Elements======
-var hud;
-var slideSelector1;
-var slideSelector2;
-var slideSelector3;
-var slideSelector4;
-//==================
-
 //==========SLIDES=========
-var slideContainer = [];		//contains slide's contents (image, text, etc)
+var slideContainers = [];		//contains slide's contents (image, text, etc)
 var slideImages = [];
 var slideCoord = [];
 var selectorBtn = [];
@@ -49,8 +41,6 @@ var slideMoving = false;
 //==========================INITIALISE============================
 window.onload = function()
 {
-	hud = document.getElementById("hud");
-	
 	initialise();
 }
 
@@ -59,7 +49,6 @@ window.onload = function()
 function initialise()
 {
 	container = document.getElementById("slides");
-	container.innerHTML = ""; 
 
 	listenForEvent(window, "mousedown", handleClick); 
 	listenForEvent(window, "touchstart", handleClick);
@@ -67,12 +56,10 @@ function initialise()
 	listenForEvent(window, "mouseup", handleRelease);
 	listenForEvent(window, "touchmove", handleSwipe);
 	listenForEvent(window, "mousemove", handleMouse);
-	listenForEvent(container, 'contextmenu', function(e){e.preventDefault();});
-		
-	for(var i=0; i<numSlides; i++)
-	{
-		createSlide(i);
-	}
+	//listenForEvent(container, 'contextmenu', function(e){e.preventDefault();});
+	
+	getSlides();
+	positionSlides();
 
 	createSelectorBtns(numSlides);
 	selectorBtn[0].src = "images/slideshow-button_selected.png";
@@ -88,7 +75,7 @@ function initialise()
 
 
 //=============CREATE SLIDES & CONTENT================
-function createSlide(slidePos)
+/*function createSlide(slidePos)
 {
 	var slide;
 	var slideImage;
@@ -106,9 +93,36 @@ function createSlide(slidePos)
 	slideImage.className = "slideImage";
 	slide.appendChild(slideImage);
 	
-	slideContainer[slidePos] = slide;
+	slideContainers[slidePos] = slide;
 	slideImages[slidePos] = slideImage;
 	
+}*/
+
+function getSlides()
+{
+	//NodeList objects
+	containersNodeList = document.getElementsByClassName("slideContainer");
+	imagesNodeList = document.getElementsByClassName("slideImage");
+	
+	//convert NodeList objects to arrays
+	for (var i = 0; i < containersNodeList.length; i++) 
+	{
+		var selfContainer = containersNodeList[i];
+		var selfImage = imagesNodeList[i];
+		
+		slideContainers.push(selfContainer);
+		slideImages.push(selfImage);
+	}
+}
+
+function positionSlides()
+{
+	for(var i=0; i<slideContainers.length; i++)
+	{
+		var coord = i * 100;
+		slideContainers[i].style.left = coord+"%";	//position the container to the right of the previous container (off screen)
+		slideCoord[i] = coord;
+	}
 }
 
 function createSelectorBtns(numSlides)
@@ -121,6 +135,7 @@ function createSelectorBtns(numSlides)
 		var j = i+1;
 		var inputID = "slideSelector"+j;
 		content += "<li> <input id=\"" +inputID+ "\" type=\"image\" src=\"images/slideshow-button.png\" ontouchstart=\"goToSlide(" +i+ ")\" onclick=\"goToSlide(" +i+ ")\"></li> "
+		//<li> <input type="image" src="images/slideshow-button.png"
 	}
 	content += "</ul>";
 	
@@ -171,7 +186,7 @@ function draw()
 	
 	for(var i = 0; i < numSlides; i++)
 	{
-		slideContainer[i].style.left = slideCoord[i] + '%';
+		slideContainers[i].style.left = slideCoord[i] + '%';
 	}	
 	
 	setTimeout(draw, 1000/frameRate);

@@ -346,6 +346,7 @@ body
 
 .verticalCardList .profile_picture
 {
+	min-height: 140px;
 	margin-left: 50%;
 	transform: translateX(-50%);
 	-ms-transform: translateX(-50%);
