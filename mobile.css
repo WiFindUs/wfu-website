@@ -14,6 +14,9 @@ body
 {
 	font-family: "Roboto", "Lucida Grande", sans-serif;
 	text-align: center;
+	/*remove border/outline from links in IE*/
+	border:none;
+	outline:none;
 }
 
 .container
@@ -36,6 +39,8 @@ body
 	{
 		display: inline-block;
 		margin-right: 30%;
+		border:none;
+		outline:none;
 	}
 	
 	@media screen and (min-width: 350px) 

@@ -101,8 +101,16 @@ function initialise()
 function getSlides()
 {
 	//NodeList objects
-	containersNodeList = document.getElementsByClassName("slideContainer");
-	imagesNodeList = document.getElementsByClassName("slideImage");
+	if(document.getElementsByClassName)
+	{
+		containersNodeList = document.getElementsByClassName("slideContainer");
+		imagesNodeList = document.getElementsByClassName("slideImage");
+	}
+	else //IE8
+	{
+		containersNodeList = document.querySelectorAll(".slideContainer");
+		imagesNodeList = document.querySelectorAll(".slideImage");
+	}
 	
 	//convert NodeList objects to arrays
 	for (var i = 0; i < containersNodeList.length; i++) 
@@ -363,7 +371,7 @@ function resizeSlide()
 		/*console.log("image width("+i+"): "  + slideImages[i].clientWidth);
 		console.log("image height("+i+"): "  + slideImages[i].clientHeight);*/
 		
-		if(slideImages[i].clientWidth < window.innerWidth)
+		if(slideImages[i].clientWidth < container.clientWidth)
 		{
 			//check whether ensureWidth is already applied
 			if (!slideImages[i].className.match(/(?:^|\s)ensureWidth(?!\S)/) )
@@ -373,7 +381,7 @@ function resizeSlide()
 			}
 		}
 		
-		if(slideImages[i].clientHeight < document.getElementById('slideshow').clientHeight)
+		if(slideImages[i].clientHeight < container.clientHeight)
 		{
 			slideImages[i].className = "slideImage";
 		}
