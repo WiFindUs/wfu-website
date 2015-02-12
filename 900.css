@@ -155,7 +155,7 @@
 		text-align: left;
 	}
 	
-	footer .footer_column:last-child
+	.footer_column:last-child
 	{
 		margin-right: 0;
 	}
@@ -170,7 +170,7 @@
 	footer #friends a
 	{
 		padding-top:10px;
-		margin-right: 7%;
+		margin-right: 0;
 		display: block;
 	}
 
