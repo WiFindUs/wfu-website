@@ -87,6 +87,7 @@ function goTo(link)
 }
 
 window.addEventListener('resize', clearStyle);
+window.addEventListener('orientationchange', clearStyle);
 
 function clearStyle()
 {
