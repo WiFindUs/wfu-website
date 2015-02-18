@@ -44,8 +44,6 @@ window.onload = function()
 	initialise();
 }
 
-
-
 function initialise()
 {
 	container = document.getElementById("slides");
@@ -60,6 +58,10 @@ function initialise()
 	
 	getSlides();
 	positionSlides();
+	for(var i=0; i<slideImages.length; i++)
+	{
+		removeClass(slideImages[i], 'coverContainer');
+	}
 
 	createSelectorBtns(numSlides);
 	selectorBtn[0].src = "images/slideshow-button_selected.png";
@@ -351,16 +353,13 @@ function resizeCheck()
 *
 * The function:
 * 1-checks whether the current width of each slide is less than the width of the window (& hence the container*)
-* If so, it adds the CSS class "ensureWidth" (defined in CSS) to the image by appending it to its className
-* result: <img src="slide/slide(i).jpg" class="slideImage ensureWidth"/>
+* If so, it adds the CSS class "fullWidth" (defined in CSS) to the image by appending it to its className
+* result: <img src="slide/slide(i).jpg" class="slideImage fullWidth"/>
 *
 * 2-checks whether the current height of each slide is less than the height of the container
-* If so, it removes the CSS class "ensureWidth" by overwriting the className to slideImage
+* If so, it removes the CSS class "fullWidth" by overwriting the className to slideImage
 * result: <img src="slide/slide(i).jpg" class="slideImage"/>
 *
-* Note: this only works if only 2 classes ("slideImage" and ensureWidth) are applied. 
-* To make this future proof (what if we apply more classes?), you should remove the "ensureWidth" only from
-* the className; replace it with "" using regEx and replace()
 */
 
 
@@ -368,27 +367,48 @@ function resizeSlide()
 {
 	for(var i=0; i<numSlides; i++)
 	{
-		/*console.log("image width("+i+"): "  + slideImages[i].clientWidth);
-		console.log("image height("+i+"): "  + slideImages[i].clientHeight);*/
-		
 		if(slideImages[i].clientWidth < container.clientWidth)
 		{
-			//check whether ensureWidth is already applied
-			if (!slideImages[i].className.match(/(?:^|\s)ensureWidth(?!\S)/) )
+			//check whether fullWidth is already applied
+			if (!slideImages[i].className.match(/(?:^|\s)fullWidth(?!\S)/) )
 			{
-				//space before ensureWidth is important
-				slideImages[i].className += " ensureWidth";
+				addClass(slideImages[i], 'fullWidth');
 			}
 		}
 		
 		if(slideImages[i].clientHeight < container.clientHeight)
 		{
-			slideImages[i].className = "slideImage";
+			removeClass(slideImages[i], 'fullWidth');
 		}
 	}
 }
 
 
+function removeClass(element, cssClass)
+{
+	/* regExp: /(?:^|\s)MyClass(?!\S)/g
+	*
+	*	(?:^|\s)	match the start of the string, or any single whitespace character
+	*	MyClass 	classname to remove
+	*
+	*	(?!\S)		negative lookahead to verify the above is the whole classname
+	*					ensures there is no non-space character following
+	*					i.e. must be end of string or a space
+	*
+	*	/g				perform a global match (find all matches rather than stopping after the first match)
+	*					in case a class was unintentionally added multiple times
+	*/
+	
+	var removeClass = '(?:^|\\s)'+cssClass+'(?!\\S)';
+	var reg = new RegExp(removeClass, 'g');
+	
+	element.className = element.className.replace(reg, '');
+}
+
+function addClass(element, cssClass)
+{
+	element.className += " " + cssClass;
+}
 
 /* ============ CONTROLS FUNCTIONS  ============*/
 

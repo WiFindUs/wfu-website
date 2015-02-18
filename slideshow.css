@@ -4,7 +4,6 @@
 {
 	position: relative;
 	width: 100%;
-	/*height: 720px;*/
 	overflow: hidden;
 	height: 500px;
 }
@@ -36,7 +35,7 @@
 	-webkit-transform: translate(-50%, -50%);
 }
 
-.ensureWidth
+.fullWidth
 {
 	width: 100%;
 	height: auto;
@@ -66,25 +65,6 @@
 	height: auto;
 	opacity: 0.6;
 	filter: alpha(opacity=60);
-}
-
-#nextSlideBtn
-{
-	float: right;
-}
-
-#prevSlideBtn
-{
-	float: left;
-	/*-moz-transform: scaleX(-1);
-        -o-transform: scaleX(-1);
-        -webkit-transform: scaleX(-1);
-        transform: scaleX(-1);
-        filter: FlipH;
-        -ms-filter: "FlipH";*/
-	-ms-transform: rotate(180deg);
-	-webkit-transform: rotate(180deg);
-	transform: rotate(180deg);
 }
 
 #slideshowBtns
@@ -128,12 +108,24 @@
 		height: 400px;
 		width: auto;
 	}
+	
+	/*used when javascript not supported or disabled*/
+	.coverContainer
+	{
+		width: auto;
+		height: auto;
+		min-width: 100%;
+		min-height: 100%;
+		max-width: 150%;
+		max-height: 150%;
+	}
 
-	.ensureWidth
+	.fullWidth
 	{
 		width: 100%;
 		height: auto;
 	}
+	
 }
 
 @media screen and (min-width: 800px) 
@@ -149,10 +141,20 @@
 		height: 450px;
 	}
 	
-	.ensureWidth
+	.coverContainer
 	{
-	width: 100%;
-	height: auto;
+		width: auto;
+		height: auto;
+		min-width: 100%;
+		min-height: 100%;
+		max-width: 150%;
+		max-height: 150%;
+	}
+	
+	.fullWidth
+	{
+		width: 100%;
+		height: auto;
 	}
 }
 
@@ -169,7 +171,17 @@
 		width: auto;
 	}
 	
-	.ensureWidth
+	.coverContainer
+	{
+		width: auto;
+		height: auto;
+		min-width: 100%;
+		min-height: 100%;
+		max-width: none;
+		max-height: none;
+	}
+	
+	.fullWidth
 	{
 		width: 100%;
 		height: auto;
