@@ -6,7 +6,10 @@ var sizeCheckedOnLoad = false;
 //=========================
 
 //==========SPEED==========
-var speed = 50; 
+// speed must be a factor of 100
+var interval = 10;
+var fastInterval = 25;
+var speed = interval; 
 var frameRate = 24;
 //=========================
 
@@ -185,13 +188,15 @@ function clock()
 	setInterval(function()
 	{
 		if(paused==true)
+		{
 			pauseCount++;
-
+		}
 		if(pauseCount == 5 && paused==true)
 		{
 			if(previousSlide == false)
+			{
 				nextSlide('left');
-			
+			}
 			paused = false;
 		}
 	},1000);
@@ -279,7 +284,6 @@ function goToSlide(slide)
 //direction = direction slides move (e.g. next: slides moves to the left)
 function nextSlide(direction)
 {
-	
 	if(direction=='left')
 	{
 		previousSlide = false;
@@ -304,8 +308,23 @@ function nextSlide(direction)
 		//targetSlide either updated by goToSlide() or above when last slide reached
 	}
 	
+	slideSpeed();
+	
 	paused = false;
 	pauseCount = 0;
+}
+
+
+function slideSpeed()
+{	
+	if(targetSlide != currentSlide+1 && targetSlide != currentSlide-1)
+	{
+		speed= fastInterval;
+	}
+	else
+	{
+		speed = interval;
+	}
 }
 //=============================================================
 
