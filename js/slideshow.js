@@ -2,7 +2,6 @@
 
 //=========================
 var container;
-var sizeCheckedOnLoad = false;
 //=========================
 
 //==========SPEED==========
@@ -60,22 +59,28 @@ function initialise()
 	listenForEvent(container, 'contextmenu', function(e){e.preventDefault();});*/
 	
 	getSlides();
-	positionSlides();
-	for(var i=0; i<slideImages.length; i++)
+	numSlides = slideImages.length;
+	
+	//'coverContainer' used as fall back when javascript not support or disabled
+	for(var i=0; i<numSlides; i++)
 	{
 		removeClass(slideImages[i], 'coverContainer');
 	}
-
-	numSlides = slideImages.length;
-	createSelectorBtns(numSlides);
-	selectorBtn[0].src = "images/slideshow-button_selected.png";
-
-	slideCoord[0] = 0;
-	currentSlide = 0;
+	resizeSlide();
 	
-	update();
-	draw();
-	clock();
+	if(numSlides > 1)
+	{
+		positionSlides();
+
+		createSelectorBtns(numSlides);
+		selectorBtn[0].src = "images/slideshow-button_selected.png";
+
+		currentSlide = 0;
+		
+		update();
+		draw();
+		clock();	
+	}
 }
 //=============================================================
 
@@ -160,18 +165,7 @@ function update()
 
 //draw() updates slides positions using the calculated slideCoord[i]
 function draw()
-{
-	//resize the slides when they're loaded
-	if(!sizeCheckedOnLoad && slideImages[numSlides-1].clientWidth != 0) //all slides finished loading
-	{
-		resizeSlide();
-		sizeCheckedOnLoad = true;
-	}
-	else if(!sizeCheckedOnLoad && slideImages[0].clientWidth != 0)	//at least first slide finished loading
-	{
-		resizeSlide();
-	}
-	
+{	
 	for(var i = 0; i < numSlides; i++)
 	{
 		slideContainers[i].style.left = slideCoord[i] + '%';
