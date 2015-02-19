@@ -22,7 +22,7 @@ var slideImages = [];
 var slideCoord = [];
 var selectorBtn = [];
 
-var numSlides = 4;
+var numSlides;
 var currentSlide =0;
 var targetSlide = 0;
 var pauseCount = 0;
@@ -63,6 +63,7 @@ function initialise()
 		removeClass(slideImages[i], 'coverContainer');
 	}
 
+	numSlides = slideImages.length;
 	createSelectorBtns(numSlides);
 	selectorBtn[0].src = "images/slideshow-button_selected.png";
 
@@ -77,29 +78,6 @@ function initialise()
 
 
 //=============CREATE SLIDES & CONTENT================
-/*function createSlide(slidePos)
-{
-	var slide;
-	var slideImage;
-	var filePos = slidePos+1;
-	
-	slide = document.createElement('div');
-	slide.className = "slideContainer";
-	var coord = slidePos * 100;
-	slide.style.left = coord+"%";	//position the container to the right of the previous container (off screen)
-	slideCoord[slidePos] = coord;
-	container.appendChild(slide);
-	
-	slideImage = document.createElement('img');
-	slideImage.src = "images/slides/slide"+ filePos +".jpg";
-	slideImage.className = "slideImage";
-	slide.appendChild(slideImage);
-	
-	slideContainers[slidePos] = slide;
-	slideImages[slidePos] = slideImage;
-	
-}*/
-
 function getSlides()
 {
 	//NodeList objects
@@ -138,14 +116,12 @@ function positionSlides()
 function createSelectorBtns(numSlides)
 {
 	//Add the correct number of selector buttons to <div id="slideshowBtns">
-	
 	var content="<ul>";
 	for(var i=0; i<numSlides; i++)
 	{
-		var j = i+1;
-		var inputID = "slideSelector"+j;
+		var inputID = "slideSelector"+i;
 		content += "<li> <input id=\"" +inputID+ "\" type=\"image\" src=\"images/slideshow-button.png\" ontouchstart=\"goToSlide(" +i+ ")\" onclick=\"goToSlide(" +i+ ")\"></li> "
-		//<li> <input type="image" src="images/slideshow-button.png"
+		//<li> <input id="slideSelector1" type="image" src="images/slideshow-button.png" onclick=goToSlide(1)> </li>
 	}
 	content += "</ul>";
 	
@@ -155,8 +131,7 @@ function createSelectorBtns(numSlides)
 	
 	for(var i=0; i<numSlides; i++)
 	{
-		var j = i+1;
-		var inputID = "slideSelector"+j;
+		var inputID = "slideSelector"+i;
 		selectorBtn[i] = document.getElementById(inputID);
 	}
 }
