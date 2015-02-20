@@ -8,15 +8,15 @@
 		height: 60px;
 	}
 	
-	#logo 
-	{
-		margin-right: 60%;
-	}
-	
 	#logo img
 	{
 		width: 200px;
 		height: auto;
+	}
+	
+	#menu
+	{
+		margin-top: 10px;
 	}
 	
 	/*====END OF HEADER====*/
@@ -35,22 +35,7 @@
 		width: 300px;
 		height: 350px;
 	}
-
-	.icon
-	{
-		
-	}
-
-	.card h2
-	{
-
-
-	}
 	/*====END OF CARD====*/
-
-
-
-
 
 	/*====HORIZONTAL CARD LIST====*/
 	.horizontalCardList
@@ -61,22 +46,6 @@
 	.horizontalCardList .card
 	{
 		max-width: 300px;
-	}
-
-	.horizontalCardList h2
-	{
-
-	}
-
-	.horizontalCardList p
-	{
-		
-		
-	}
-
-	.horizontalCardList .icon
-	{
-
 	}
 
 	/*====END OF HORIZONTAL CARD LIST====*/
