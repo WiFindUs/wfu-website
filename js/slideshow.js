@@ -269,15 +269,18 @@ function updateSelectorBtns()
 //goToSlide() called when a selector button is clicked/touched 
 function goToSlide(slide)
 {
-	targetSlide = slide;
-	
-	if(targetSlide < currentSlide)
+	if(!slideMoving)
 	{
-		nextSlide('right');
-	}
-	else if(targetSlide > currentSlide)
-	{
-		nextSlide('left');
+		targetSlide = slide;
+		
+		if(targetSlide < currentSlide)
+		{
+			nextSlide('right');
+		}
+		else if(targetSlide > currentSlide)
+		{
+			nextSlide('left');
+		}
 	}
 }
 
