@@ -123,7 +123,7 @@ function positionSlides()
 
 function createSelectorBtns(numSlides)
 {
-	//Add the correct number of selector buttons to <div id="slideshowBtns">
+	//Add the correct number of selector buttons to <div id="selectorBtns">
 	var content="<ul>";
 	for(var i=0; i<numSlides; i++)
 	{
@@ -134,7 +134,7 @@ function createSelectorBtns(numSlides)
 	content += "</ul>";
 	
 	
-	document.getElementById('slideshowBtns').innerHTML = content;
+	document.getElementById('selectorBtns').innerHTML = content;
 	
 	
 	for(var i=0; i<numSlides; i++)
