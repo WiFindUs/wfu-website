@@ -81,6 +81,7 @@ function initialise()
 		draw();
 		clock();	
 	}
+	document.getElementById("loader").style.display = 'none';
 }
 //=============================================================
 
@@ -119,6 +120,12 @@ function positionSlides()
 		slideContainers[i].style.left = coord+"%";	//position the container to the right of the previous container (off screen)
 		slideCoord[i] = coord;
 	}
+}
+
+function showSlides()
+{
+	toggle(document.getElementById('loading'), 'hide');
+	toggle(document.getElementById('slides'), 'show');
 }
 
 function createSelectorBtns(numSlides)
