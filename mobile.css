@@ -36,16 +36,20 @@ body
 	text-align: center;
 }
 
-.grey
+.light-blue
 {
-	background-color: #f8f8f8;
+	background-color: #d9e3f5;
 	background-image: url("images/pattern2.png");
     background-repeat: repeat;
 }
 
-.white
+.grey
 {
-	background-color: #ffffff;
+	background-color: #f8f8f8;
+	background-image: url("images/pattern3.png");
+    background-repeat: repeat;
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
 }
 
 .blue
@@ -285,7 +289,7 @@ body
 
 .verticalCardList .card
 {
-	background-color: #ffffff;
+	/*background-color: #ffffff;*/
 	display: inline-block;
 	width: 240px;
 	height: 200px;
@@ -385,7 +389,7 @@ body
 
 .horizontalCardList .card
 {
-	background-color: #f8f8f8;
+	background-color: #ffffff;
 	vertical-align: bottom;
 	margin-left: 50%;
 	transform: translateX(-50%);
@@ -565,7 +569,7 @@ footer > a
 
 .featDesc
 {
-	width: 70%;
+	width: 83.33%;
 	max-width: 580px;
 	left: 50%;
 	transform: translateX(-50%);
