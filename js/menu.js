@@ -92,8 +92,17 @@ window.addEventListener('resize', clearStyle);
 function clearStyle()
 {
 	var nav = document.getElementById("nav");
-	nav.style.removeProperty('display');
-	nav.style.removeProperty('opacity');
-	nav.style.removeProperty('left');
+	if(nav.style.removeProperty)
+	{
+		nav.style.removeProperty('display');
+		nav.style.removeProperty('opacity');
+		nav.style.removeProperty('left');
+	}
+	else //IE <9
+	{
+		nav.style.removeAttribute('display');
+		nav.style.removeAttribute('opacity');
+		nav.style.removeAttribute('left');
+	}
 	pulled = false;
 }
