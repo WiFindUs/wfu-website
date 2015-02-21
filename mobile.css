@@ -289,7 +289,7 @@ body
 
 .verticalCardList .card
 {
-	/*background-color: #ffffff;*/
+	background-color: #ffffff;
 	display: inline-block;
 	width: 240px;
 	height: 200px;
@@ -538,18 +538,12 @@ footer > a
 	margin-top: 20px;
 }
 
-.altFeat
-{
-
-}
-
 .thumbContainer
 {
 	overflow: hidden;
 	width: 300px;
 	height: 200px;
 	border: 2px solid #ffffff;
-	cursor: zoom-in;
 	margin-left: auto;
 	margin-right: auto;
 }
