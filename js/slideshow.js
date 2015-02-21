@@ -48,16 +48,7 @@ window.onload = function()
 
 function initialise()
 {
-	container = document.getElementById("slides");
-
-	/*listenForEvent(window, "mousedown", handleClick); 
-	listenForEvent(window, "touchstart", handleClick);
-	listenForEvent(window, "touchend", handleRelease);
-	listenForEvent(window, "mouseup", handleRelease);
-	listenForEvent(window, "touchmove", handleSwipe);
-	listenForEvent(window, "mousemove", handleMouse);
-	listenForEvent(container, 'contextmenu', function(e){e.preventDefault();});*/
-	
+	container = document.getElementById("slides");	
 	getSlides();
 	numSlides = slideImages.length;
 	
@@ -66,6 +57,7 @@ function initialise()
 	{
 		removeClass(slideImages[i], 'coverContainer');
 	}
+	
 	resizeSlide();
 	
 	if(numSlides > 1)
@@ -408,90 +400,6 @@ function addClass(element, cssClass)
 	element.className += " " + cssClass;
 }
 
-/* ============ CONTROLS FUNCTIONS  ============*/
-
-function handleClick(event)
-{
-	event.preventDefault();
-
-		isClicked = true;
-}
-
-
-function handleRelease(e)
-{
-	isClicked = false;
-	lastY=-1;
-	lastX=-1;
-}
-
-
-function handleSwipe(event)
-{
-
-	event.preventDefault();		
-
-	var currentY = event.touches[(event.touches.length-1)].clientY;
-	var difference;
-	if (lastY < 0)
-	{
-		lastY = currentY;
-    }
-
-	if(lastY < currentY || lastY > currentY)
-	{
-		difference = lastY - currentY;
-	
-
-	}
-	
-	lastY = currentY;
-}
-
-
-function handleMouse(event)
-{
-	event.preventDefault();	
-	if(isClicked==true)
-	{
-		var event = event || window.event;
-		var currentY = event.clientY;
-		var difference;
-		if (lastY < 0)
-		{
-			lastY = currentY;
-		}
-
-		if(lastY < currentY || lastY > currentY)
-		{
-
-		}
-			
-		lastY = currentY;
-
-		var currentX = event.clientX;
-		var difference;
-		if (lastX < 0)
-		{
-			lastX = currentX;
-		}
-
-		if(lastX < currentX || lastX > currentX)
-		{
-			
-
-		}
-			
-		lastX = currentX;		
-	}
-}
-
-
-/* ============  END OF CONTROLS FUNCTIONS ============*/
-
-
-
-/* ============ VISIBILITY FUNCTIONS  ============*/
 
 function toggle(element, visibility)
 {
@@ -520,18 +428,7 @@ function isVisible(element)
 
 }
 
-
-var listenForEvent = function (element, event, callback) {
-    //Regular style
-		if (element.addEventListener) {
-        element.addEventListener(event, callback, false);
-    }else 
-		//IE Style
-		if (element.attachEvent) {
-        element.attachEvent('on' + event, callback);
-    } 
-		//Legacy IE Style
-		else {
-        element['on' + event] = callback;
-    }
-};
+function isPropertySupported(property)
+{
+	return property in document.documentElement.style;
+}
