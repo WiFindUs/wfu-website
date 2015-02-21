@@ -90,7 +90,7 @@ body
 		position: absolute;
 		z-index: 999;
 		width: 100%;
-		margin-top: -10px;
+		margin-top:25px;
 	}
 
 	nav ul 
@@ -102,7 +102,6 @@ body
 		float: left;
 		width: 100%;
 		padding: 0;
-		
 	}
 		
 	nav ul li

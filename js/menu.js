@@ -86,21 +86,14 @@ function goTo(link)
 	}
 }
 
+
 window.addEventListener('resize', clearStyle);
-window.addEventListener('orientationchange', clearStyle);
 
 function clearStyle()
 {
 	var nav = document.getElementById("nav");
-	nav.style.opacity = 1;
-	if(window.innerWidth>=800)
-	{
-		nav.style.display = "inline-block";
-		nav.style.left = "auto";
-	}
-	if(window.innerWidth<800)
-	{
-		nav.style.display = "none";
-		pulled = false;
-	}
+	nav.style.removeProperty('display');
+	nav.style.removeProperty('opacity');
+	nav.style.removeProperty('left');
+	pulled = false;
 }
