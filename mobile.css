@@ -508,14 +508,13 @@ footer > a
 
 .detailedFeatures h2
 {
-	color: #f8f8f8;
 	margin-top: 0;
 	margin-bottom: 0;
 	font-weight: normal;
 	font-size: 180%;
 }
 
-.detailedFeatures .subHeader
+.container .subHeader
 {
 	margin-top: 10px;
 	font-size: 115%;
@@ -524,19 +523,16 @@ footer > a
 .feat
 {
 	margin-top: 50px;
-	
-	 display: -webkit-box;
-    display: -moz-box;
-    display: box;
-    
-    -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    box-orient: vertical;
 }
 
 .feat:first-child
 {
 	margin-top: 20px;
+}
+
+.altFeat
+{
+
 }
 
 .thumbContainer
@@ -559,10 +555,6 @@ footer > a
 {
 	width: 300px;
 	height: auto;
-	
-	-webkit-box-ordinal-group: 1;
-    -moz-box-ordinal-group: 1;
-    box-ordinal-group: 1;
 }
 
 
@@ -576,10 +568,6 @@ footer > a
 	-ms-transform: translateX(-50%);
 	-webkit-transform: translateX(-50%);
 	position: relative;
-	
-	-webkit-box-ordinal-group: 2;
-    -moz-box-ordinal-group: 2;
-    box-ordinal-group: 2;
 }
 
 .thumbContainer+.featDesc
@@ -589,6 +577,7 @@ footer > a
 
 .featDesc h3
 {
+	margin-top: 20px;
 	color: white;
 	font-weight: normal;
 	font-size: 130%;
