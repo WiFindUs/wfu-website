@@ -39,6 +39,8 @@ body
 .grey
 {
 	background-color: #f8f8f8;
+	background-image: url("images/pattern2.png");
+    background-repeat: repeat;
 }
 
 .white
@@ -50,6 +52,8 @@ body
 {
 	background-color: #6e95f3;
 	color: #ffffff;
+	background-image: url("images/pattern.png");
+    background-repeat: repeat;
 }
 
 /*====HEADER====*/
@@ -304,6 +308,7 @@ body
 .verticalCardList p
 {
 	width: 83.33%;
+	font-size: 110%;
 	max-width: 500px;
 	text-align: center;
 	margin-left: 50%;
@@ -502,8 +507,7 @@ footer > a
 /*====Detailed Features====*/
 .detailedFeatures
 {
-	/*background-image: url("images/pattern.png");
-    background-repeat: repeat;*/
+	
 }
 
 .detailedFeatures h2

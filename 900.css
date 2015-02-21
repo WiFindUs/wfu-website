@@ -64,9 +64,9 @@
 		height: 200px;
 	}
 
-	.verticalCardList h2
+	.verticalCardList p
 	{
-		
+		font-size: 120%;
 	}
 
 	.verticalCardList .icon
