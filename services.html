@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 		<script type="text/javascript" src="js/menu.js"></script>
-		<script type="text/javascript" src="features.js"></script>
+		<script type="text/javascript" src="js/features.js"></script>
 		<link rel="stylesheet" href="mobile.css">
 		<link rel="stylesheet" href="600.css">
 		<link rel="stylesheet" href="800.css">
@@ -17,12 +17,12 @@
 	
 	<body>
 	
-		<div id="header">
-			<a href="index.html" id="logo"><img src="images/logo.png" alt="WiFindUs"/></a>
+		<div id="header" class="header-noscript">
+			<a href="index.html" id="logo" class="logo-noscript"><img src="images/logo.png" alt="WiFindUs"/></a>
 			
-			<img id="menu" src="images/menu.png" alt="menu" onclick="toggleMenu('icon')"/>
+			<img id="menu" class="menu-noscript" src="images/menu.png" alt="menu" onclick="toggleMenu('icon')"/>
 			
-			<nav id="nav">
+			<nav id="nav" class="nav-noscript">
 				<ul>
 					<li onclick="goTo('index.html')"><a href="index.html">Home</a></li>
 					<li onclick="toggleMenu('navSelected')"><a href="" id="navSelected">Services</a></li>

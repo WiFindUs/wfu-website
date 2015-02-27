@@ -592,3 +592,41 @@ footer > a
 }
 
 /*====END OF Detailed Features====*/
+
+
+@media screen and (max-width:800px)
+{
+	/*#id takes precedence over .class; do NOT remove #id or space*/
+	#header.header-noscript
+	{
+		height: auto;
+	}
+	
+	.nav-noscript
+	{
+		display:block;
+		position: static;
+		margin: 0;
+		padding: 0;
+	}
+	
+	.nav-noscript ul
+	{
+		margin-bottom: 0;
+	} 
+	
+	/*#id takes precedence over .class; do NOT remove #id or space*/
+	#menu.menu-noscript
+	{
+		display: none;
+	}
+	
+	/*#id takes precedence over .class; do NOT remove #id or space*/
+	#logo.logo-noscript 
+	{
+		 margin-left:50%;
+		transform: translateX(-50%);
+		-ms-transform: translateX(-50%);
+		-webkit-transform: translateX(-50%);
+	}
+}

@@ -41,10 +41,7 @@ var slideMoving = false;
 
 
 //==========================INITIALISE============================
-window.onload = function()
-{
-	initialise();
-}
+window.addEventListener('load', initialise);
 
 function initialise()
 {
@@ -374,8 +371,9 @@ function resizeSlide()
 }
 
 
-function removeClass(element, cssClass)
-{
+//removeClass() currently in menu.js
+//function removeClass(element, cssClass)
+//{
 	/* regExp: /(?:^|\s)MyClass(?!\S)/g
 	*
 	*	(?:^|\s)	match the start of the string, or any single whitespace character
@@ -388,7 +386,7 @@ function removeClass(element, cssClass)
 	*	/g				perform a global match (find all matches rather than stopping after the first match)
 	*					in case a class was unintentionally added multiple times
 	*/
-	
+/*	
 	var removeClass = '(?:^|\\s)'+cssClass+'(?!\\S)';
 	var reg = new RegExp(removeClass, 'g');
 	
@@ -399,7 +397,7 @@ function addClass(element, cssClass)
 {
 	element.className += " " + cssClass;
 }
-
+*/
 
 function toggle(element, visibility)
 {

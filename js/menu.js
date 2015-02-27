@@ -106,3 +106,43 @@ function clearStyle()
 	}
 	pulled = false;
 }
+
+
+
+window.addEventListener('load', clearNoscript);
+
+function clearNoscript()
+{
+	removeClass(document.getElementById("nav"), 'nav-noscript');
+	removeClass(document.getElementById("header"), 'header-noscript');
+	removeClass(document.getElementById("logo"), 'logo-noscript');
+	removeClass(document.getElementById("menu"), 'menu-noscript');
+	console.log("here");
+}
+
+
+function removeClass(element, cssClass)
+{
+	/* regExp: /(?:^|\s)MyClass(?!\S)/g
+	*
+	*	(?:^|\s)	match the start of the string, or any single whitespace character
+	*	MyClass 	classname to remove
+	*
+	*	(?!\S)		negative lookahead to verify the above is the whole classname
+	*					ensures there is no non-space character following
+	*					i.e. must be end of string or a space
+	*
+	*	/g				perform a global match (find all matches rather than stopping after the first match)
+	*					in case a class was unintentionally added multiple times
+	*/
+	
+	var removeClass = '(?:^|\\s)'+cssClass+'(?!\\S)';
+	var reg = new RegExp(removeClass, 'g');
+	
+	element.className = element.className.replace(reg, '');
+}
+
+function addClass(element, cssClass)
+{
+	element.className += " " + cssClass;
+}
