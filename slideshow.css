@@ -32,7 +32,6 @@
 	transform: translate(-50%, -50%);
 	-ms-transform: translate(-50%, -50%);
 	-webkit-transform: translate(-50%, -50%);
-	/*z-index: 999999;*/
 }
 
 .slideContainer
@@ -64,53 +63,52 @@
 .slideDesc
 {
 	position: absolute;
+}
+
+.slideDesc p
+{
 	color: #ffffff;
 	font-size: 120%;
 	font-weight: bold;
 	text-shadow: 1px 1px #000000;
+	padding: 0;
+	margin-top: 0;
 }
 
-.topRight
+.topRight	/*description*/
 {
 	margin-left: 40%;
 	top: 10%;
 	width: 50%;
 }
 
-.middle
+.middle /*description*/
 {
 	left: 50%;
 	transform: translateX(-50%);
 	-ms-transform: translateX(-50%);
 	-webkit-transform: translateX(-50%);
-	top: 55%;
+	top: 50%;
 	width: 70%;
+	min-width: 225px;
+}
+
+@media screen and (min-width: 450px)
+{
+	.middle
+	{
+		top: 55%;
+	}
 }
 
 .btn
 {
 	background-color: #6e95f3;
 	color: #ffffff;
-	padding: 5px;
-	position: absolute;	
+	padding: 5px 10px 5px 10px;
 	text-decoration: none;
 	border-radius: 15px;
 	width: 90px;
-}
-
-.btnMiddle
-{
-	top: 80%;
-	left:50%;
-	transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	-webkit-transform: translateX(-50%);
-}
-
-.btnTopRight
-{
-	top: 40%;
-	left: 75%;
 }
 	
 #hud
@@ -164,7 +162,7 @@
 		width: auto;
 	}
 	
-	/*used when javascript not supported or disabled*/
+	/*only used when javascript not supported or disabled*/
 	.coverContainer
 	{
 		width: auto;
@@ -181,6 +179,10 @@
 		height: auto;
 	}
 	
+	.topRight .btn
+	{
+		margin-left: 60%;
+	}
 }
 
 @media screen and (min-width: 800px) 
@@ -212,7 +214,7 @@
 		height: auto;
 	}
 	
-	.slideDesc
+	.slideDesc p
 	{
 		font-size: 130%;
 	}
@@ -225,7 +227,7 @@
 
 	.middle
 	{
-		
+		top: 60%;
 	}
 	
 }
@@ -259,7 +261,7 @@
 		height: auto;
 	}
 	
-	.slideDesc
+	.slideDesc p
 	{
 		font-size: 150%;
 	}
@@ -272,37 +274,36 @@
 
 	.middle
 	{
-		top: 60%;
+		top: 70%;
 		width: 700px;
+	}
+	
+	.btn
+	{
+		font-size: 110%;
+		border-radius: 20px;
+		width: 120px;
+	}
+
+	.middle .btn
+	{
+		margin-left: 75%;
+	}
+	
+	.btnMiddle
+	{
+		top: 80%;
+		left: 70%;
 	}
 }
 
 @media screen and (min-width: 1100px)
 {
-.btn
-{
-	background-color: #6e95f3;
-	color: #ffffff;
-	padding: 5px;
-	position: absolute;	
-	text-decoration: none;
-	/*border: 2px solid #ffffff;*/
-	font-size: 110%;
-	border-radius: 20px;
-	width: 120px;
-}
-
 	.topRight
 	{
 		margin-left: 50%;
 		width: 45%;
 		max-width: 650px
-	}
-
-	.btnMiddle
-	{
-		top: 80%;
-		left: 60%;
 	}
 
 	.btnTopRight
