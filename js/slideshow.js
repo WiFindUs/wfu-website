@@ -76,6 +76,7 @@ function initialise()
 		draw();
 		clock();	
 	}
+	//remove loading gif when slides are ready
 	document.getElementById("loader").style.display = 'none';
 }
 //=============================================================
