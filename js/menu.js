@@ -117,7 +117,6 @@ function clearNoscript()
 	removeClass(document.getElementById("header"), 'header-noscript');
 	removeClass(document.getElementById("logo"), 'logo-noscript');
 	removeClass(document.getElementById("menu"), 'menu-noscript');
-	console.log("here");
 }
 
 

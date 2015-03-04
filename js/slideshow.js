@@ -78,6 +78,14 @@ function initialise()
 	}
 	//remove loading gif when slides are ready
 	document.getElementById("loader").style.display = 'none';
+	
+	var slideshow = document.getElementById('slideshow');
+//listenForEvent(slideshow, "mousedown", handleClick); 
+listenForEvent(slideshow, "touchstart", handleClick);
+listenForEvent(slideshow, "touchend", handleRelease);
+//listenForEvent(slideshow, "mouseup", handleRelease);
+listenForEvent(slideshow, "touchmove", handleSwipe);
+//listenForEvent(slideshow, "mousemove", handleMouse);
 }
 //=============================================================
 
@@ -305,7 +313,11 @@ function nextSlide(direction)
 	if(direction == 'right')
 	{
 		previousSlide = true;
-		//targetSlide either updated by goToSlide() or above when last slide reached
+		if(targetSlide == currentSlide)
+		{
+			//if true, targetSlide was not updated by another function; needs to be decremented to target the previous slide
+			targetSlide--;
+		}
 	}
 	
 	slideSpeed();
@@ -436,4 +448,63 @@ function isVisible(element)
 function isPropertySupported(property)
 {
 	return property in document.documentElement.style;
+}
+
+
+
+
+function listenForEvent(element, event, callback) 
+{
+		if (element.addEventListener) //Regular style
+		{
+			element.addEventListener(event, callback, false);
+		}
+		else if (element.attachEvent) //IE Style
+		{
+			element.attachEvent('on' + event, callback);
+		} 
+		else //Legacy IE Style
+		{
+			element['on' + event] = callback;
+		}
+};
+
+var startX, endX;
+var startY, endY;
+var distanceX, distanceY;
+var threshold = 150;
+var negThreshold = -150;
+
+function handleClick(e)
+{	
+	startX = e.touches[0].clientX;
+	startY = e.touches[0].clientY;
+    distanceX = 0;
+	distanceY = 0;
+}
+
+function handleRelease(e)
+{
+	
+}
+
+function handleSwipe(e)
+{	
+	//e.preventDefault(); //don't want to disable scrolling, but swiping not working on android native browser unless preventDefault()
+	
+	endX = e.touches[(event.touches.length-1)].clientX;
+	endY = e.touches[(event.touches.length-1)].clientY;
+	
+	distanceX = endX - startX;
+	distanceY = endY - startY;
+	
+	if(distanceX >= threshold && distanceY <= 100 && currentSlide > 0) //right
+	{
+		nextSlide('right');
+	}
+	
+	else if(distanceX <= negThreshold && distanceY <= 100 && currentSlide < numSlides-1) //left
+	{
+		nextSlide('left');
+	}
 }
