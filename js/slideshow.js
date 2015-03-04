@@ -49,9 +49,15 @@ function initialise()
 	getSlides();
 	numSlides = slideImages.length;
 	
-	//'coverContainer' used as fall back when javascript not support or disabled
+	/* CSS classes:
+	*	-'slideContainer-noscript' used to hide the slides it's applied to when javascript not support or disabled
+	*	so the user gets the most important slide & so the user doesn't see the other slides while they load
+	*
+	*	-'coverContainer' used as fall back when javascript not support or disabled
+	*/
 	for(var i=0; i<numSlides; i++)
 	{
+		removeClass(slideContainers[i], 'slideContainer-noscript');
 		removeClass(slideImages[i], 'coverContainer');
 	}
 	

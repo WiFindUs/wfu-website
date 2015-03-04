@@ -42,6 +42,11 @@
 	position: absolute;
 }
 
+.slideContainer-noscript
+{
+	display: none;
+}
+
 .slideImage
 {
 	width: auto;
