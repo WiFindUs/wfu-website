@@ -3,11 +3,10 @@
 
 	<head>
 		<title>WiFindUs - Services</title>
-		<meta charset="UTF-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 		<script type="text/javascript" src="js/menu.js"></script>
-		<script type="text/javascript" src="js/features.js"></script>
+		<script type="text/javascript" src="features.js"></script>
 		<link rel="stylesheet" href="mobile.css">
 		<link rel="stylesheet" href="600.css">
 		<link rel="stylesheet" href="800.css">
@@ -18,15 +17,15 @@
 	
 	<body>
 	
-		<div id="header" class="header-noscript">
-			<a href="index.html" id="logo" class="logo-noscript"><img src="images/logo.png" alt="WiFindUs"/></a>
+		<div id="header">
+			<a href="index.html" id="logo"><img src="images/logo.png" alt="WiFindUs"/></a>
 			
-			<img id="menu" class="menu-noscript" src="images/menu.png" alt="menu" onclick="toggleMenu('icon')"/>
+			<img id="menu" src="images/menu.png" alt="menu" onclick="toggleMenu('icon')"/>
 			
-			<nav id="nav" class="nav-noscript">
+			<nav id="nav">
 				<ul>
 					<li onclick="goTo('index.html')"><a href="index.html">Home</a></li>
-					<li onclick="toggleMenu('navSelected')"><a href="" id="navSelected">Services</a></li>
+					<li onclick="toggleMenu('navSelected')"><a href="" id="navSelected">Technology</a></li>
 					<li onclick="goTo('team.html')"><a href="team.html">Team</a></li>
 					<li onclick="goTo('blog.php')"><a href="blog.php">Blog</a></li>
 					<li onclick="goTo('#contact'); toggleMenu('contact')"><a href="#contact">Contact</a></li>
@@ -38,16 +37,16 @@
 	
 		<div class="pageTitle">
 			<div class="centreVertical">
-				<h1>Ubi</h1>
-				<p>An asset management system for event organisers & industry service providers</p>
+				<h1>Our Solutions</h1>
+				<p>Proven Technologies - Revolutionary Applications</p>
 			</div>
 		</div>
-		
+		<!-- 
 		<div class="container light-blue verticalCardList">
 		
 			<div class="ListElem">
 				<div class="card">
-					<img src="images/eye.png" class="icon">
+					<img src="images/Eye.png" class="icon">
 					<h2>Eve</h2>
 				</div>
 				<p>Eve, our low cost and rapidly deployable mesh network ensures that our clients no longer have to worry about
@@ -57,21 +56,22 @@
 			
 			<div class="ListElem">
 				<div class="card">
-					<img src="images/eye.png" class="icon">
-					<h2>Eye</h2>
+					<img src="images/Eye.png" class="icon">
+					<h2>Ubi</h2>
 				</div>
 				<p>Within this local network, we deploy Eye: software built specifically to the needs of event organisers and 
 				industry service providers, utilising the most current technology to bring innovation to the industry.</p>
 			</div>
 			
 		</div>
+	-->
 		
 		
 		
 		<div class="container grey horizontalCardList">
 			
 			
-			<h2>Unique Communication Solutions</h2>
+			<!-- <h2>Our Solution</h2> -->
 		
 			<div class="card">
 				<img src="images/real-time.png" class="icon">
@@ -87,7 +87,7 @@
 			
 			<div class="card">
 				<img src="images/3D-map.png" class="icon">
-				<h3>3D Maps</h3>
+				<h3>Mesh Networks</h3>
 				<p>Our software enables your dispatcher to view your venue's map in 3D as well as 2D to ensure *insert some exaggerated reason to make it sound like an important or cutting-edge feature*.</p>
 			</div>
 		</div>
@@ -95,10 +95,7 @@
 		
 		<div class="container blue detailedFeatures">
 		
-			<h2>Cutting Edge Features for Maximum Control</h2>
-			<p class="subHeader">Ubi improves the health & 
-		safety of festivals and enhance their patrons' experience</p>
-			
+			<h2>Core Features</h2>			
 			
 			<div class="feat">
 				<div class="thumbContainer">
@@ -106,7 +103,7 @@
 				</div>	
 				
 				<div class="featDesc">
-					<h3>3D Maps</h3>
+					<h3>Real-time Personnel Tracking</h3>
 					<p>Our software enables your dispatcher to view your venue's map in 3D as well as 2D to ensure *insert some exaggerated reason to make it sound like an important or cutting-edge feature*.
 						blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah.</p>
 				</div>
@@ -114,7 +111,7 @@
 			
 			<div class="feat altFeat">
 				<div class="featDesc">
-					<h3>3D Maps</h3>
+					<h3>2D & 3D Maps</h3>
 					<p>Our software enables your dispatcher to view your venue's map in 3D as well as 2D to ensure *insert some exaggerated reason to make it sound like an important or cutting-edge feature*.
 						blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah.</p>
 				</div>
@@ -130,9 +127,8 @@
 				</div>	
 				
 				<div class="featDesc">
-					<h3>3D Maps</h3>
-					<p>Our software enables your dispatcher to view your venue's map in 3D as well as 2D to ensure *insert some exaggerated reason to make it sound like an important or cutting-edge feature*.
-						blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah.</p>
+					<h3>Prioritise Network Traffic</h3>
+					<p>Our network supports industry standard packet based Quality of Service (QOS) using freely availiable open source tools. Mark and prioritise network traffic to efficiently utilise availible network capacity.</p>
 				</div>
 			</div>
 			
@@ -142,7 +138,7 @@
 		<footer>
 			<div class="footer_column" id="about">
 				<h2>About Us</h2>
-				<p>WiFindUs is made up of a young and passionate team of engineers, software developers and business professionals that seek to bring innovation to the event industry.</p>
+				<p>WiFindUs is made up of a young and passionate team of engineers, software developers and business professionals that seek to bring innovation to various industries such as events, gaming and manufacturing.</p>
 			</div>
 			
 			<div class="footer_column" id="friends">
