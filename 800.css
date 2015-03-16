@@ -84,7 +84,7 @@
 		color: inherit;
 	}
 	
-	nav ul ul 
+	nav ul.dropdown 
 	{
 		display: none;
 		position: absolute;
@@ -103,7 +103,7 @@
 		display: block;
 	}
 
-	nav ul ul li
+	nav ul.dropdown li
 	{
 		display: block;
 		position: relative;
@@ -112,13 +112,13 @@
 		border: 0;
 	}
 	
-	nav ul ul li:first-child
+	nav ul.dropdown li:first-child
 	{
 		border:0;
 	}
 
 
-	nav ul ul li a
+	nav ul.dropdown li a
 	{
 		background-color: #f8f8f8;
 		display: block;
@@ -129,12 +129,12 @@
 		border: 1px solid white;
 	}
 
-	nav ul ul li:hover
+	nav ul.dropdown li:hover
 	{
 		background-color: #6e95f3;
 	}
 
-	nav ul ul li a:hover
+	nav ul.dropdown li a:hover
 	{
 		background-color: inherit;
 		color: #ffffff;
