@@ -21,6 +21,7 @@ var lastX = -1;
 //==========SLIDES=========
 var slideContainers = [];		//contains slide's contents (image, text, etc)
 var slideImages = [];
+var slideImagesSrc = [];
 var slideCoord = [];
 var selectorBtn = [];
 
@@ -48,6 +49,11 @@ function initialise()
 	container = document.getElementById("slides");	
 	getSlides();
 	numSlides = slideImages.length;
+	
+	for(var i=0; i<numSlides; i++)
+	{
+		slideImagesSrc[i] = slideImages[i].currentSrc;
+	}
 	
 	/* CSS classes:
 	*	-'slideContainer-noscript' used to hide the slides it's applied to when javascript not support or disabled
@@ -206,7 +212,6 @@ function clock()
 		}
 	},1000);
 }
-
 //=============================================================
 
 
@@ -349,6 +354,7 @@ function resizeCheck()
 {
 	clearStyle(); //keep for menu.js
 	resizeSlide();
+	setTimeout(checkSrc, 1000);
 }
 
 
@@ -389,6 +395,25 @@ function resizeSlide()
 	}
 }
 
+
+function checkSrc()
+{
+	var needResize = false;
+	for(var i=0; i<numSlides; i++)
+	{
+		if (slideImagesSrc[i] !== slideImages[i].currentSrc)
+		{
+			slideImagesSrc[i] = slideImages[i].currentSrc;
+			needResize = true;
+			
+		}
+	}
+	
+	if(needResize)
+	{
+		resizeSlide();
+	}
+}
 
 //removeClass() currently in menu.js
 //function removeClass(element, cssClass)
