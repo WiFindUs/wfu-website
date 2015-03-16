@@ -202,7 +202,7 @@ function clock()
 		{
 			pauseCount++;
 		}
-		if(pauseCount == 5 && paused==true)
+		if(pauseCount == 7 && paused==true)
 		{
 			if(previousSlide == false)
 			{
