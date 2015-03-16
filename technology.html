@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 		<script type="text/javascript" src="js/menu.js"></script>
-		<script type="text/javascript" src="features.js"></script>
+		<script type="text/javascript" src="js/features.js"></script>
 		<link rel="stylesheet" href="mobile.css">
 		<link rel="stylesheet" href="600.css">
 		<link rel="stylesheet" href="800.css">
@@ -18,7 +18,9 @@
 	<body>
 	
 		<div id="header">
-			<a href="index.html" id="logo"><img src="images/logo.png" alt="WiFindUs"/></a>
+			
+			<!--<a href="index.html" id="logo"><img src="images/logo.svg"onerror="this.onerror=null; this.src='images/logo.png'"  alt="WiFindUs"/></a>-->
+			<a href="index.html" id="logo" class="logo-noscript"><img src="images/logo.png" alt="WiFindUs"/></a>
 			
 			<img id="menu" src="images/menu.png" alt="menu" onclick="toggleMenu('icon')"/>
 			
@@ -46,13 +48,13 @@
 		<div class="container grey horizontalCardList">
 			<!-- <h2>Our Solution</h2> -->
 			<div class="card">
-				<img src="images/real-time.png" class="icon">
+				<img src="images/real-time.svg" onerror="this.onerror=null; this.src='images/real-time.png'" class="icon">
 				<h3>Real Time</h3>
 				<p>We provide real-time position tracking solutions for personnel and assets. Our solution is accurate and flexible, catering for a variety of environments and applications.</p>
 			</div>
 			
 			<div class="card">
-				<img src="images/2-way.png" class="icon">
+				<img src="images/2-way.svg" onerror="this.onerror=null; this.src='images/2-way.png'" class="icon">
 				<h3>2-way Communications</h3>
 				<p>We facilitate and expand the communication capabilities between on-ground personnel and command centres through intuitive user interfaces designed for a variety of devices.</p>
 			</div>
@@ -63,7 +65,6 @@
 				<p>Our flexible and rapidly deployable system has been designed to function independently from existing telecommunication infrastructure, ensuring reliable data transfer.</p>
 			</div>
 		</div>
-		
 		
 		<div class="container blue detailedFeatures">
 		
