@@ -299,6 +299,7 @@ body
 .verticalCardList h2
 {
 	padding-top: 10px;
+	font-weight: bold;
 }
 
 .verticalCardList .icon
@@ -968,6 +969,11 @@ footer > a
 	{
 		font-size: 250%;
 	}
+	.two_headers h2
+	{
+	font-size: 120%;
+	}
+
 	/*====HEADER====*/
 	#logo 
 	{
