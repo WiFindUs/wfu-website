@@ -4,22 +4,22 @@
 	<head>
 		<title>WiFindUs - Technology</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+		<link rel="stylesheet" href="main.css">
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 		<script type="text/javascript" src="js/main.js"></script>
-		<link rel="stylesheet" href="main.css">
 		<link rel="icon"	type="image/png"		href="images/favicon.png">
 	</head>
 	
 	
 	<body>
 	
-		<div id="header">
+		<div id="header" class="header-noscript">
 			
 			<a href="index.html" id="logo" class="logo-noscript"><img src="images/logo.png" alt="WiFindUs"/></a>
 			
-			<img id="menu" src="images/menu.png" alt="menu" onclick="toggleMenu('icon')"/>
+			<img id="menu" class="menu-noscript" src="images/menu.png" alt="menu" onclick="toggleMenu('icon')"/>
 			
-			<nav id="nav">
+			<nav id="nav" class="nav-noscript">
 				<ul>
 					<li onclick="goTo('index.html')"><a href="index.html">Home</a></li>
 					<li onclick="toggleMenu('navSelected')"><a href="" id="navSelected">Technology</a></li>

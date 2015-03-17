@@ -36,6 +36,13 @@ body
 	text-align: center;
 }
 
+.container h2
+{
+	margin-top: 0;
+	font-weight: normal;
+	font-size: 180%;
+}
+
 .light-blue
 {
 	background-color: #d9e3f5;
@@ -52,12 +59,22 @@ body
 	border-bottom: 1px solid #ffffff;
 }
 
+.container.grey h2
+{
+	color: #6e95f3;
+}
+
 .blue
 {
 	background-color: #6e95f3;
 	color: #ffffff;
 	background-image: url("images/pattern_blue.png");
     background-repeat: repeat;
+}
+
+.container.blue h2
+{
+	color: #f8f8f8;
 }
 
 /*====HEADER====*/
@@ -149,15 +166,6 @@ body
 		color: #4c4c4c;
 		text-decoration: none;
 	}
-
-	/*nav ul ul 
-	{
-		text-transform:lowercase;
-		list-style-type: none;
-		width: 100%;
-		margin-top: 5px;
-		margin-left: -10px;
-	}*/
 	
 	nav ul.dropdown 
 	{
@@ -274,26 +282,10 @@ body
 	height: 350px;
 	border-bottom: 3px solid #6e95f3;
 }
-
-.icon
-{
-	
-}
-
-.card h2
-{
-
-
-}
 /*====END OF CARD====*/
 
 
 /*====VERTICAL CARD LIST====*/
-.verticalCardList
-{
-	
-}
-
 .verticalCardList .card
 {
 	background-color: #ffffff;
@@ -389,11 +381,6 @@ body
 
 
 /*====HORIZONTAL CARD LIST====*/
-.horizontalCardList
-{
-	
-}
-
 .horizontalCardList .card
 {
 	background-color: #ffffff;
@@ -405,14 +392,6 @@ body
 	margin-top: 25px;
 	width: 50%;
 	min-width: 250px;
-}
-
-.horizontalCardList h2
-{
-	color: #6e95f3;
-	margin-top: 0;
-	font-weight: normal;
-	font-size: 180%;
 }
 
 .horizontalCardList card h3
@@ -523,10 +502,7 @@ footer > a
 
 .detailedFeatures h2
 {
-	margin-top: 0;
 	margin-bottom: 0;
-	font-weight: normal;
-	font-size: 180%;
 }
 
 .container .subHeader
@@ -640,6 +616,7 @@ footer > a
 		-webkit-transform: translateX(-50%);
 	}
 }
+
 @media screen and (min-width: 600px) 
 {
  
@@ -983,9 +960,14 @@ footer > a
 		margin-right: 10%;
 	}
 }
+
 @media screen and (min-width: 900px) 
 {
 
+	.container h2
+	{
+		font-size: 250%;
+	}
 	/*====HEADER====*/
 	#logo 
 	{
@@ -1131,16 +1113,6 @@ footer > a
 /*====END OF FOOTER====*/
 
 /*====DETAILED FEATURES====*/
-
-	.detailedFeatures h2
-	{
-		color: #f8f8f8;
-		margin-top: 0;
-		margin-bottom: 0;
-		font-weight: normal;
-		font-size: 180%;
-	}
-
 	.detailedFeatures .subHeader
 	{
 		margin-top: 10px;

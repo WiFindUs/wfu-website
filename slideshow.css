@@ -97,8 +97,8 @@
 	transform: translateX(-50%);
 	-ms-transform: translateX(-50%);
 	-webkit-transform: translateX(-50%);
-	top: 50%;
-	width: 70%;
+	top: 60%;
+	width: 80%;
 	min-width: 225px;
 }
 
@@ -106,7 +106,13 @@
 {
 	.middle
 	{
-		top: 55%;
+		top: 70%;
+	}
+	
+	.topRight
+	{
+		top: 15%;
+		width: 55%;
 	}
 }
 
@@ -236,7 +242,7 @@
 
 	.middle
 	{
-		top: 60%;
+		width: 70%;
 	}
 	
 }

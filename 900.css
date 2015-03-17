@@ -1,6 +1,10 @@
 @media screen and (min-width: 900px) 
 {
 
+	.container h2
+	{
+		font-size: 250%;
+	}
 	/*====HEADER====*/
 	#logo 
 	{
@@ -146,16 +150,6 @@
 /*====END OF FOOTER====*/
 
 /*====DETAILED FEATURES====*/
-
-	.detailedFeatures h2
-	{
-		color: #f8f8f8;
-		margin-top: 0;
-		margin-bottom: 0;
-		font-weight: normal;
-		font-size: 180%;
-	}
-
 	.detailedFeatures .subHeader
 	{
 		margin-top: 10px;
