@@ -46,14 +46,14 @@ body
 .light-blue
 {
 	background-color: #d9e3f5;
-	background-image: url("images/pattern_light_blue.png");
+	background-image: url("../images/pattern_light_blue.png");
     background-repeat: repeat;
 }
 
 .grey
 {
 	background-color: #f8f8f8;
-	background-image: url("images/pattern_grey.png");
+	background-image: url("../images/pattern_grey.png");
     background-repeat: repeat;
 	border-top: 1px solid #ffffff;
 	border-bottom: 1px solid #ffffff;
@@ -68,7 +68,7 @@ body
 {
 	background-color: #6e95f3;
 	color: #ffffff;
-	background-image: url("images/pattern_blue.png");
+	background-image: url("../images/pattern_blue.png");
     background-repeat: repeat;
 }
 
