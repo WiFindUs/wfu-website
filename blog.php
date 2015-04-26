@@ -9,12 +9,12 @@
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 		<script type="text/javascript" src="js/blog.js"></script>
 		<script type="text/javascript" src="js/menu.js"></script>	
-		<link rel="stylesheet" href="mobile.css">
-		<link rel="stylesheet" href="600.css">
-		<link rel="stylesheet" href="685.css">
-		<link rel="stylesheet" href="800.css">
-		<link rel="stylesheet" href="900.css">
-		<link rel="stylesheet" href="blog.css">
+		<link rel="stylesheet" href="css/mobile.css">
+		<link rel="stylesheet" href="css/600.css">
+		<link rel="stylesheet" href="css/685.css">
+		<link rel="stylesheet" href="css/800.css">
+		<link rel="stylesheet" href="css/900.css">
+		<link rel="stylesheet" href="css/blog.css">
 		<link rel="icon"	type="image/png"		href="images/favicon.png">
 	</head>
 	
@@ -29,7 +29,7 @@
 			<nav id="nav">
 				<ul>
 					<li onclick="goTo('index.html')"><a href="index.html">Home</a></li>
-					<li onclick="goTo('services.html')"><a href="services.html">Services</a></li>
+					<li onclick="goTo('technology.html')"><a href="technology.html">Technology</a></li>
 					<li onclick="goTo('team.html')"><a href="team.html">Team</a></li>
 					<li onclick="toggleMenu('navSelected')"><a href="" id="navSelected">Blog</a></li>
 					<li onclick="showHideFooter(); toggleMenu('contact')">Contact</li>
@@ -38,7 +38,7 @@
 			
 		</div>
 
-		<div class="pageTitle">
+		<div class="pageTitle" id = "pageTitle">
 			<div class="centreVertical">
 				<h1>BLOG</h1>
 				<p>Keep up to date with WiFindUs</p>
@@ -99,7 +99,7 @@
 
 
 <div id="show_hide_archive">
-	<input id = "archive_display_button" type="image" src="images/hide_archive.png" onclick="toggleArchiveDisplay()">
+	<input id = "archive_display_button" type="image" src="images/show_hide_archive.png" onclick="toggleArchiveDisplay()">
 </div>
 
 <!-- ==========================   MAIN CONTENT(POSTS)   ================================= -->
@@ -129,21 +129,16 @@
 							if($display_date[0] === $date)
 							{
 								// PASS INFO TO JS TO USE WHEN CREATING THE POST
-								     $post_data = array('post_title' => $level,'count' => $count);
-								?>
-
-								<script type="text/javascript">
-								    var post_data = <?php echo json_encode($post_data); ?>;
-								    addArticleInfo(post_data.post_title, post_data.count);
-								</script>
-
-								<?php
+								echo "<script type=\"text/javascript\">";
+								  echo "addArticleInfo(\"".$level."\",".$count.")";
+								  // echo "addArticleInfo(\"Post 10_2013-12-11.txt\",".$count.")";
+								echo "</script>";
 							}
 						}
 					}
 				}
 				$count++;
-			}						
+			}				
 		?>
 	<!-- ================================================================================= -->
 
@@ -167,7 +162,8 @@
 </div>
 
 
-		<footer id = "blog_footer" style="bottom:-640px;">
+		<footer id = "blog_footer" style="bottom:-220px;" >
+			<!--
 			<div class="footer_column" id="about">
 				<h2>About Us</h2>
 				<p>WiFindUs is made up of a young and passionate team of engineers, software developers and business professionals that seek to bring innovation to the festival industry.</p>
@@ -179,6 +175,7 @@
 				<a href="http://www.flinders.edu.au" ><img src="images/flinders_logo.png" alt="Flinders University"/></a>
 				<a href="http://www.air-stream.org.au/" ><img src="images/air-stream_logo.png" alt="Air-Stream Wireless"/></a>
 			</div>
+		-->
 			
 			<div class="footer_column" id="contact">
 				<h2>Contact Us</h2>

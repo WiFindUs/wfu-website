@@ -4,7 +4,7 @@
 var numBlogPosts = 0; // Number of posts (.txt files in blog post folder)
 var scroll = 0; // How far the user has scrolled down the page 
 var lastArticleLoaded = 0; // Last article that was loaded
-var currentArticle = 0; // Current article the user is on 
+var currentArticle = 1; // Current article the user is on 
 var articleTitles = []; //Store the parsed title of each article
 var loadedArticles = []; //Store all the articles that have already been loaded
 var topArchivePost = 0; // Article currently on top of archive list
@@ -12,6 +12,8 @@ var startFromArticle = null; // First post that was loaded
 var emptyCurrentPost = false; //If the user presses home the post they are going to will need to be completely emptied
 var hashNotValid = false; //A hash value is entered in the url that does not correspond to any existing article
 var archive_record_height = 0; // Height of a single record in the archive sidebar
+var currentArchive = 0.01; //Archive record at top of archive sidebar
+var targetArticle; //Post user clicks on in archive
 //===================================================================================
 // END
 //===================================================================================
@@ -27,7 +29,7 @@ var archiveHidden = false;
 var sidebarObject = null;
 var sidebarMoving = false;
 
-function toggleArchiveDisplay()
+function toggleArchiveDisplay() 
 {
   sidebarObject = document.getElementById("blog_archive");
   var show_hide_sidebar_button = document.getElementById("archive_display_button");
@@ -59,8 +61,13 @@ function moveSidebarLeft()
 
 function moveSidebarRight()
 {
+  var stopArchivePos = 40;
   sidebarObject.style.left = parseInt(sidebarObject.style.left) + 20 + 'px';
-  if(parseInt(sidebarObject.style.left) != 40)
+  if(window.innerWidth < 600)
+    stopArchivePos = 0;
+
+  
+  if(parseInt(sidebarObject.style.left) != stopArchivePos)
   {
      animateSidebar = setTimeout(moveSidebarRight,20);
      sidebarMoving = true;
@@ -121,6 +128,10 @@ function moveSidebarRight()
 //===================================================================================
 window.onload = function() 
 {
+  //Hide archive if viewing on a small screen 
+  if(window.innerWidth < 1500)
+    toggleArchiveDisplay();
+
   //URL is hashed on load
   if(window.location.hash) 
   {
@@ -181,24 +192,26 @@ window.onload = function()
 // ADD ARTICLE TITLES TO ARRAY
 //===================================================================================
 var fileNames = [];
-function addArticleInfo(title,count)
+function addArticleInfo()
 {
   numBlogPosts++;
-  fileNames[arguments[1]] = arguments[0];
+  var count = arguments[1];
+  fileNames[count] = arguments[0];
   
   // CREATE PARSED TITLE 
-  var fn = fileNames[arguments[1]];
+  var fn = fileNames[count];
   var fn_without_date = fn.split("_",1); 
   parseFileTitle(fn_without_date, arguments[1]);
 }
 
-function parseFileTitle(title, count)
+function parseFileTitle()
 {
-  var str = title.toString();
+  var count = arguments[1];
+  var str = arguments[0].toString();
   var noSpecialCharacters = str.replace(/[^a-zA-Z0-9 ]/g, "");
   var lowerCase = noSpecialCharacters.toLowerCase(); 
   var noSpaces = lowerCase.replace(/ /g,"_");
-  articleTitles[arguments[1]] = noSpaces;
+  articleTitles[count] = noSpaces;
   return noSpaces;
 }
 //===================================================================================
@@ -402,7 +415,7 @@ function generateArchive()
         blog_archive.innerHTML += return_data;  
 
         // ONLY DISPLAY 10 BLOG ENTRIES IN ARCHIVE 
-        for(var i = topArchivePost; i < numBlogPosts; i++)
+       /* for(var i = topArchivePost; i < numBlogPosts; i++)
         {
           if(i >= topArchivePost + 10)
           {
@@ -412,7 +425,7 @@ function generateArchive()
             var blog_article_archive = document.getElementsByClassName(blog_entry_scroll_id); 
             blog_entry_scroll.style.display = 'none';
           }
-        }
+        }*/
 
         if(archive_record_height == 0)
         {
@@ -437,7 +450,34 @@ function generateArchive()
 //===================================================================================
 function handleScroll()
 {
+  var titletest = document.getElementById("pageTitle");
   scroll = getScrollTop();
+
+
+  //===================================================================================
+  // DETERMINE WHAT POSTS CAN BE SEEN IN THE ARCHIVE
+  //===================================================================================
+  var archiveScroll = document.getElementById('blog_archive').scrollTop;
+
+  //Calculate how many posts are currently visible
+  var windowHeight = window.innerHeight;
+  var archive_record_height = document.getElementById('blog_article_archive').clientHeight;
+  var numVisibleArchivePosts = windowHeight / archive_record_height;
+  var numPostsInArchive = numBlogPosts - topArchivePost;
+
+  var archiveHeight = (numPostsInArchive * archive_record_height) + 1;
+
+  currentArchive = (archiveScroll+114) / archiveHeight;
+
+  var archiveTopVisiblePost = (numPostsInArchive*currentArchive) + (topArchivePost-1);
+  var archiveBottomVisiblePost = archiveTopVisiblePost+numVisibleArchivePosts;
+  //===================================================================================
+  // DETERMINE WHAT POSTS CAN BE SEEN IN THE ARCHIVE
+  //===================================================================================
+
+
+
+
   
   //===================================================================================
   // HIDE FOOTER IF IT IS CURRENTLY VISIBLE
@@ -462,11 +502,16 @@ function handleScroll()
   var clientHeight = document.getElementById('blog_archive').clientHeight; 
   var body = document.body, html = document.documentElement;
   
-  if (scroll <= 228) 
+  var titleBar = document.getElementById("pageTitle");
+  var titleTop = getPos(titleBar);
+  var titleHeight = titleBar.offsetHeight;
+  var titleBottom = titleTop+titleHeight;
+
+  if (scroll <= titleBottom) 
   {
-    show_hide_sidebar.style.top = "228px";
+    show_hide_sidebar.style.top = titleBottom+"px";
     show_hide_sidebar.style.position = "absolute";
-    box.style.top = "228px";
+    box.style.top = titleBottom+"px";
     box.style.position = "absolute";
   }
   else
@@ -576,13 +621,21 @@ function handleScroll()
     {
       var blog_entry_scroll_id = "blog_entry_scroll_" + i;
       var blog_entry_scroll = document.getElementById(blog_entry_scroll_id); 
-               
+      
       if(blog_entry_scroll != null)
-        blog_entry_scroll.style.background = "#d9e3f5";//rgba(129,129,129,0.3)
+      {
+        if(currentArticle != startFromArticle+1 && currentArticle != startFromArticle+2)
+        blog_entry_scroll.style.background = "#d9e3f5";//"#d9e3f5"   rgba(129,129,129,0.3)
+      }
 
       var percent_article_read = 1;
       var scroll_height = archive_record_height * percent_article_read;
-      blog_entry_scroll.style.height = scroll_height + "px";
+      if(blog_entry_scroll != null)
+      {
+        if(currentArticle != startFromArticle+1 && currentArticle != startFromArticle+2)
+          blog_entry_scroll.style.height = "76px";      
+      }
+      
     }
     //===================================================================================
     // END :: FILL SIDEBAR ON SCROLL
@@ -613,14 +666,21 @@ function handleScroll()
         {
           var blog_article_selected_id = "blog_article_selected_" + i;
           var blog_article_selected = document.getElementById(blog_article_selected_id);
+          
+            if(blog_article_selected != null)
+            blog_article_selected.style.background = "#628196";
+
           currentArticle = i;
           
           var title = articleTitles[currentArticle];
 
-          if(history.pushState) 
+          if(window.location.hash != "#"+title)
+          {  
+            if(history.pushState) 
               history.pushState(null, null, 'blog.php#'+ title );
-          else 
+            else 
               location.hash = title;
+          }
         }
       }
       //===================================================================================
@@ -654,10 +714,13 @@ function handleScroll()
 
           var title = articleTitles[i];
 
-          if(history.pushState) 
-              history.pushState(null, null, 'blog.php#'+ title);
-          else 
+          if(window.location.hash != "#"+title)
+          {  
+            if(history.pushState) 
+              history.pushState(null, null, 'blog.php#'+ title );
+            else 
               location.hash = title;
+          }
         }
       }
       //===================================================================================
@@ -680,96 +743,29 @@ function handleScroll()
         {
           currentArticle = i;
 
-          
+          //Adjust Archive View
+          if(currentArticle < archiveTopVisiblePost-2 || currentArticle > archiveBottomVisiblePost-2)
+          {
+            var goToBlogArchiveId = "blog_article_archive_"+parseInt(archiveBottomVisiblePost-2);
+            var goToBlogArchive = getPos(document.getElementById(goToBlogArchiveId));
+            box.scrollTop = goToBlogArchive;
+          }
 
           var title = articleTitles[i];
 
-          if(history.pushState) 
-              history.pushState(null, null, 'blog.php#'+ title);
-          else 
-              location.hash = title;
 
-       
-
-          //===================================================================================
-          // MOVE ARCHIVE DOWN
-          //===================================================================================
-          if(currentArticle == topArchivePost + 9)
-          {         
-            for(var i = topArchivePost; i < topArchivePost+9; i++)
-            {
-              if(i >= topArchivePost)
-              {
-                var blog_entry_scroll_id = "blog_entry_scroll_" + i;
-                var blog_entry_scroll = document.getElementById(blog_entry_scroll_id); 
-                blog_entry_scroll.style.display = 'none';
-              }
-            }
-            
-            topArchivePost += 9;
-
-            //Hit the last post within the next 10
-            if(topArchivePost+9 >= numBlogPosts)
-            {
-              for(var i = topArchivePost+1; i < numBlogPosts; i++)
-              {
-                var blog_entry_scroll_id = "blog_entry_scroll_" + i;
-                var blog_entry_scroll = document.getElementById(blog_entry_scroll_id); 
-                blog_entry_scroll.style.display = 'block';
-              
-              }
-            }
+         if(window.location.hash != "#"+title)
+          {  
+            if(history.pushState) 
+              history.pushState(null, null, 'blog.php#'+ title );
             else 
-            {
-              for(var i = topArchivePost+1; i < topArchivePost + 10; i++)
-              {
-                var blog_entry_scroll_id = "blog_entry_scroll_" + i;
-                var blog_entry_scroll = document.getElementById(blog_entry_scroll_id); 
-                blog_entry_scroll.style.display = 'block';
-              }
-            } 
-
+              location.hash = title;
           }
-          //===================================================================================
-          // MOVE ARCHIVE UP
-          //===================================================================================
-          if(currentArticle == topArchivePost-1)
-          {
-            //less than 10 currently displayed
-            if(topArchivePost+9 >= numBlogPosts)
-            {
-              for(var i = topArchivePost; i < numBlogPosts; i++)
-              {
-                var blog_entry_scroll_id = "blog_entry_scroll_" + i;
-                var blog_entry_scroll = document.getElementById(blog_entry_scroll_id); 
-                blog_entry_scroll.style.display = 'none';
-              }
-            }
-            else
-            {
-              for(var i = topArchivePost+1; i < topArchivePost+11; i++)
-              {
-                if(i >= topArchivePost-1)
-                {
-                  var blog_entry_scroll_id = "blog_entry_scroll_" + i;
-                  var blog_entry_scroll = document.getElementById(blog_entry_scroll_id); 
-                  blog_entry_scroll.style.display = 'none';
-                }
-              }
-            }
-            
-            topArchivePost -= 9;
 
-            for(var i = topArchivePost; i <  topArchivePost + 10; i++)
-            {
-              var blog_entry_scroll_id = "blog_entry_scroll_" + i;
-              var blog_entry_scroll = document.getElementById(blog_entry_scroll_id); 
-              blog_entry_scroll.style.display = 'block';
-            }
-          }
-          //===================================================================================
-          // END
-          //===================================================================================
+          var blog_article_selected_id = "blog_article_selected_" + currentArticle;
+          var blog_article_selected = document.getElementById(blog_article_selected_id);
+          if(blog_article_selected != null)
+              blog_article_selected.style.background = "#628196";
         }
       }
       //===================================================================================
@@ -780,13 +776,8 @@ function handleScroll()
     // END :: POST CHANGE
     //===================================================================================
   }
-  //Update Selected Article Identifier
-  var blog_article_selected_id = "blog_article_selected_" + currentArticle;
-  var blog_article_selected = document.getElementById(blog_article_selected_id);
-  if(blog_article_selected != null)
-    blog_article_selected.style.background = "#628196";
 
-  for(var j = currentArticle - 1; j >= topArchivePost; j--)
+ for(var j = currentArticle - 1; j >= topArchivePost; j--)
   {
     var blog_article_deselected_id = "blog_article_selected_" + j;
     var blog_article_deselected = document.getElementById(blog_article_deselected_id);
@@ -816,6 +807,7 @@ function handleScroll()
   var h = window.innerHeight;
   var pageBottom = height - h;  
   
+ // if (scroll == pageBottom || scroll == pageBottom-10 || scroll == pageBottom-20)
   if (scroll <= pageBottom && scroll >= pageBottom-20)
   {
     addArticle();
@@ -842,9 +834,9 @@ window.onscroll = handleScroll;
     var hashLocation = window.location.hash;
     // Go to blog entry via click on archive
     if(hashLocation.indexOf("blog_entry_") > -1)
-    {     
+    {  
       var result = window.location.hash.split('blog_entry_');
-      var hashArticleTitle = articleTitles[result[1]-1];
+      var hashArticleTitle = articleTitles[result[1]/*-1*/];
 
       var loaded = false;
       
@@ -853,24 +845,25 @@ window.onscroll = handleScroll;
         if(loadedArticles[i] == hashArticleTitle)
         {
           loaded = true;
+          
+          var title = loadedArticles[i+1];
+          
+          if(history.pushState) 
+            history.pushState(null, null, 'blog.php#'+ (hashArticleTitle));
+          else 
+            location.hash = hashArticleTitle; 
+          
           break;
         }
       }
       if(loaded == false)
       {
-         console.log("not loaded");
         hashArticleTitle = articleTitles[result[1]];
-
         if(history.pushState) 
           history.pushState(null, null, 'blog.php#'+ hashArticleTitle);
         else 
           location.hash = hashArticleTitle;
-        
         window.location.reload(true);
-       }
-       else
-       {
-          console.log("already loaded");
        }
     }
 
@@ -912,53 +905,59 @@ window.onscroll = handleScroll;
         for (var i = 0; i < loadedArticles.length; i++) 
         {
           if(loadedArticles[i] == titleWithoutHash)
-          { 
-             //===================================================================================
-          // MOVE ARCHIVE UP
-          //===================================================================================
+          {   
+            var nextArticleToLoad = startFromArticle + 2 + i;
 
-          if(topArchivePost+9 >= numBlogPosts)
-          {
-            for(var i = topArchivePost; i < numBlogPosts; i++)
+            if(targetArticle+1 == nextArticleToLoad)
             {
+              var title = articleTitles[currentArticle+1];
+              
+              if(history.pushState) 
+                  history.pushState(null, null, 'blog.php#'+ title);
+              else 
+                  location.hash = title;
+               
+              recordLoaded = false;
+              
+              break;
+            }
+
+              //fill all the scroll backgrounds before current article
+              for(var i = currentArticle - 1; i > topArchivePost-1; i--)
+              {
                 var blog_entry_scroll_id = "blog_entry_scroll_" + i;
                 var blog_entry_scroll = document.getElementById(blog_entry_scroll_id); 
-                blog_entry_scroll.style.display = 'none';
-              }
-            }
-            else
-            {
-              for(var i = topArchivePost+1; i < topArchivePost+11; i++)
-              {
-                if(i >= topArchivePost-1)
+                
+                if(blog_entry_scroll != null)
                 {
-                  var blog_entry_scroll_id = "blog_entry_scroll_" + i;
-                  var blog_entry_scroll = document.getElementById(blog_entry_scroll_id); 
-                  blog_entry_scroll.style.display = 'none';
+                  if(currentArticle != startFromArticle+1 && currentArticle != startFromArticle+2)
+                  blog_entry_scroll.style.background = "#d9e3f5";//"#d9e3f5"   rgba(129,129,129,0.3)
                 }
-              }
-            }
-            
-            topArchivePost = startFromArticle;
 
-            for(var i = topArchivePost; i <  topArchivePost + 10; i++)
-            {
-              var blog_entry_scroll_id = "blog_entry_scroll_" + i;
-              var blog_entry_scroll = document.getElementById(blog_entry_scroll_id); 
-              blog_entry_scroll.style.display = 'block';
-            }
-          
-          //===================================================================================
-          // END :: MOVE ARCHIVE UP
-          //===================================================================================  
+                var percent_article_read = 1;
+                var scroll_height = archive_record_height * percent_article_read;
+                if(blog_entry_scroll != null)
+                {
+                  if(currentArticle != startFromArticle+1 && currentArticle != startFromArticle+2)
+                    blog_entry_scroll.style.height = "76px";      
+                }
+                
+              }
+
             recordLoaded = true;
-            break;     
+            
+            if(window.innerWidth < 1500 && archiveHidden == false)
+              toggleArchiveDisplay();
+            
+            break;   
           }
+
         }
+        
+
+
         if(recordLoaded == false)
-        {
           window.location.reload(true);
-        }
       }
     }
   }
@@ -977,7 +976,7 @@ window.onscroll = handleScroll;
   //===================================================================================
   function goToPost(postNum)
   {   
-    postNum+=1;
+   /* postNum+=1;
     
     if(postNum-1 != currentArticle)
     {
@@ -999,7 +998,20 @@ window.onscroll = handleScroll;
         currentArticle = postNum; 
       }
       location.hash = "#blog_entry_" + currentArticle;
-    }
+    }*/
+    targetArticle = postNum;
+currentArticle = postNum; 
+
+location.hash = "#blog_entry_" + postNum;
+    /* if(history.pushState) 
+        history.pushState(null, null, 'blog.php#blog_entry_'+ postNum);
+      else 
+          location.hash = '#blog_entry_'+ postNum;*/
+
+   
+
+
+
     emptyCurrentPost = true;
   }
   //===================================================================================
@@ -1037,7 +1049,7 @@ window.onscroll = handleScroll;
             {
               var blog_entry_scroll_id = "blog_entry_scroll_" + i;
               var blog_entry_scroll = document.getElementById(blog_entry_scroll_id); 
-              blog_entry_scroll.style.display = 'none';
+              //blog_entry_scroll.style.display = 'none';
             }
           }
           else
@@ -1048,7 +1060,7 @@ window.onscroll = handleScroll;
               {
                 var blog_entry_scroll_id = "blog_entry_scroll_" + i;
                 var blog_entry_scroll = document.getElementById(blog_entry_scroll_id); 
-                blog_entry_scroll.style.display = 'none';
+                //blog_entry_scroll.style.display = 'none';
               }
             }
           }
@@ -1059,7 +1071,7 @@ window.onscroll = handleScroll;
           {
             var blog_entry_scroll_id = "blog_entry_scroll_" + i;
             var blog_entry_scroll = document.getElementById(blog_entry_scroll_id); 
-            blog_entry_scroll.style.display = 'block';
+            //blog_entry_scroll.style.display = 'block';
           }
         
         //===================================================================================
@@ -1067,12 +1079,27 @@ window.onscroll = handleScroll;
         //===================================================================================
     }
   }
-  window.addEventListener("keydown", handleKeyPress, false);
+  //window.addEventListener("keydown", handleKeyPress, false);
+
+    // IE8 Fix
+    if(document.addEventListener)
+    { 
+        document.addEventListener('keydown', function(e)
+        {
+         handleKeyPress(e) 
+        }, false);
+    } 
+    else 
+    {
+        document.attachEvent("onkeydown", function(e)
+        {
+          handleKeyPress(e) 
+        });
+    }
+
   //===================================================================================
   // END :: UPDATE SELECTED ARTICLE AND ARCHIVE ON HOME BUTTON PRESS
   //===================================================================================
-
-
 
 
 
@@ -1103,10 +1130,8 @@ function moveFooterDown()
 {
   footer.style.bottom = parseInt(footer.style.bottom) - 20 + 'px';
   
-  if(parseInt(footer.style.bottom) != -640)
+  if(parseInt(footer.style.bottom) != -220)
   {
-    console.log(footer.style.bottom);
-
      animateFooter = setTimeout(moveFooterDown,20);
      footerMoving = true;
   }
@@ -1136,3 +1161,7 @@ function moveFooterUp()
 //===================================================================================
 // END :: SHOW / HIDE FOOTER
 //===================================================================================
+
+
+
+
