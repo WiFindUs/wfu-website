@@ -1,44 +1,23 @@
+/* Modernizr 2.8.3 (Custom Build) | MIT & BSD
+ * Build: http://modernizr.com/download/#-cssanimations-testprop-testallprops-domprefixes
+ */
+;window.Modernizr=function(a,b,c){function w(a){i.cssText=a}function x(a,b){return w(prefixes.join(a+";")+(b||""))}function y(a,b){return typeof a===b}function z(a,b){return!!~(""+a).indexOf(b)}function A(a,b){for(var d in a){var e=a[d];if(!z(e,"-")&&i[e]!==c)return b=="pfx"?e:!0}return!1}function B(a,b,d){for(var e in a){var f=b[a[e]];if(f!==c)return d===!1?a[e]:y(f,"function")?f.bind(d||b):f}return!1}function C(a,b,c){var d=a.charAt(0).toUpperCase()+a.slice(1),e=(a+" "+m.join(d+" ")+d).split(" ");return y(b,"string")||y(b,"undefined")?A(e,b):(e=(a+" "+n.join(d+" ")+d).split(" "),B(e,b,c))}var d="2.8.3",e={},f=b.documentElement,g="modernizr",h=b.createElement(g),i=h.style,j,k={}.toString,l="Webkit Moz O ms",m=l.split(" "),n=l.toLowerCase().split(" "),o={},p={},q={},r=[],s=r.slice,t,u={}.hasOwnProperty,v;!y(u,"undefined")&&!y(u.call,"undefined")?v=function(a,b){return u.call(a,b)}:v=function(a,b){return b in a&&y(a.constructor.prototype[b],"undefined")},Function.prototype.bind||(Function.prototype.bind=function(b){var c=this;if(typeof c!="function")throw new TypeError;var d=s.call(arguments,1),e=function(){if(this instanceof e){var a=function(){};a.prototype=c.prototype;var f=new a,g=c.apply(f,d.concat(s.call(arguments)));return Object(g)===g?g:f}return c.apply(b,d.concat(s.call(arguments)))};return e}),o.cssanimations=function(){return C("animationName")};for(var D in o)v(o,D)&&(t=D.toLowerCase(),e[t]=o[D](),r.push((e[t]?"":"no-")+t));return e.addTest=function(a,b){if(typeof a=="object")for(var d in a)v(a,d)&&e.addTest(d,a[d]);else{a=a.toLowerCase();if(e[a]!==c)return e;b=typeof b=="function"?b():b,typeof enableClasses!="undefined"&&enableClasses&&(f.className+=" "+(b?"":"no-")+a),e[a]=b}return e},w(""),h=j=null,e._version=d,e._domPrefixes=n,e._cssomPrefixes=m,e.testProp=function(a){return A([a])},e.testAllProps=C,e}(this,this.document);
+
+
 //=====================GLOBAL VARIABLES========================
+var container; //the fixed container that's always in viewport
+var clockTimer;
 
-//=========================
-var container;
-//=========================
-
-//==========SPEED==========
-// speed must be a factor of 100
-var interval = 10;
-var fastInterval = 25;
-var speed = interval; 
-var frameRate = 24;
-//=========================
-
-//=====MOUSE CONTROLS======
-var isClicked = false;
-var lastY = -1;
-var lastX = -1;
-//=========================
-
-//==========SLIDES=========
 var slideContainers = [];		//contains slide's contents (image, text, etc)
 var slideImages = [];
 var slideImagesSrc = [];
-var slideCoord = [];
-var selectorBtn = [];
+
+var selectorBtns = [];
 
 var numSlides;
-var currentSlide =0;
-var targetSlide = 0;
-var pauseCount = 0;
-
-var paused = true;
-var stopTest = false;
-var previousSlide = false;
-var slideMoving = false;
-//=========================
-
-
+var current =0;
+var target = 1;
 //=============================================================
-
 
 
 //==========================INITIALISE============================
@@ -46,13 +25,18 @@ window.addEventListener('load', initialise);
 
 function initialise()
 {
+	
 	container = document.getElementById("slides");	
 	getSlides();
 	numSlides = slideImages.length;
 	
 	for(var i=0; i<numSlides; i++)
 	{
-		slideImagesSrc[i] = slideImages[i].currentSrc;
+		slideImagesSrc[i] = slideImages[i].currentSrc; //store the current src for slide images in array; used to determine resizeSlide()
+		if(i!=0)
+		{
+			slideContainers[i].style.opacity = 0;
+		}
 	}
 	
 	/* CSS classes:
@@ -69,31 +53,27 @@ function initialise()
 	
 	resizeSlide();
 	
-	if(numSlides > 1)
+	/*play slideshow only if there is:
+	* -more than one slide: just in case only one image is desired and maintainer doesn't want/forgets to remove this script
+	* -CSS3 Animations is supported by the browser
+	*
+	* Otherwise, just display the first slide
+	*/
+	if(numSlides > 1 && Modernizr.cssanimations)
 	{
-		positionSlides();
-
 		createSelectorBtns(numSlides);
-		selectorBtn[0].src = "images/slideshow-button_selected.png";
+		addClass(selectorBtns[current], 'selected-btn');
 
-		currentSlide = 0;
+		current = 0;
 		
-		update();
-		draw();
 		clock();	
 	}
+	
 	//remove loading gif when slides are ready
 	document.getElementById("loader").style.display = 'none';
-	
-	var slideshow = document.getElementById('slideshow');
-//listenForEvent(slideshow, "mousedown", handleClick); 
-listenForEvent(slideshow, "touchstart", handleClick);
-listenForEvent(slideshow, "touchend", handleRelease);
-//listenForEvent(slideshow, "mouseup", handleRelease);
-listenForEvent(slideshow, "touchmove", handleSwipe);
-//listenForEvent(slideshow, "mousemove", handleMouse);
 }
 //=============================================================
+
 
 
 //=============CREATE SLIDES & CONTENT================
@@ -122,42 +102,25 @@ function getSlides()
 	}
 }
 
-function positionSlides()
-{
-	for(var i=0; i<slideContainers.length; i++)
-	{
-		var coord = i * 100;
-		slideContainers[i].style.left = coord+"%";	//position the container to the right of the previous container (off screen)
-		slideCoord[i] = coord;
-	}
-}
-
-function showSlides()
-{
-	toggle(document.getElementById('loading'), 'hide');
-	toggle(document.getElementById('slides'), 'show');
-}
 
 function createSelectorBtns(numSlides)
-{
-	//Add the correct number of selector buttons to <div id="selectorBtns">
-	var content="<ul>";
+{		
+	var content="";
 	for(var i=0; i<numSlides; i++)
 	{
-		var inputID = "slideSelector"+i;
-		content += "<li> <input id=\"" +inputID+ "\" type=\"image\" src=\"images/slideshow-button.png\" ontouchstart=\"goToSlide(" +i+ ")\" onclick=\"goToSlide(" +i+ ")\"></li> "
-		//<li> <input id="slideSelector1" type="image" src="images/slideshow-button.png" onclick=goToSlide(1)> </li>
+		var selectorID = "selector"+i;
+		content += "<div class=\"selector-btn\" id=\""+selectorID+"\"><span></span></div>";
 	}
-	content += "</ul>";
 	
-	
-	document.getElementById('selectorBtns').innerHTML = content;
+	document.getElementById('selector-btns').innerHTML = content;
 	
 	
 	for(var i=0; i<numSlides; i++)
 	{
-		var inputID = "slideSelector"+i;
-		selectorBtn[i] = document.getElementById(inputID);
+		var selectorID = "selector"+i;
+		selectorBtns[i] = document.getElementById(selectorID);
+		selectorBtns[i].addEventListener('click', goToSlide);
+		selectorBtns[i].slideIndex = i; //used in goToSlide()
 	}
 }
 //=============================================================
@@ -165,194 +128,74 @@ function createSelectorBtns(numSlides)
 
 //==========================UPDATE=============================
 function update()
-{
-	if(paused == false && previousSlide == false)
-	{
-		move('left');
-	}
-	
-	if(paused == false && previousSlide == true)
-	{
-		move('right');
-	}
-	
-	setTimeout(update, 1000/frameRate);
-}
-
-
-//draw() updates slides positions using the calculated slideCoord[i]
-function draw()
 {	
-	for(var i = 0; i < numSlides; i++)
-	{
-		slideContainers[i].style.left = slideCoord[i] + '%';
-	}	
+
+	fadeIn(slideContainers[target]);
+	fadeOut(slideContainers[current]);
+
+	removeClass(selectorBtns[current], 'selected-btn');
 	
-	setTimeout(draw, 1000/frameRate);
-}
-
-
-
-//clock() counts slide pause intervals
-function clock()
-{
-	setInterval(function()
+	current = target;
+	if(current == numSlides-1)
 	{
-		if(paused==true)
-		{
-			pauseCount++;
-		}
-		if(pauseCount == 7 && paused==true)
-		{
-			if(previousSlide == false)
-			{
-				nextSlide('left');
-			}
-			paused = false;
-		}
-	},1000);
-}
-//=============================================================
-
-
-//===================MOVE SLIDES===================
-/*
-*	move(direction): 
-*	1-updates slideCoord[i] based on direction
-*	2-stops updating slideCoord[i] when the target slide is reached, setting paused=true
-*	3-starts updating slideCoord[i] again when clock() sets paused=false
-*/
-
-function move(direction)
-{
-	slideMoving = true;
-	stopTest = false
-	
-	if(stopTest == false)
-	{
-		if(direction=='left')
-		{
-			for(var i=0; i < numSlides; i++)
-			{
-				slideCoord[i] -= speed;
-			}
-		}
-		else if(direction=='right')
-		{
-			for(var i=0; i < numSlides; i++)
-			{
-				slideCoord[i] += speed;
-			}
-		}
-			
-		if(slideCoord[targetSlide] == 0 && paused == false)
-		{
-			stopTest = true;
-			paused = true;
-			slideMoving = false;
-			currentSlide= targetSlide;
-			previousSlide = false;	//only move backward when selector button clicked; move forward by default
-			updateSelectorBtns();
-		}
-			
-	}	
-	
-}
-
-function updateSelectorBtns()
-{
-	for(var i = 0; i<numSlides; i++)
-	{
-		if(i == targetSlide)
-			selectorBtn[i].src = "images/slideshow-button_selected.png";
-		else
-			selectorBtn[i].src = "images/slideshow-button.png";
-	}
-}
-//=============================================================
-
-
-
-//=================DETERMINE SLIDE TO GO TO=======================
-
-//goToSlide() called when a selector button is clicked/touched 
-function goToSlide(slide)
-{
-	if(!slideMoving)
-	{
-		targetSlide = slide;
-		
-		if(targetSlide < currentSlide)
-		{
-			nextSlide('right');
-		}
-		else if(targetSlide > currentSlide)
-		{
-			nextSlide('left');
-		}
-	}
-}
-
-
-//direction = direction slides move (e.g. next: slides moves to the left)
-function nextSlide(direction)
-{
-	if(direction=='left')
-	{
-		previousSlide = false;
-		
-		//if true, last slide reached; go back to first
-		if(currentSlide == (numSlides-1))
-		{
-			previousSlide = true;
-			targetSlide = 0;
-		}
-		
-		else if(targetSlide == currentSlide)
-		{
-			//if true, targetSlide was not updated by another function; needs to be incremented to target the next slide
-			targetSlide++;
-		}
-	}
-	
-	if(direction == 'right')
-	{
-		previousSlide = true;
-		if(targetSlide == currentSlide)
-		{
-			//if true, targetSlide was not updated by another function; needs to be decremented to target the previous slide
-			targetSlide--;
-		}
-	}
-	
-	slideSpeed();
-	
-	paused = false;
-	pauseCount = 0;
-}
-
-
-function slideSpeed()
-{	
-	if(targetSlide != currentSlide+1 && targetSlide != currentSlide-1)
-	{
-		speed= fastInterval;
+		target=0;
 	}
 	else
 	{
-		speed = interval;
+		var holder = current;
+		target = holder+1;
+	}
+	
+	addClass(selectorBtns[current], 'selected-btn');
+	onDemand = false; 
+}
+
+function clock()
+{	
+	clockTimer = setInterval(update, 5000);
+}
+
+
+//goToSlide() called when a selector button is clicked/touched 
+function goToSlide(evt)
+{
+	if(current!=evt.target.slideIndex)
+	{
+		onDemand = true;
+		//clear timer
+		clearInterval(clockTimer);
+		
+		target = evt.target.slideIndex;
+		update();
+		clock();
 	}
 }
+
 //=============================================================
 
 
 
+
+//==========================OTHER FUNCTIONS=============================
+
+
+function fadeOut(element)
+{
+	removeClass(element, 'fade-in');
+	addClass(element, 'fade-out');
+}
+
+function fadeIn(element) 
+{
+	removeClass(element, 'fade-out');
+	addClass(element, 'fade-in');
+}
 
 window.addEventListener('resize', resizeCheck);
 
 function resizeCheck()
 {
-	clearStyle(); //keep for menu.js
+	clearStyle(); //keep for menu.js -- not sure if needed: TEST
 	resizeSlide();
 	setTimeout(checkSrc, 1000);
 }
@@ -415,121 +258,4 @@ function checkSrc()
 	}
 }
 
-//removeClass() currently in menu.js
-//function removeClass(element, cssClass)
-//{
-	/* regExp: /(?:^|\s)MyClass(?!\S)/g
-	*
-	*	(?:^|\s)	match the start of the string, or any single whitespace character
-	*	MyClass 	classname to remove
-	*
-	*	(?!\S)		negative lookahead to verify the above is the whole classname
-	*					ensures there is no non-space character following
-	*					i.e. must be end of string or a space
-	*
-	*	/g				perform a global match (find all matches rather than stopping after the first match)
-	*					in case a class was unintentionally added multiple times
-	*/
-/*	
-	var removeClass = '(?:^|\\s)'+cssClass+'(?!\\S)';
-	var reg = new RegExp(removeClass, 'g');
-	
-	element.className = element.className.replace(reg, '');
-}
-
-function addClass(element, cssClass)
-{
-	element.className += " " + cssClass;
-}
-*/
-
-function toggle(element, visibility)
-{
-	if(visibility == "hide")
-	{
-		element.style.visibility = 'hidden';
-	}
-	if(visibility == "show")
-	{
-		element.style.visibility = 'visible';
-	}
-}
-
-
-function isVisible(element)
-{
-	if(element.style.visibility == "visible")
-	{
-		return true;
-	}
-	
-	else
-	{
-		return false;
-	}
-
-}
-
-function isPropertySupported(property)
-{
-	return property in document.documentElement.style;
-}
-
-
-
-
-function listenForEvent(element, event, callback) 
-{
-		if (element.addEventListener) //Regular style
-		{
-			element.addEventListener(event, callback, false);
-		}
-		else if (element.attachEvent) //IE Style
-		{
-			element.attachEvent('on' + event, callback);
-		} 
-		else //Legacy IE Style
-		{
-			element['on' + event] = callback;
-		}
-};
-
-var startX, endX;
-var startY, endY;
-var distanceX, distanceY;
-var threshold = 150;
-var negThreshold = -150;
-
-function handleClick(e)
-{	
-	startX = e.touches[0].clientX;
-	startY = e.touches[0].clientY;
-    distanceX = 0;
-	distanceY = 0;
-}
-
-function handleRelease(e)
-{
-	
-}
-
-function handleSwipe(e)
-{	
-	//e.preventDefault(); //don't want to disable scrolling, but swiping not working on android native browser unless preventDefault()
-	
-	endX = e.touches[(event.touches.length-1)].clientX;
-	endY = e.touches[(event.touches.length-1)].clientY;
-	
-	distanceX = endX - startX;
-	distanceY = endY - startY;
-	
-	if(distanceX >= threshold && distanceY <= 100 && currentSlide > 0) //right
-	{
-		nextSlide('right');
-	}
-	
-	else if(distanceX <= negThreshold && distanceY <= 100 && currentSlide < numSlides-1) //left
-	{
-		nextSlide('left');
-	}
-}
+//=============================================================

@@ -135,7 +135,7 @@
 	/*z-index: 999;*/
 }
 
-#selectorBtns
+#selector-btns
 {
 	position: absolute;
 	margin-left: 50%;
@@ -146,7 +146,7 @@
 	padding: 0;
 }
 
-#selectorBtns ul
+/*#selectorBtns ul
 {
 	lsit-style-type: none;
 	padding: 0;
@@ -159,6 +159,92 @@
 	padding-left: 5px;
 	padding-right: 5px;
 	cursor: pointer;
+}*/
+
+
+.selector-btn
+{
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	border-radius: 50%;
+	border: 1px solid #fff;
+	margin-right: 10px;
+	margin-left: 10px;
+	cursor: pointer;
+	background-color: #000;
+}
+
+.selector-btn:first-child
+{
+	margin-left:0;
+}
+
+.selector-btn:last-child
+{
+	margin-right:0;
+}
+
+.selected-btn
+{
+	background-color: #6e95f3;
+	border: 1px solid #fff;
+}
+
+
+
+/* fade-out */
+@-webkit-keyframes fadeOut 
+{
+	0% {opacity: 1;}
+	100% {opacity: 0;}
+}
+@-moz-keyframes fadeOut 
+{
+	0% {opacity: 1;}
+	100% {opacity: 0;}
+}
+@keyframes fadeOut 
+{
+	0% {opacity: 1;}
+	100% {opacity: 0;}
+}
+
+/* fade-in */
+@-webkit-keyframes fadeIn 
+{
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+@-moz-keyframes fadeIn 
+{
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+@keyframes fadeIn 
+{
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+.fade-out
+{
+	-webkit-animation-name: fadeOut;
+    -webkit-animation-duration: 2s;
+	-webkit-animation-fill-mode: forwards;
+	animation-name: fadeOut;
+	animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.fade-in
+{
+	-webkit-animation-name: fadeIn;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-fill-mode: forwards;
+	animation-name: fadeIn;
+	animation-duration: 1s;
+    animation-fill-mode: forwards;
 }
 
 /*====END OF SLIDESHOW====*/
