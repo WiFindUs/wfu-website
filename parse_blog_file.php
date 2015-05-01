@@ -19,6 +19,9 @@ $images = array(); //Stores paths to images
 $im_descriptions = array(); //Image descriptions
 $showNext = ""; //Type of element to be shown next
 
+$handleImageDescription = false;
+$showNextElement = false;
+
 	foreach($rows as $row => $data)
 	{
 		$row_data = explode('^^'.'*'.'^^', $data);
