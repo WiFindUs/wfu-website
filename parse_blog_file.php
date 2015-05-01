@@ -2013,4 +2013,36 @@ function displayImages($images, $numImages)
 	echo "&nbsp";
 }
 
+
+
+
+
+
+
+
+/*
+	echo "<html>";
+
+		echo "<head>";
+			echo "<meta charset=\"UTF-8\">";
+			echo "<meta name=\"dekeywordsscription\" content=\"Free Web tutorials\">";
+			echo "<meta name=\"\" content=\"HTML,CSS,XML,JavaScript\">";
+			echo "<meta name=\"author\" content=\"Hege Refsnes\">";
+		echo "</head> ";
+
+		echo "<div id = \"".$articleIdentifier."\" class = \"newData\">";
+			echo "<div id = \"soundwave\" class = \"newData\">";
+				echo "<h1> SOUNDWAVE</h2>";
+				echo 'Thank you '. $count . ' ' . $_POST['lastname'] . ', says the PHP file';  
+			echo "</div>";
+		echo "</div>";
+
+	echo "</html>";
+
+*/
+
+
+
+
+
 ?>
