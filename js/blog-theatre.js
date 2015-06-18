@@ -264,9 +264,9 @@ function getImages()
 	
 	var keyFired = false;
 	
-	if(evt.keyCode != '0')
+	if(evt.keyCode)
 	{
-		console.log("key fired");
+		console.log("key fired: " + evt.keyCode);
 		keyFired = true;
 	}
 	
