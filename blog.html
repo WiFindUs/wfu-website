@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+		<meta content="utf-8" http-equiv="encoding">
+		<title>WiFindUs - Blog</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/main.css">
+		
+		<!--<link rel="stylesheet" href="css/blog-old.css">-->
+		<link rel="stylesheet" href="css/blog.css">
+		<script type="text/javascript" src="js/main.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.ba-throttle-debounce.min.js"></script>
+		<script type="text/javascript" src="js/blog-theatre.js"></script>
+		<script type="text/javascript" src="js/blog-dynamic.js"></script>
+		
+		<link rel="icon"	type="image/png"		href="images/favicon.png">
+	</head>
+	
+	
+	<body>
+	
+		<div id="header">
+			
+			<a href="index.html" id="logo"><img src="images/logo.png" alt="WiFindUs"/></a>
+			<img id="menu" src="images/menu.png" alt="menu" onclick="toggleMenu('icon')"/>
+			
+			<nav id="nav">
+				<ul>
+					<li onclick="goTo('index.html')"><a href="index.html">Home</a></li>
+					<li onclick="goTo('technology.html')"><a href="technology.html">Technology</a></li>
+					<li onclick="goTo('team.html')"><a href="team.html">Team</a></li>
+					<li onclick="toggleMenu('navSelected')"><a href="" id="navSelected">Blog</a></li>
+					<li onclick="showHideFooter(); toggleMenu('contact')">Contact</li>
+				</ul>
+			</nav>
+			
+		</div>
+
+		<div class="pageTitle" id = "pageTitle">
+			<div class="centreVertical">
+				<h1>Blog</h1>
+				<p>Keep up to date with WiFindUs</p>
+			</div>
+		</div>
+
+
+
+	<noscript> <!--need styling -->
+		We're sorry, but the WiFindUs Blog doesn't work properly without JavaScript enabled.
+	</noscript>
+	
+	
+	<div id="overlay-theatre">
+		<div id="inner-theatre-container" class="center">
+			<img id="previous-arrow" src="images/next_image_arrow.png" />
+			<div id="theatre-img-container">
+				<!--<img class="theatre-img center" src="images/blog/panda.jpg" />-->
+			</div>
+			<img id="next-arrow" src="images/next_image_arrow.png" />
+			<div id="exit">X</div>
+			
+			<div id="img-desc" class="centre">This is just a placeholder text. Try to keep it short please. This is just a placeholder text. Try to keep it short please. This is just a placeholder text. Try to keep it short please. This is just a placeholder text. Try to keep it short please.</div>
+			
+		</div>
+	</div>
+
+	<div class="blog-main-container dark-grey">
+		<div class="blog-inner-container">
+		
+			<div id="blog-sidebar">
+				<div id="tabs">
+					<!--whitespace between the following containers is commented out to remove unwanted gap between them (occurs because they're inline elements)-->
+					<div class="tab" id="archive">Archive</div><!--
+					--><div class="tab selected" id="recent">Recent</div>
+				</div>
+				
+				
+				<div id="posts-list"></div>
+				
+				<div id="archive-list"></div>
+				
+			</div>
+			
+			<div id="blog-content"></div>
+		</div>
+	</div>
+	
+	<!--<div id = "loading">
+		<h3>Loading...</h3> 
+	</div>-->
+
+
+	<!--<div id = "blog_break">
+		<br>
+	</div>-->
+
+
+
+
+		<!--<footer id = "blog_footer" style="bottom:-220px;" >
+			<div class="footer_column" id="contact">
+				<h2>Contact Us</h2>
+				<p>Email: <a href="mailto: business@wifindus.com">business@wifindus.com</a></p>
+			</div>
+		</footer>-->
+	
+
+	
+	</body>
+	
+	
+	
+</html>

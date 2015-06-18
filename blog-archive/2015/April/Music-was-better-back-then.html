@@ -1,0 +1,135 @@
+<article class="blog-post" id="Music_was_better_back_then">
+	<div class="post-info">
+		<h2 class="post-title">“Music was better back then”: When do we stop keeping up with popular music?</h2>
+		<div class="post-date">22 April 2015</div> <!--automatically generated-->
+	</div>
+	
+	<p>After sixty years of <a href="http://musicmachinery.com/2014/02/13/age-specific-listening/" target="_blank">research</a>, it’s conventional wisdom: as people get older, 
+	they <a href="http://www.avclub.com/article/why-do-pop-culture-fans-stop-caring-about-new-musi-55805" target="_blank">stop keeping up with popular music</a>. Whether
+	the demands of parenthood and careers mean devoting less time to pop culture, or just because they’ve succumbed to good old-fashioned 
+	<a href="http://notes.variogr.am/post/37675885491/how-music-recommendation-works-and-doesnt-work" target="_blank">taste freeze</a>, <span class="bold">music fans beyond a certain age
+	seem to reach a point where their tastes have “matured”.</span></p>
+	
+	<p>That’s why the organizers of the Super Bowl — <a href="http://www.forbes.com/sites/bradadgate/2015/01/30/fun-facts-about-the-super-bowl/" target="_blank">with a median viewer age of 44</a>
+	—  were smart to balance their Katy Perry-headlined halftime show with a showing by Missy Elliott.</p>
+	
+	<div class="single-landscape-container">
+		<img class="img single-landscape" src="images/blog/missy-elliott.png" alt="Missy don't brag, she mostly boast"/>
+	</div>
+	
+	
+	<p class="quote-block">Spotify listener data offers a sliced & diced view of each user’s streams. This lets us measure <span class="italic">when</span> this effect begins, how <span class="italic">quickly</span>
+	the effect develops, and how it’s impacted by <span class="italic">demographic factors</span>.</p>
+	
+	<p>For this study, I started with individual listening data from U.S. Spotify users and combined that with Echo Nest artist popularity data, to generate a metric for <span class="italic">the average popularity of the artists
+	a listener streamed in 2014</span>. With that score per user, we can compute a median across all users of a specific age and demographic profile.</p>
+	
+	<ul>
+		<lh>What I found was that, on average…</lh>
+		<li>… while teens’ music taste is dominated by incredibly popular music, this proportion drops steadily through peoples’ 20s, before their tastes “mature” in their early 30s.</li>
+		<li>… men and women listen similarly in their their teens, but after that, men’s mainstream music listening decreases much faster than it does for women.</li>
+		<li>… at any age, people with children (inferred from listening habits) listen to a smaller amounts of currently-popular music than the average listener of that age.</li>
+	</ul>
+	
+	<p class="quote-block">Personified, “music was better in my day” is a battle being fought between 35-year old fathers and teen girls — with single men and moms in their 20s being pulled in both directions.</p>
+	
+	
+	
+	
+	<h3>COLLECTING THE DATA</h3>
+	
+	<p>Spotify creates a “Taste Profile” for every active user, <a href="http://www.theguardian.com/technology/2015/jan/06/spotify-music-streaming-taste-profile" target="_blank">an internal tool for personalization</a>
+	that includes us how many times a listener has streamed an artist. Separately, we can marry that up to each artist’s popularity rank from <a href="http://developer.echonest.com/docs/v4" target="_blank">The Echo Nest</a> (via artist “hotttnesss”).</p>
+	
+	<ul>
+		<lh>To give you an idea of how popularity rank scales, as of January 2015:</lh>
+		<li>Taylor Swift had a popularity rank of #1</li>
+		<li>Eminem had a popularity rank of about #50</li>
+		<li>Muse had a popularity rank of about #250</li>
+		<li>Alan Jackson had a popularity rank of about #500</li>
+		<li>Norah Jones had a popularity rank of about #1000</li>
+		<li>Natasha Bedingfield had a current-popularity rank of about #3000</li>
+	</ul>
+	
+	<p>To cut down on cross-cultural differences, I only looked at users in the U.S. Thus, to find 2014 listening history for 27-year-old males on Spotify (based on self-reported registration data), we can find the median popularity rank of the artists that each
+	individual 27-year-old male U.S. listener streamed, and calculate the subsequent median across all such listeners.</p>
+	
+	
+	
+	
+	<h3>DOES AGE REALLY IMPACT THE AMOUNT OF POPULAR MUSIC PEOPLE STREAM?</h3>
+	
+	<div class="single-landscape-container">
+		<img class="img single-landscape" src="images/blog/music-taste-age-graph.png" alt="The Coolness Spiral of Death: Currently-popular artists lie in the center of a circle, with decreasing popularity represented by each larger ring. As users get older, they “age out” of mainstream music."/>
+	</div>
+	
+	<p>Mainstream artists are at the center of a circle, with each larger concentric ring representing artists of decreasing popularity. The average U.S. teen is very close to the center of the chart — that is, they’re almost <span class="italic">exclusively</span> streaming very popular
+	music. Even in the age of media fragmentation, most young listeners start their musical journey among the Billboard 200 before branching out.</p>
+	
+	<p>And that is exactly what happens next. As users age out of their teens and into their 20s, their path takes them out of the center of the popularity circle. Until their early 30s, mainstream music represents a smaller and smaller proportion of
+	their streaming. And for the average listener, by their mid-30s, their tastes have matured, and they are who they’re going to be.</p>
+	
+	<p>Two factors drive this transition away from popular music:</p>
+	<p class="quote-block">First, listeners discover less-familiar music genres that they didn’t hear on FM radio as early teens, from artists with a lower popularity rank. Second, listeners
+	are returning to the music that was popular when they were coming of age — but which has since phased out of popularity.</p>
+	
+	<p>Interestingly, this effect is much more pronounced for men than for women:</p>
+	
+	<div class="single-landscape-container">
+		<img class="img single-landscape" src="images/blog/male-female-music-taste.png" alt="While both genders age out of popular music listening, on average this effect happens sooner and to larger degree for men than for women."/>
+	</div>
+	
+	<p>For every age bracket, women are more likely to be streaming popular artists than men are. (These days, the top of the charts skew towards female-skewing artists including female
+	solo vocalists, which may contribute to the delta.)</p>
+	
+	<p>However, the decline in popular music streaming is much steeper for men than for women as well. Women show a slow and steady decline in pop music listening from 13-49, while men
+	drop precipitously starting from their teens until their early 30s, at which point they encounter the “lock-in” effect referenced in the overall user chart earlier.</p>
+	
+	<p><span class="bold">The concept of taste freeze isn’t unique to men. But is certainly much stronger.</span></p>
+	
+	
+	
+	<h3>DOES HAVING CHILDREN REALLY IMPACT THE AMOUNT OF POPULAR MUSIC PEOPLE STREAM?</h3>
+	
+	<p>Many factors potentially explain why someone would stop following the latest popular music, and most of them are beyond our ability to measure.</p>
+	
+	<p>However, one in particular is something we can identify — when a user starts listening to large amounts of children’s music. Or in other words, when someone has become a parent.</p>
+	
+	<p>Spotify has an extensive library of children’s music, nursery music, etc. By identifying listeners with significant pockets of this music, we can infer which listeners are “likely parents,”
+	then strip out those tracks and analyze the remaining music.</p>
+	
+	<p>Does having kids accelerate the trend of aging out of music? Or do we see the opposite — i.e. that having kids in the house exposes a person to more popular music than they would otherwise listen to?</p>
+	
+	<div class="single-landscape-container">
+		<img class="img single-landscape" src="images/blog/parents-music-taste.png" alt="The “musical tax” of having children: becoming a parent has an equivalent impact on your “music relevancy” as aging about 4 years."/>
+	</div>
+	
+	<p>In fact, it’s the latter: Even when we account for potential account sharing, users at every age with kids listen to smaller amounts of popular music than the average listener. Put another way,
+	becoming a parent has an equivalent impact on your “music relevancy” as aging about 4 years.</p>
+	
+	<p class="quote-block">Interestingly, when it comes to parents, we don’t see the same steadily-increasing gap we saw when comparing men and women by age. Instead, this “musical tax” is roughly the same at every age.
+	This makes sense; having a child is a “binary” event. Once it happens, a lot of other things go out the window.</p>
+	
+	<p>All this is to say that yes, conventional wisdom is “wisdom” for a reason. So if you’re getting older and can’t find yourself staying as relevant as you used to, have no fear — just wait for your kids to become teenagers,
+	and you’ll get exposed to all the popular music of the day once again!</p>
+	
+	<p>(Though I guess if we’ve learned anything today, it’s that you’ll end up trying to get them to listen to your Built To Spill albums anyway.)</p>
+	
+	
+	
+	
+	<ul>
+		<lh><span class="bold">Methodology notes:</span></lh>
+		<li><p>For this analysis, I wanted to isolate music taste down to pure music-oriented discovery, not music streamed because of an interest in some other media or some other activity. To that end, I eliminated any Taste Profile activity
+		for artists whose genre indicated another media originally (“cabaret”,”soundtrack”,  “movie tunes” “show tunes”, “hollywood”, “broadway”),	as well as music clearly tied to another activity ( “sleep”, “environmental”, “relaxative”,  “meditation”).</p></li>
+		
+		<li><p>To identify likely parents, I first identified listeners with notable 2014 listening for genres including “children’s music”, “nursery” , “children’s christmas”, “musica para ninos”, “musique pour enfants”, “viral pop” or ” antiviral pop”,
+		then subsequently removed that music when calculating the user’s median artist popularity rank.</p></li>
+		
+		<li><p>To control for characteristics across cultures, this analysis looked only at U.S. listeners.</p></li>
+		
+		<li><p>As has been <a href="http://musicmachinery.com/2014/02/13/age-specific-listening/" target="_blank">pointed out in previous analyses</a>, registration data by birth year has a particular problem in overrepresentation at years that end with 0 (1990, 1980, etc).
+		For those years, I took the average value of people	who self report as one year younger and one year older. Matching birth year to age can also be problematic depending on month of birth, so for the graph’s sake I’ve displayed three-period moving averages per year.</p></li>
+	</ul>
+	
+</article>

@@ -43,7 +43,7 @@
 /*== SIDEBAR ==*/
 #blog-sidebar
 {
-	background-color: transparent;
+	background-color: #f8f8f8;
 	width: 250px;
 	min-height: 800px;
 	margin-top: 20px;
@@ -55,153 +55,30 @@
 #tabs
 {
 	text-align: justify;
-	height: 65px;
-	position: relative;
 }
 
 .tab
 {
-	width: 45%;
-	height: 40px;
-	line-height: 40px;
-	font-size: 1.05em;
-	
+	width: 50%;
+	height: 50px;
+	line-height: 50px;
+	font-size: 1.1em;
 	font-weight: bold;
 	display: inline-block;
-	background-color: #6e95f3; /*#c0c0c0;*/
-	color: white;
+	background-color: #c0c0c0; /*rgba(192,192,192,.9);*/
 	cursor: pointer;
-	
-	position: absolute;
-	bottom:0;
 }
 
-.tab#recent
-{
-	right: 0;
-}
-
-.tab#archive
-{
-	left: 0;
-}
-
-.tab.selected
+.tab#selected
 {
 	background-color: #f8f8f8;
-	height: 50px;
-	line-height: 55px;
-	border-top: 5px solid #6e95f3;
-	color: black;
-	width: 55%;
-	font-size: 1.1em;
 }
 
 #posts-list
 {
 	overflow-Y: auto;
 	max-height: 95vh;
-	background-color: #f8f8f8;
 }
-
-#archive-list
-{
-	overflow-Y: auto;
-	overflow-x: hidden;
-	min-height: 400px;
-	max-height: 95vh;
-	display: none;
-	background-color: #f8f8f8;
-}
-
-
-
-
-#archive-list .year, #archive-list lh, #archive-list li 
-{
-	text-align: left;
-}
-
-#archive-list .year > li
-{
-	list-style-type: none;
-}
-
-#archive-list .year li
-{
-	/*display: none;*/ /*hides months*/
-}
-
-#archive-list lh
-{
-	font-weight: bold;
-	cursor: pointer;
-}
-
-#archive-list .collapsed::before
-{
-	content: "";
-    display: inline-block;
-    width: 0; 
-    height: 0; 
-    border-top: 4px solid transparent;
-    border-bottom: 4px solid transparent;
-    border-left: 7px solid black; 
-    position: absolute;
-	margin-left: -16px;
-    margin-top: 5px;
-}
-
-#archive-list .expanded::before
-{
-	content: "";
-    display: inline-block;
-    width: 0; 
-    height: 0; 
-    border-top: 7px solid black;
-    border-right: 4px solid transparent;
-    border-left: 4px solid transparent; 
-    position: absolute;
-	margin-left: -16px;
-    margin-top: 6px;
-}
-
-#archive-list .month
-{
-	text-align: left;
-	margin-bottom: 10px;
-	margin-left: 10px;
-	padding: 0;
-}
-
-.month li
-{
-	margin-left: 20px;
-	margin-top: 8px;
-	padding-right: 10px;
-	list-style-type: disc;
-	display: none;
-}
-
-/*first li*/
-.month lh+li
-{
-	margin-top: 0;
-}
-
-.month li a
-{
-	text-decoration: none;
-	color: black;
-	white-space: wrap;
-	overflow-x: hidden;
-}
-
-.month li a:hover
-{
-	color: #6e95f3;
-}
-
 
 .list-post-info
 {
@@ -209,10 +86,6 @@
 	border-bottom: 1px solid lightgrey;
 	cursor: pointer;
 	position: relative;
-	background-color: #f8f8f8;
-	color: inherit;
-	text-decoration: none;
-	display: block;
 }
 
 .list-post-info .prog-bar /*replace with span?*/
@@ -224,11 +97,6 @@
 	height: 100%;	
 	width: 0;
 	background-color: rgba(110, 149, 243, 0.4)
-}
-
-.list-post-info.selected
-{
-	border-left: 8px solid #6e95f3;
 }
 
 .list-post-info:hover
@@ -301,14 +169,6 @@
 	padding-bottom: 40px;
 }
 
-.blog-post h3
-{
-	text-align: left;
-	margin-top: 40px;
-	padding-left: 4%;
-	padding-right: 4%;
-}
-
 .blog-post p
 {
 	text-align: justify;
@@ -343,7 +203,6 @@
 	text-align: left;
 	margin-left: 4%;
 	margin-right: 4%;
-	line-height: 1.5;
 }
 
 .blog-post li p
@@ -360,33 +219,6 @@ p.quote-block
 	padding-right: 10%;
 }
 
-
-.video-container
-{
-	position: relative;
-	/*calculated out of the aspect ratio of the video (16:9) ==> height is 56.25% of the width 
-	* For videos with 4:3 ratio, use 75%. If support for different ratios is necessary, introduce separate classes and exclude the padding bottom form this class
-	* e.g. 
-	* .fourByThree{padding-bottom: 75%;} .wideScreen{padding-bottom: 56.25%;}
-	*/
-	padding-bottom: 56.25%; 
-	padding-top: 35px; /*specific to YouTube videos - this allows space for the chrome*/
-	height: 0; /*padding-bottom gives the element the required height*/
-	overflow: hidden;
-	
-	width: 88%;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.video-container iframe
-{
-	position: absolute;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
-}
 
 /*==images==*/
 /*
@@ -453,7 +285,7 @@ p.quote-block
 	text-align: justify; /*evenly distributes inline containers*/
 	
 	/*hides fake last line*/
-	/*height: 200px;*/ /*need a specified height for overflow:hidden to work and hide the fake line*/
+	/*height: 200px;*/
 	overflow: hidden;
 }
 
@@ -462,7 +294,6 @@ p.quote-block
 	content: "";
 	width: 100%;
 	display: inline-block;
-	height: 1px;
 }
 
 .blog-post .group-landscape .thumbnail-container
@@ -508,27 +339,6 @@ p.quote-block
 {
 	display: none;
 }
-
-.group-portrait
-{
-	position: relative;
-}
-
-.img-count
-{
-	position: absolute;
-	right: 0;
-	top: 100%;
-	transform: translateY(-40px);
-	min-width:50px;
-	height: 40px;
-	line-height: 40px;
-	background-color: rgba(0,0,0,0.4);
-	color: rgba(255,255,255,0.7);
-	font-size: 1.1em;
-	font-weight: bold;
-}
-
 
 
 .blog-post .group-portrait .portrait-container
@@ -631,17 +441,9 @@ p.quote-block
 #inner-theatre-container #previous-arrow, #inner-theatre-container #next-arrow
 {
 	position: absolute;
-	opacity: 0.2;
+	opacity: 0.3;
 	top: 50%;
 	cursor: pointer;
-	padding: 100% 4px 100% 40%; /*user can click on padding to change slide. top right bottom left, no need to change padding for #previous-arrow*/
-}
-
-
-
-#inner-theatre-container #previous-arrow:hover, #inner-theatre-container #next-arrow:hover
-{
-	opacity: 1;
 }
 
 #overlay-theatre #inner-theatre-container #previous-arrow
@@ -666,8 +468,8 @@ p.quote-block
 	position: absolute;
 	right: 0;
 	top: 0;
-	/*background-color: rgba(255,255,255,0.7);*/
-	color: #fff;
+	background-color: rgba(255,255,255,0.7);
+	
 	width:40px;
 	height: 40px;
 	line-height: 40px;
@@ -677,29 +479,13 @@ p.quote-block
 	cursor: pointer;
 }
 
-#img-desc
-{
-	position: absolute;
-	bottom: 0;
-	
-	left: 50%;
-	transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	-webkit-transform: translateX(-50%);
-	
-	padding-bottom: 20px;
-	padding-top: 20px;
-	padding-left: 20px;
-	padding-right: 20px;
-	background-color: rgba(0,0,0,0.6);
-	color: #ffffff;
-	
-	max-width: 600px;
-}
-
 /*========*/
 
-
+.blog-post iframe
+{
+	width: 71.11%;
+	height: 360px;
+}
 
 /*== Basic Styling ==*/
 
@@ -772,7 +558,7 @@ html {
 
 	.blog-inner-container
 	{
-		max-width: 1245px;
+		max-width: 1500px;
 		width: 80%;
 		margin-left: auto;
 		margin-right: auto;
@@ -780,7 +566,7 @@ html {
 	
 	#blog-sidebar
 	{
-		/*background-color: #f8f8f8;*/
+		background-color: #f8f8f8;
 		width: 250px;
 		min-height: 800px;
 		margin-top: 20px;
@@ -794,7 +580,7 @@ html {
 	{
 		float: right;
 		width: 70%;
-		max-width: 900px;
+		max-width: 800px;
 	}
 
 	
@@ -835,15 +621,21 @@ html {
 	{
 		text-align: justify;
 		line-height: 1.5;
-		padding-left: 6%;
-		padding-right: 6%;
+		padding-left: 8.88%;
+		padding-right: 8.88%;
+	}
+
+	.blog-post a
+	{
+		text-decoration: none;
+		color: tomato;
 	}
 
 	.blog-post ul,ol
 	{
 		margin:0;
-		padding-left: 6%;
-		padding-right: 6%;
+		padding-left: 8.88%;
+		padding-right: 8.88%;
 		text-align: left;
 		margin-bottom: 16px;
 	}
@@ -872,11 +664,6 @@ html {
 		padding-right: 15%;
 	}
 
-	.video-container
-	{
-		width: 77.77%;
-	}
-	
 	.blog-post .single-landscape-container
 	{
 		width: 77.77%;
@@ -894,7 +681,7 @@ html {
 
 	.blog-post .single-portrait-container
 	{
-		width: 66.66%;
+		width: 66.66%; /*600px;*/
 		max-height: 800px;
 		overflow: hidden;
 		margin-left: auto;
@@ -976,7 +763,10 @@ html {
 		width: 32.5%;
 	}
 
-	
+	.additional-imgs
+	{
+		display: none;
+	}
 
 
 	.blog-post .group-portrait .portrait-container
@@ -1070,7 +860,7 @@ html {
 	#inner-theatre-container #previous-arrow, #inner-theatre-container #next-arrow
 	{
 		position: absolute;
-		/*opacity: 0.8;*/
+		opacity: 0.8;
 		top: 50%;
 		cursor: pointer;
 	}
@@ -1092,7 +882,7 @@ html {
 		-webkit-transform: translateY(-50%);
 	}
 
-	/*#overlay-theatre #inner-theatre-container #exit
+	#overlay-theatre #inner-theatre-container #exit
 	{
 		position: absolute;
 		right: 0;
@@ -1106,9 +896,8 @@ html {
 		font-size: 150%;
 		
 		cursor: pointer;
-	}*/
+	}
 	
-
 }
 
 /*@media screen and (min-width: 1290px) 
@@ -1143,14 +932,3 @@ html {
 
 	
 }*/
-
-
-@media screen and (min-width: 1450px) 
-{
-	
-	#blog-sidebar
-	{
-		width: 300px;
-	}
-	
-}

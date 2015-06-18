@@ -7,10 +7,10 @@
 		<title>WiFindUs - Blog</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
-		<script type="text/javascript" src="js/blog.js"></script>
+		<script type="text/javascript" src="js/blog-old.js"></script>
 		<script type="text/javascript" src="js/menu.js"></script>	
 		<link rel="stylesheet" href="css/main.min.css">
-		<link rel="stylesheet" href="css/blog.css">
+		<link rel="stylesheet" href="css/blog-old.css">
 		<link rel="icon"	type="image/png"		href="images/favicon.png">
 	</head>
 	
