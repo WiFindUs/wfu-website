@@ -6,7 +6,7 @@
  var $sidebar;
  var sidebarList = [];
  var $firstPost;
- var loadOnScroll = false;
+ var loadOnDemand = false;
  
  var postsToAppend = [];
  var difference = 0;
@@ -73,7 +73,7 @@
 				
 				if(difference > 0)
 				{
-					console.log("Difference: " + difference);
+					//console.log("Difference: " + difference);
 					postsToAppend[index] = post;
 					if(difference ==1)
 					{
@@ -85,7 +85,7 @@
 				}
 				else
 				{
-					console.log("Append Difference: " + difference);
+					//console.log("Append Difference: " + difference);
 					appendPost(post, title); //assign to array until complete then append + get correct title
 				}
 				
@@ -152,13 +152,13 @@
 		 
 		 if(i==0)
 		{
-			console.log("open first year");
+			//console.log("open first year");
 			htmlString = htmlString + "" + yearHTML + "" + monthHTML + "" + postHTML;
 		}
 		
 		 else if(postData[i].year != postData[i-1].year)
 		 {
-			 console.log("open ANOTHER year");
+			// console.log("open ANOTHER year");
 			 htmlString = htmlString + "" + closeMonthHTML + "" + closeYearHTML + "" + yearHTML + "" + monthHTML + "" + postHTML;
 		 }
 		 
@@ -166,19 +166,19 @@
 		{
 			if(postData[i].month == postData[i-1].month)
 			{
-				console.log("SAME month");
+				//console.log("SAME month");
 				htmlString = htmlString + "" + postHTML;
 			}
 			else
 			{
-				console.log("CLOSE month & OPEN NEW ONE");
+				//console.log("CLOSE month & OPEN NEW ONE");
 				htmlString = htmlString + "" + closeMonthHTML + "" + monthHTML + "" + postHTML;
 			}
 		}
 		
 		if((i+1) == postData.length)
 		{
-			console.log("CLOSE EVERYTHING");
+			//console.log("CLOSE EVERYTHING");
 			htmlString = htmlString + "" + closeMonthHTML + "" + closeYearHTML ;
 		}
 		
@@ -350,7 +350,6 @@
 	 
 	 if(posts.length > 1) //posts is an array
 	 { 
-		console.log("FOR");
 		for(var i=0; i<posts.length; i++)
 		 {
 			 postsString = postsString + posts[i];
@@ -358,7 +357,6 @@
 	 }
 	 else //posts is a string
 	 {
-		 console.log("ELSE");
 		 postsString = posts;
 	 }
 	 
@@ -367,13 +365,12 @@
 	 
 	 console.log("APPEND: "+ title);
 	 
-	 if(!loadOnScroll && title != postData[0].title) // !first post
+	 if(loadOnDemand)
 	 {
 		 window.location.hash = "";
 		 window.location.hash = hashTitle(title);
-	 }	 
-	 
-	 loadOnScroll = false;
+		 loadOnDemand = false;
+	 }
 	 
 	 var DOMcheckInterval = setInterval(function(){
 		 if(postsNum < $("#blog-content").children().length)
@@ -386,10 +383,13 @@
  }
  
  
+ 
  function goToPost(postIndex)
  {
 	 if(postsCounter < postIndex)
 	 {
+		 loadOnDemand = true;
+		 
 		 difference = postIndex - postsCounter;
 		 console.log("post counter: " + postsCounter);
 		 console.log("post index: " + postIndex);
@@ -447,7 +447,7 @@
 	 if(windowScroll + windowHeight > contentHeight - 80)
 	 {
 		 console.log("Near Bottom");
-		 loadOnScroll = true;
+		 
 		 /*
 		 *checking whether the 1st post was loaded is needed; if user scrolls to bottom before 1st post loads,
 		 *this function is executed before it's actually needed and postsCounter will be larger than it should be.
@@ -606,8 +606,16 @@
  
  function updateHashScroll(title, windowScroll)
  {
-	window.location.hash = hashTitle(title);
-	document.body.scrollTop = windowScroll; //prevent scroll to anchor
+	
+	if(history && history.replaceState)
+	{
+		history.replaceState({}, "", 'blog#'+ hashTitle(title));
+	}
+	else
+	{
+		window.location.hash = hashTitle(title);
+		document.body.scrollTop = windowScroll; //prevent scroll to anchor
+	}
  }
  /*====================*/
  
