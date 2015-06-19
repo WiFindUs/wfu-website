@@ -7,6 +7,7 @@
  var sidebarList = [];
  var $firstPost;
  var loadOnDemand = false;
+ var preventHash = false;
  
  var postsToAppend = [];
  var difference = 0;
@@ -453,6 +454,7 @@
 	
 	 
 	 postIndex = correctElem.postIndex;
+	 preventHash = true;
 	 goToPost(postIndex);
  }
  
@@ -640,8 +642,13 @@
 	}
 	else
 	{
-		window.location.hash = hashTitle(title);
-		document.body.scrollTop = windowScroll; //prevent scroll to anchor NOT WORKING in IE
+		if(!preventHash)
+		{
+			var scrollmem = $('html,body').scrollTop();
+			window.location.hash = hashTitle(title);
+			$('html,body').scrollTop(scrollmem);		
+		}
+		preventHash = false;
 	}
  }
  /*====================*/
