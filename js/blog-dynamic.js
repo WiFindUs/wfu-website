@@ -412,20 +412,27 @@
  //sidebar
  function findIndex(evt)
  {
-	 var $elementClicked = evt.target;
-	 var e;
+	 var elementClicked = evt.target;
+	 
+	 var correctElem; //<a> class="list-post-info"
 	 var postIndex;
 	 
-	 if($elementClicked.className == 'list-post-info')
+	 if(elementClicked.className == 'list-post-info')
 	 {
-		e = $elementClicked;
+		e = elementClicked;
+	 }
+	 else if(elementClicked.parentElement.nodeName == 'a')
+	 {
+		 //if IE support isn't important, you can use correctElem = $elementClicked.closest('a'); and remove the last else statement
+		 correctElem = elementClicked.parentElement;
 	 }
 	 else
 	 {
-		 e = $elementClicked.closest('a');
+		 correctElem = elementClicked.parentElement.parentElement;
 	 }
+	
 	 
-	 postIndex = e.postIndex;
+	 postIndex = correctElem.postIndex;
 	 goToPost(postIndex);
  }
  
