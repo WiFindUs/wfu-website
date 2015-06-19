@@ -134,7 +134,7 @@
 	 var htmlString = "";
 	 
 	 var closeYearHTML = "</ul>";
-	 var closeMonthHTML = "</li></ul>";
+	 var closeMonthHTML = "</ul></li>";
 	 
 	 for(i=0; i<postData.length; i++)
 	 {
@@ -182,6 +182,7 @@
 			htmlString = htmlString + "" + closeMonthHTML + "" + closeYearHTML ;
 		}
 		
+		console.log(htmlString);
 	 }
 	 
 	 archiveList.innerHTML = htmlString;
@@ -270,10 +271,14 @@
 	 var li = ul.getElementsByTagName("li");
 	 
 	 
-	 if(lh.classList.contains("collapsed"))
+	 //if(lh.classList.contains("collapsed"))
+	 if(lh.className.match(/(?:^|\s)collapsed(?!\S)/))
 	 {
-		 lh.classList.remove("collapsed");
-		 lh.classList.add("expanded");
+		 //lh.classList.remove("collapsed");
+		 //lh.classList.add("expanded");
+		 
+		 removeClass(lh, "collapsed");
+		 addClass(lh, "expanded");
 		 
 		for(var i=0; i<li.length; i++)
 		{
@@ -286,18 +291,26 @@
 					//get month
 					var nestedLh = li[i].getElementsByTagName("ul")[0].getElementsByTagName("lh")[0];
 					
-					nestedLh.classList.remove("expanded");
-					nestedLh.classList.add("collapsed");
+					//nestedLh.classList.remove("expanded");
+					//nestedLh.classList.add("collapsed");
+					
+					 removeClass(nestedLh, "collapsed");
+					 addClass(nestedLh, "expanded");
 				}
 			}
 		}
 		 
 	 }
-	 else if(lh.classList.contains("expanded"))
+	 
+	 //else if(lh.classList.contains("expanded"))
+	 else if(lh.className.match(/(?:^|\s)expanded(?!\S)/))
 	 {
 		 console.log("COLLAPSE");
-		 lh.classList.remove("expanded");
-		 lh.classList.add("collapsed");
+		 //lh.classList.remove("expanded");
+		 //lh.classList.add("collapsed");
+		 
+		 removeClass(lh, "expanded");
+		 addClass(lh, "collapsed");
 		 
 		 for(var i=0; i<li.length; i++)
 		 {
@@ -313,12 +326,17 @@
 	 var postsList = document.getElementById("posts-list");
 	 var archiveList = document.getElementById("archive-list");
 	 
-	 if(!tab.classList.contains("selected"))
+	 
+	 //if(!tab.classList.contains("selected"))
+	 if(!tab.className.match(/(?:^|\s)selected(?!\S)/))
 	 {
 		 if(tab == archiveTab)
 		 {
-			 archiveTab.classList.add("selected");
-			 recentTab.classList.remove("selected");
+			 //archiveTab.classList.add("selected");
+			 //recentTab.classList.remove("selected");
+			 
+			 addClass(archiveTab, "selected");
+			 removeClass(recentTab, "selected");
 			 
 			 postsList.style.display = "none";
 			 archiveList.style.display = "block";
@@ -326,8 +344,11 @@
 		 }
 		 else if(tab == recentTab)
 		 {
-			 recentTab.classList.add("selected");
-			 archiveTab.classList.remove("selected");
+			 //recentTab.classList.add("selected");
+			 //archiveTab.classList.remove("selected");
+			 
+			 addClass(recentTab, "selected");
+			 removeClass(archiveTab, "selected");
 			 
 			 archiveList.style.display = "none";
 			 postsList.style.display = "block";
