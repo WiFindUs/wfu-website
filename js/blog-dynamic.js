@@ -182,7 +182,6 @@
 			htmlString = htmlString + "" + closeMonthHTML + "" + closeYearHTML ;
 		}
 		
-		console.log(htmlString);
 	 }
 	 
 	 archiveList.innerHTML = htmlString;
@@ -438,9 +437,9 @@
 	 var correctElem; //<a> class="list-post-info"
 	 var postIndex;
 	 
-	 if(elementClicked.className == 'list-post-info')
+	 if(elementClicked.className == 'list-post-info' || elementClicked.className == 'archive-post-title')
 	 {
-		e = elementClicked;
+		correctElem = elementClicked;
 	 }
 	 else if(elementClicked.parentElement.nodeName == 'a')
 	 {
@@ -642,7 +641,7 @@
 	else
 	{
 		window.location.hash = hashTitle(title);
-		document.body.scrollTop = windowScroll; //prevent scroll to anchor
+		document.body.scrollTop = windowScroll; //prevent scroll to anchor NOT WORKING in IE
 	}
  }
  /*====================*/
